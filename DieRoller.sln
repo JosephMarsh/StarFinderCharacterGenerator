@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DieRoller", "DieRoller\DieRoller.csproj", "{126B79B3-5400-4D03-A08F-B93CFE3438CA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SFLib", "..\SFLib\SFLib.csproj", "{166EA97F-6DFC-4484-BE7D-43F06E9F1958}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{126B79B3-5400-4D03-A08F-B93CFE3438CA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{126B79B3-5400-4D03-A08F-B93CFE3438CA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{126B79B3-5400-4D03-A08F-B93CFE3438CA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{126B79B3-5400-4D03-A08F-B93CFE3438CA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{166EA97F-6DFC-4484-BE7D-43F06E9F1958}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{166EA97F-6DFC-4484-BE7D-43F06E9F1958}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{166EA97F-6DFC-4484-BE7D-43F06E9F1958}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{166EA97F-6DFC-4484-BE7D-43F06E9F1958}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

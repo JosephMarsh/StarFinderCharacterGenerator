@@ -1,0 +1,333 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>SFLib</name>
+    </assembly>
+    <members>
+        <member name="T:SFLib.Calculators">
+            <summary>
+            This Class contiants usefull RGP calcuation methods.
+            </summary>
+        </member>
+        <member name="M:SFLib.Calculators.Point_BuyCostCalc(System.Int32)">
+            <summary>
+            This Method accepts a raw ability score between 7 and 18 and calculates its cost in point-buy points
+            </summary>
+            <param name="abilityScore">(int)Raw ability Score</param>
+            <returns>(int)pointbuy cost for one ability score</returns>
+        </member>
+        <member name="M:SFLib.Calculators.modCalc(System.Int32)">
+            <summary>
+            This Method accepts a raw ability score and and outputs the Ability Score Bonus
+            </summary>
+            <param name="AbilityScore">(int)Raw Ability Score</param>
+            <returns>(int)Ability Score Bonus</returns>
+        </member>
+        <member name="T:SFLib.DiceRollMethods">
+            <summary>
+            Class Stores Methods for Generating Random Die Rolls
+            </summary>
+        </member>
+        <member name="M:SFLib.DiceRollMethods.HeroicDieRoll(System.Int32[],System.Boolean)">
+            <summary>
+            rolls 2 dice drops the lowest and adds the 3rd is always a 6
+            </summary>
+            <param name="dice">Array of int</param>
+            <param name="re_Roll_1s">if true will not return less than 2</param>
+            <returns>Array of 3 ints</returns>
+        </member>
+        <member name="M:SFLib.DiceRollMethods.StandardDieRoll(System.Int32[],System.Boolean)">
+            <summary>
+            rolls 4 dice drops, the lowest and adds the 3 hightest to an array
+            </summary>
+            <param name="dice">Array of int</param>
+            <param name="re_Roll_1s">if true will not return less than 2</param>
+            <returns>Array of 3 ints</returns>
+        </member>
+        <member name="M:SFLib.DiceRollMethods.RollD6(System.Boolean)">
+            <summary>
+            Generates psudo-random number between 1 and 6
+            </summary>
+            <param name="re_Roll_1s">if true will not return less than 2</param>
+            <returns>int between 1 and 6 or 2 and 6</returns>
+        </member>
+        <member name="F:SFLib.EnvoyClass.ClassID">
+            <summary>
+            This class stores data for the Envoy class and modifies the
+            super class PlayerClass with relevent data specific to this player
+            class.
+            </summary>
+        </member>
+        <member name="T:SFLib.Information">
+            <summary>
+            This class is used to store Strings to populate info boxes.
+            </summary>
+        </member>
+        <member name="F:SFLib.Information.strengthStat">
+            <summary>Ability score discription</summary>
+        </member>
+        <member name="F:SFLib.Information.dexterityStat">
+            <summary>Ability score discription</summary>
+        </member>
+        <member name="F:SFLib.Information.consitutionStat">
+            <summary>Ability score discription</summary>
+        </member>
+        <member name="F:SFLib.Information.intellienceStat">
+            <summary>Ability score discription</summary>
+        </member>
+        <member name="F:SFLib.Information.wisdomStat">
+            <summary>Ability score discription</summary>
+        </member>
+        <member name="F:SFLib.Information.charismaStat">
+            <summary>Ability score discription</summary>
+        </member>
+        <member name="F:SFLib.Information.rollModeStandard">
+            <summary>Stat Generation Method, Description</summary>
+        </member>
+        <member name="F:SFLib.Information.rollModeClassic">
+            <summary>Stat Generation Method, Description</summary>
+        </member>
+        <member name="F:SFLib.Information.rollModeHeroic">
+            <summary>Stat Generation Method, Description</summary>
+        </member>
+        <member name="F:SFLib.Information.rollModeDicePool">
+            <summary>Stat Generation Method, Description</summary>
+        </member>
+        <member name="F:SFLib.Information.rollModepointBuy">
+            <summary>Stat Generation Method, Description</summary>
+        </member>
+        <member name="F:SFLib.Information.rollModeGod">
+            <summary>Stat Generation Method, Description</summary>
+        </member>
+        <member name="F:SFLib.Information.rollModeCore">
+            <summary>Stat Generation Method, Description</summary>
+        </member>
+        <member name="F:SFLib.Information.step1">
+            <summary>Instruction Set</summary>
+        </member>
+        <member name="F:SFLib.Information.afterCommitPressed">
+            <summary>Instruction Set</summary>
+        </member>
+        <member name="F:SFLib.Information.afterCommitPressedCore">
+            <summary>Instruction Set</summary>
+        </member>
+        <member name="F:SFLib.Information.briefConcept">
+            <summary>Instruction Set</summary>
+        </member>
+        <member name="F:SFLib.Information.acePilot">
+            <summary>Theme Discription</summary>
+        </member>
+        <member name="F:SFLib.Information.bountyHunter">
+            <summary>Theme Discription</summary>
+        </member>
+        <member name="F:SFLib.Information.icon">
+            <summary>Theme Discription</summary>
+        </member>
+        <member name="F:SFLib.Information.mercenary">
+            <summary>Theme Discription</summary>
+        </member>
+        <member name="F:SFLib.Information.outlaw">
+            <summary>Theme Discription</summary>
+        </member>
+        <member name="F:SFLib.Information.priest">
+            <summary>Theme Discription</summary>
+        </member>
+        <member name="F:SFLib.Information.scholar">
+            <summary>Theme Discription</summary>
+        </member>
+        <member name="F:SFLib.Information.spacefarer">
+            <summary>Theme Discription</summary>
+        </member>
+        <member name="F:SFLib.Information.xenoSeeker">
+            <summary>Theme Discription</summary>
+        </member>
+        <member name="F:SFLib.Information.themeless">
+            <summary>Theme Discription</summary>
+        </member>
+        <member name="F:SFLib.Information.androidDiscription">
+            <summary>Race Discription</summary>
+        </member>
+        <member name="F:SFLib.Information.humanDiscription">
+            <summary>Race Discription</summary>
+        </member>
+        <member name="F:SFLib.Information.kasathasDiscription">
+            <summary>Race Discription</summary>
+        </member>
+        <member name="F:SFLib.Information.lashuntasDiscription">
+            <summary>Race Discription</summary>
+        </member>
+        <member name="F:SFLib.Information.shirrensDiscription">
+            <summary>Race Discription</summary>
+        </member>
+        <member name="F:SFLib.Information.veskDiscription">
+            <summary>Race Discription</summary>
+        </member>
+        <member name="F:SFLib.Information.yoskiDiscription">
+            <summary>Race Discription</summary>
+        </member>
+        <member name="F:SFLib.Information.customRaceDiscription">
+            <summary>Race Discription</summary>
+        </member>
+        <member name="F:SFLib.Information.envoyDiscription">
+            <summary>Class Discription</summary>
+        </member>
+        <member name="F:SFLib.Information.mechDiscription">
+            <summary>Class Discription</summary>
+        </member>
+        <member name="F:SFLib.Information.mysticDiscription">
+            <summary>Class Discription</summary>
+        </member>
+        <member name="F:SFLib.Information.operativeDiscription">
+            <summary>Class Discription</summary>
+        </member>
+        <member name="F:SFLib.Information.solarianDiscription">
+            <summary>Class Discription</summary>
+        </member>
+        <member name="F:SFLib.Information.soldierDiscription">
+            <summary>Class Discription</summary>
+        </member>
+        <member name="F:SFLib.Information.techDiscription">
+            <summary>Class Discription</summary>
+        </member>
+        <member name="F:SFLib.Information.classDiscriptions">
+            <summary>Class Discription</summary>
+        </member>
+        <member name="F:SFLib.Information.CoreDeities">
+            <summary>An Array of Deities and their Alignments</summary>
+        </member>
+        <member name="P:SFLib.Information.ClassDiscriptions">
+            <summary>
+            produces a read only array of Class Names
+            </summary>
+        </member>
+        <member name="F:SFLib.MysticClass.ClassID">
+            <summary>
+            This class stores data for the Mystic class and modifies the
+            super class PlayerClass with relevent data specific to this player
+            class.
+            </summary>
+        </member>
+        <member name="F:SFLib.OperativeClass.ClassID">
+            <summary>
+            This class stores data for the Operative class and modifies the
+            super class PlayerClass with relevent data specific to this player
+            class.
+            </summary>
+        </member>
+        <member name="T:SFLib.PlayerCharacter">
+            <summary>
+            This class stores charactor data for
+            This is where finalized data should be stored.
+            </summary>
+        </member>
+        <member name="P:SFLib.PlayerCharacter.CharacterName">
+            <summary>Charactor's Name</summary>
+        </member>
+        <member name="P:SFLib.PlayerCharacter.PlayerName">
+            <summary>Player's Name</summary>
+        </member>
+        <member name="P:SFLib.PlayerCharacter.Concept">
+            <summary>Player's Short Concept Description</summary>
+        </member>
+        <member name="P:SFLib.PlayerCharacter.NotesAndIdeas">
+            <summary>Player's longform notes and ideas(will dispaly on seperate page of final sheet)</summary>
+        </member>
+        <member name="F:SFLib.PlayerCharacter.AbilityNames">
+            <summary>String Array of Ability names full [0-5] in alphabetical order Parallel with Ability Score Arrays</summary>
+        </member>
+        <member name="F:SFLib.PlayerCharacter.AbilityNamesBrief">
+            <summary>String Array of Ability names full [0-5]in alphabetical order Parallel with Ability Score Arrays</summary>
+        </member>
+        <member name="F:SFLib.PlayerCharacter.curentXP">
+            <summary>Read only. Base experience amounts per level[0-20] use unadjusted character level</summary>
+        </member>
+        <member name="F:SFLib.PlayerCharacter.nextLevelXP">
+            <summary>Read only. Experience amounts needed for next level[0-20] use unadjusted current character level Parallel with curentXP</summary>
+        </member>
+        <member name="F:SFLib.PlayerCharacter.featsPerLevel">
+            <summary>Read only. Unadjusted feats per level reguardless of classes[0-20] use unadjusted character level</summary>
+        </member>
+        <member name="F:SFLib.PlayerCharacter.RaceAbilityMods">
+            <summary>Store Race Ability Score Adjustments [0-5] in Alphbetical order, Parrallel with Ability scores</summary>
+        </member>
+        <member name="P:SFLib.PlayerCharacter.AbilityScores">
+            <summary>Ability Scores After Adjustments from Theme and Race </summary>
+        </member>
+        <member name="P:SFLib.PlayerCharacter.StaminaPoints">
+            <summary> Statmina points ajusted by Class Con mod and Ability Scores</summary>
+        </member>
+        <member name="P:SFLib.PlayerCharacter.AbilityMods">
+            <summary>Ability Mods from Base Character Attributes</summary>
+        </member>
+        <member name="P:SFLib.PlayerCharacter.AbilityScoresRaw">
+            <summary>Base scores without Theme mods or race mods</summary>
+        </member>
+        <member name="T:SFLib.PlayerClass">
+            <summary>
+            This class stores data common to all Player Classes.  
+            Individuall classes will inherit from this class.
+            Once the classes have been cosen, most of the character
+            creation data can be pulled from here for reference,
+            though most modifications should come throgh the 
+            sub classes.
+            </summary>
+        </member>
+        <member name="P:SFLib.PlayerClass.ClassLevel">
+            <summary>How many levels the player has in this class </summary>
+        </member>
+        <member name="P:SFLib.PlayerClass.ClassConMod">
+            <summary>Player's constitution modifier</summary>
+        </member>
+        <member name="P:SFLib.PlayerClass.ClassHPMod">
+            <summary>This Classe's Hit Point modifier</summary>
+        </member>
+        <member name="P:SFLib.PlayerClass.heavyArmor">
+            <summary>Can the Player Wear Heavy Armor?</summary>
+        </member>
+        <member name="P:SFLib.PlayerClass.skillsPerLevel">
+            <summary>Number of Sillponits gaind per level up</summary>
+        </member>
+        <member name="P:SFLib.PlayerClass.landSpeedMod">
+            <summary>Modifies how fast the player can move</summary>
+        </member>
+        <member name="T:SFLib.Race">
+            <summary>
+            Libraray for Race data.
+            </summary>
+        </member>
+        <member name="T:SFLib.RandomNumber">
+            <summary>
+            This class contains a method for randomly generating numbers
+            </summary>
+        </member>
+        <member name="M:SFLib.RandomNumber.Between(System.Int32,System.Int32)">
+            <summary>
+            Generates a psudo-random number
+            </summary>
+            <param name="minValue">Lowest Number</param>
+            <param name="maxValue">Highest Number +1</param>
+            <returns>Random Int</returns>
+        </member>
+        <member name="F:SFLib.SolarianClass.ClassID">
+            <summary>
+            This class stores data for the Solarian class and modifies the
+            super class PlayerClass with relevent data specific to this player
+            class.
+            </summary>
+        </member>
+        <member name="F:SFLib.SoldierClass.ClassID">
+            <summary>
+            This class stores data for the Soldier class and modifies the
+            super class PlayerClass with relevent data specific to this player
+            class.
+            </summary>
+        </member>
+        <member name="F:SFLib.TechnomancerClass.HP">
+            <summary>
+            This class stores data for the Technomancer class and modifies the
+            super class PlayerClass with relevent data specific to this player
+            class.
+            </summary>
+        </member>
+    </members>
+</doc>
