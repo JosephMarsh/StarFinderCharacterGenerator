@@ -9,7 +9,7 @@ using DieRoller.Views;
 
 namespace DieRoller.ViewModels
 {
-    public class ShellViewModel : Screen
+    public class ShellViewModel : Conductor<object>
     {
         //Model Libray data
         private static Information info = new Information();
