@@ -6,14 +6,15 @@
              xmlns:local="clr-namespace:DieRoller.Views"
              mc:Ignorable="d" 
               xmlns:wpfTool="clr-namespace:Xceed.Wpf.Toolkit;assembly=Xceed.Wpf.Toolkit"
-             FontFamily="Segoe UI Black" FontSize="14"
+             FontFamily="Segoe UI Black" 
+             FontSize="14"
              Background="PaleTurquoise">
     <!-- Die Rolling App Interface By Joseph-->
     <Grid x:Name="GridDieRollView">
         <!--Die Roller Grid-->
         <Grid.ColumnDefinitions>
             <!-- Column 0 Border-->
-            <ColumnDefinition Width="20" />
+            <ColumnDefinition Width="0" />
             <!-- Column 1 Die Mode-->
             <ColumnDefinition Width="Auto" MaxWidth="125"/>
             <!-- Column 2 Stat Assignment-->
@@ -25,21 +26,21 @@
             <!-- Column 5 Die Pool-->
             <ColumnDefinition Width="auto" MaxWidth="120"/>
             <!-- Column 6 Extra Dice -->
-            <ColumnDefinition Width="auto" MaxWidth="200"/>
+            <ColumnDefinition Width="auto" MaxWidth="80"/>
             <!-- Column 7 Final Scores-->
-            <ColumnDefinition Width="auto"/>
+            <ColumnDefinition Width="auto" MaxWidth="200"/>
             <!--Column 8-->
-            <ColumnDefinition Width="20"/>
+            <ColumnDefinition Width="0"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <!--Row 0 Border-->
-            <RowDefinition Height="20"/>
+            <RowDefinition Height="0"/>
             <!--Row 1 content-->
             <RowDefinition Height="auto"/>
             <!--Row 2 Information Pannel-->
             <RowDefinition Height="auto"/>
             <!--Row 3 Border-->
-            <RowDefinition Height="20"/>
+            <RowDefinition Height="0"/>
         </Grid.RowDefinitions>
         <!--Main Grid Row 1 -->
         <!-- Column 1 Die Modes-->
@@ -368,6 +369,15 @@
 
 
                 <!--Row 8 -->
+                <Button
+                    x:Name="Clear"
+                    Grid.Row="8"
+                    Grid.Column="0"
+                    FontSize="12"
+                    Content="Clear"
+                    Padding="2"
+                    Visibility="Visible"
+                    />
                 <TextBox 
                     x:Name="TextBoxPointBuyCost"
                     Grid.Row="8"
@@ -862,16 +872,7 @@
                     Content="Commit"
                     Padding="2"
                     Margin="2,5,2,2"/>
-                <Button
-                    x:Name="Clear"
-                    Grid.Row="7"
-                    Grid.Column="2"
-                    FontSize="12"
-                    Content="Clear"
-                    Padding="2"
-                    Visibility="Visible"
-                    Margin="2,5,2,2"
-                    />
+                
                 <!--#endregion-->
 
             </Grid>

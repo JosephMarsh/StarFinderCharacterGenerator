@@ -246,3 +246,7 @@ C:\Users\AnubitFire\OneDrive\StarFinderCharacterGenerator\DieRoller\obj\Debug\Vi
 C:\Users\AnubitFire\OneDrive\StarFinderCharacterGenerator\DieRoller\obj\Debug\DieRoller.g.resources
 C:\Users\AnubitFire\OneDrive\StarFinderCharacterGenerator\DieRoller\obj\Debug\DieRoller.Properties.Resources.resources
 C:\Users\AnubitFire\OneDrive\StarFinderCharacterGenerator\DieRoller\obj\Debug\DieRoller.csproj.GenerateResource.Cache
+C:\Users\AnubitFire\OneDrive\StarFinderCharacterGenerator\DieRoller\obj\Debug\Views\DieRollView.g.cs
+C:\Users\AnubitFire\OneDrive\StarFinderCharacterGenerator\DieRoller\obj\Debug\Views\Step1View.g.cs
+C:\Users\AnubitFire\OneDrive\StarFinderCharacterGenerator\DieRoller\obj\Debug\Views\DieRollView.baml
+C:\Users\AnubitFire\OneDrive\StarFinderCharacterGenerator\DieRoller\obj\Debug\Views\Step1View.baml

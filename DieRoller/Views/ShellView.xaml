@@ -6,9 +6,101 @@
         xmlns:wpfTool="clr-namespace:Xceed.Wpf.Toolkit;assembly=Xceed.Wpf.Toolkit"
         xmlns:local="clr-namespace:DieRoller.Views"
         mc:Ignorable="d"
-        Title="Point-Buy Tool" Height="600" Width="900" FontFamily="Segoe UI Black" FontSize="14" Background="#FF68B9FF" Loaded="Window_Loaded" Icon="/DieRoller;component/Icons/favicon.ico">
+        Title="Starfinder Tulz" 
+        Height="600" 
+        Width="900" 
+        FontFamily="Segoe UI Black" 
+        FontSize="14" 
+        Background="SkyBlue" 
+        Loaded="Window_Loaded" 
+        Icon="/DieRoller;component/Icons/favicon.ico">
     <Grid x:Name="GridMain">
-        
+        <Grid.ColumnDefinitions>
+            <!--column 0 border-->
+            <ColumnDefinition Width="20"/>
+            <!--column 1 butons-->
+            <ColumnDefinition Width="auto"/>
+            <ColumnDefinition Width="auto"/>
+            <ColumnDefinition Width="auto"/>
+            <ColumnDefinition Width="auto"/>
+            <ColumnDefinition Width="20"/>
+        </Grid.ColumnDefinitions>
+
+        <Grid.RowDefinitions>
+            <!--row 0 boder-->
+            <RowDefinition Height="20"/>
+            <!-- Row 1 status-->
+            <RowDefinition Height="auto"/>
+            <!--row 2 buttons-->
+            <RowDefinition Height="auto"/>
+            <!--row 3 Content page-->
+            <RowDefinition Height="auto"/>
+            <!--row 4 border-->
+            <RowDefinition Height="20"/>
+        </Grid.RowDefinitions>
+    
+        <!--row 1 status-->
+        <Grid 
+            Grid.Column="1"
+            Grid.Row="1"
+            x:Name="GridStatus">
+            <Grid.ColumnDefinitions>
+                <!--column 0 Border-->
+                <ColumnDefinition Width="0"/>
+                <!--column 1 Content-->
+                <ColumnDefinition Width="auto"/>
+                <!--column 2 Content-->
+                <ColumnDefinition Width="auto"/>
+                <!-- Border-->
+                <ColumnDefinition Width="0"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <!--Row 0 Border-->
+                <RowDefinition Height="0"/>
+                <!--Row 1 Content-->
+                <RowDefinition Height="auto"/>
+                <!-- Border-->
+                <RowDefinition Height="0"/>
+            </Grid.RowDefinitions>
+            <!--row 1-->
+            <Label
+                x:Name="LabelName"
+                Content="Name"
+                Grid.Column="1"
+                Grid.Row="1"
+                />
+            <TextBlock
+                x:Name="ChraracterName"
+                Grid.Column="2"
+                Grid.Row="1"
+                Text="{Binding Path=ChraracterName, Mode=OneWay}" 
+                Width="100" 
+                HorizontalAlignment="Left" 
+                VerticalAlignment="Center"
+                >test</TextBlock>
+
+
+        </Grid>
+        <!--row 2 Buttons-->
+        <StackPanel
+            Grid.Column="1"
+            Orientation="Horizontal"
+            Grid.Row="2">
+            <Button
+                x:Name="DieRollPage"
+                
+                Content="Roll Mode"/>
+            <Button
+                x:Name="Step1Page"
+                Content="Step1"/>
+        </StackPanel>
+        <!--row 3 content-->
+        <ContentControl 
+            Grid.Column="1" 
+            Grid.Row="3" 
+            x:Name="ActiveItem" 
+            MinHeight="200" 
+            MinWidth="400"/>
     </Grid>
     
     
