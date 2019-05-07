@@ -112,7 +112,8 @@
                     x:Name="IsGodMode"
                     IsEnabled="True"
                     Margin="0,5,0,0" 
-                    Content="God Mode"/>
+                    ToolTip="Cheater!!!"
+                    Content="God Mode" GotFocus="IsGodMode_GotFocus"/>
                 <TextBlock>
                 </TextBlock>
             </StackPanel>

@@ -113,5 +113,10 @@ namespace DieRoller.Views
         {
             TextBoxInfo1.Text = info.rollModepointBuy;
         }
+
+        private void IsGodMode_GotFocus(object sender, RoutedEventArgs e)
+        {
+            TextBoxInfo1.Text = info.rollModeGod;
+        }
     }
 }

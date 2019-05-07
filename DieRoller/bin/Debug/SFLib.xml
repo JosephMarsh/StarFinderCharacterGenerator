@@ -229,8 +229,15 @@
         <member name="P:SFLib.PlayerCharacter.Concept">
             <summary>Player's Short Concept Description</summary>
         </member>
+        <member name="P:SFLib.PlayerCharacter.Step1Notes">
+            <summary>Player's Notes entered on Step 1</summary>
+        </member>
+        <!-- Badly formed XML comment ignored for member "P:SFLib.PlayerCharacter.Step2Notes" -->
         <member name="P:SFLib.PlayerCharacter.NotesAndIdeas">
             <summary>Player's longform notes and ideas(will dispaly on seperate page of final sheet)</summary>
+        </member>
+        <member name="P:SFLib.PlayerCharacter.Deity">
+            <summary>Player's Diety or could also be self if you're just that awesome</summary>
         </member>
         <member name="F:SFLib.PlayerCharacter.AbilityNames">
             <summary>String Array of Ability names full [0-5] in alphabetical order Parallel with Ability Score Arrays</summary>
@@ -249,6 +256,9 @@
         </member>
         <member name="F:SFLib.PlayerCharacter.RaceAbilityMods">
             <summary>Store Race Ability Score Adjustments [0-5] in Alphbetical order, Parrallel with Ability scores</summary>
+        </member>
+        <member name="P:SFLib.PlayerCharacter.PlayerThemeId">
+            <summary>This stores the Character's ThemeId wich is used in the Theme class</summary>
         </member>
         <member name="P:SFLib.PlayerCharacter.AbilityScores">
             <summary>Ability Scores After Adjustments from Theme and Race </summary>
@@ -328,6 +338,18 @@
             super class PlayerClass with relevent data specific to this player
             class.
             </summary>
+        </member>
+        <member name="T:SFLib.Theme">
+            <summary>
+            This class stores data about Starfinder Themes.
+            </summary>
+        </member>
+        <member name="M:SFLib.Theme.Sources(System.Int32)">
+            <summary>
+            an array of theme sources ordered by theme ID
+            </summary>
+            <param name="themeId">Theme ID</param>
+            <returns>A string contianing The source of the theme</returns>
         </member>
     </members>
 </doc>
