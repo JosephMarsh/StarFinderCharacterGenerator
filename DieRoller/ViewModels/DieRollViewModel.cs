@@ -5,7 +5,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using SFLib;
-using DieRoller.Models;
 
 namespace DieRoller.ViewModels
 {
@@ -16,9 +15,9 @@ namespace DieRoller.ViewModels
         private static Calculators _calculator = new Calculators();
         private DiceRollMethods _dice = new DiceRollMethods();
 
-        //Model data
-        private static PlayerCharacter _Player = CharacterModel.Character;
-        
+        //Model data local scope
+        private static PlayerCharacter _Player_Local = ShellViewModel.Global_Player;
+
         private int _TextBoxModPointBuy1, _TextBoxModPointBuy2, _TextBoxModPointBuy3, _TextBoxModPointBuy4, _TextBoxModPointBuy5, _TextBoxModPointBuy6;
         private int _pointBuyPoints;
         private string _infoBox1 = info.rollModepointBuy;
@@ -35,12 +34,12 @@ namespace DieRoller.ViewModels
         private int _comboBoxAssign6_SelectedItem = 0;
 
         //private Final Ability Score variables
-        private int _finalAbilityScoreStr = _Player.AbilityScoresRaw[4];
-        private int _finalAbilityScoreDex = _Player.AbilityScoresRaw[2];
-        private int _finalAbilityScoreCon = _Player.AbilityScoresRaw[1];
-        private int _finalAbilityScoreInt = _Player.AbilityScoresRaw[3];
-        private int _finalAbilityScoreWis = _Player.AbilityScoresRaw[5];
-        private int _finalAbilityScoreCha = _Player.AbilityScoresRaw[0];
+        private int _finalAbilityScoreStr = _Player_Local.AbilityScoresRaw[4];
+        private int _finalAbilityScoreDex = _Player_Local.AbilityScoresRaw[2];
+        private int _finalAbilityScoreCon = _Player_Local.AbilityScoresRaw[1];
+        private int _finalAbilityScoreInt = _Player_Local.AbilityScoresRaw[3];
+        private int _finalAbilityScoreWis = _Player_Local.AbilityScoresRaw[5];
+        private int _finalAbilityScoreCha = _Player_Local.AbilityScoresRaw[0];
 
         //private variables for storeing Ability Scores
         private int _abilityScore1 = 10;
@@ -51,12 +50,12 @@ namespace DieRoller.ViewModels
         private int _abilityScore6 = 10;
 
         //Private variables for holding final Ability Score Bonus Mods
-        private int _textBoxFinalModStr = _Player.AbilityMods[4];
-        private int _textBoxFinalModDex = _Player.AbilityMods[2];
-        private int _textBoxFinalModCon = _Player.AbilityMods[1];
-        private int _textBoxFinalModInt = _Player.AbilityMods[3];
-        private int _textBoxFinalModWis = _Player.AbilityMods[5];
-        private int _textBoxFinalModCha = _Player.AbilityMods[0];
+        private int _textBoxFinalModStr = _Player_Local.AbilityMods[4];
+        private int _textBoxFinalModDex = _Player_Local.AbilityMods[2];
+        private int _textBoxFinalModCon = _Player_Local.AbilityMods[1];
+        private int _textBoxFinalModInt = _Player_Local.AbilityMods[3];
+        private int _textBoxFinalModWis = _Player_Local.AbilityMods[5];
+        private int _textBoxFinalModCha = _Player_Local.AbilityMods[0];
 
         //private variables for handeling Mode Selection specific Rules
         private bool _radioButtonCore;
@@ -143,7 +142,7 @@ namespace DieRoller.ViewModels
             set
             {
                 _textBoxFinalModStr = value;
-                _Player.AbilityMods[4] = value;
+                _Player_Local.AbilityMods[4] = value;
             }
         }
         /// <summary>Holds Final Dex Bonus mod and Updates Model</summary>
@@ -153,7 +152,7 @@ namespace DieRoller.ViewModels
             set
             {
                 _textBoxFinalModDex = value;
-                _Player.AbilityMods[2] = value;
+                _Player_Local.AbilityMods[2] = value;
             }
         }
         /// <summary>Holds Final Con Bonus mod and Updates Model</summary>
@@ -163,7 +162,7 @@ namespace DieRoller.ViewModels
             set
             {
                 _textBoxFinalModCon = value;
-                _Player.AbilityMods[1] = value;
+                _Player_Local.AbilityMods[1] = value;
             }
         }
         /// <summary>Holds Final Int Bonus mod and Updates Model</summary>
@@ -173,7 +172,7 @@ namespace DieRoller.ViewModels
             set
             {
                 _textBoxFinalModInt = value;
-                _Player.AbilityMods[3] = value;
+                _Player_Local.AbilityMods[3] = value;
             }
         }
         /// <summary>Holds Final Wis Bonus mod and Updates Model</summary>
@@ -183,7 +182,7 @@ namespace DieRoller.ViewModels
             set
             {
                 _textBoxFinalModWis = value;
-                _Player.AbilityMods[5] = value;
+                _Player_Local.AbilityMods[5] = value;
             }
         }
         /// <summary>Holds Final Cha Bonus mod and Updates Model</summary>
@@ -193,7 +192,7 @@ namespace DieRoller.ViewModels
             set
             {
                 _textBoxFinalModCha = value;
-                _Player.AbilityMods[0] = value;
+                _Player_Local.AbilityMods[0] = value;
             }
         }
 
@@ -210,7 +209,7 @@ namespace DieRoller.ViewModels
             {
                 _finalAbilityScoreCha = value;
                 //update Model
-                _Player.AbilityScoresRaw[0] = value;
+                _Player_Local.AbilityScoresRaw[0] = value;
                 //update Final Ability Score Bonus mod
                 TextBoxFinalModCha = _calculator.modCalc(_finalAbilityScoreCha);
 
@@ -229,7 +228,7 @@ namespace DieRoller.ViewModels
             {
                 _finalAbilityScoreWis = value;
                 //update Model
-                _Player.AbilityScoresRaw[5] = value;
+                _Player_Local.AbilityScoresRaw[5] = value;
                 //update Final Ability Score Bonus mod
                 TextBoxFinalModWis = _calculator.modCalc(_finalAbilityScoreWis);
 
@@ -248,7 +247,7 @@ namespace DieRoller.ViewModels
             {
                 _finalAbilityScoreInt = value;
                 //update Model
-                _Player.AbilityScoresRaw[3] = value;
+                _Player_Local.AbilityScoresRaw[3] = value;
                 //update Final Ability Score Bonus mod
                 TextBoxFinalModInt = _calculator.modCalc(_finalAbilityScoreInt);
 
@@ -267,7 +266,7 @@ namespace DieRoller.ViewModels
             {
                 _finalAbilityScoreCon = value;
                 //update Model
-                _Player.AbilityScoresRaw[1] = value;
+                _Player_Local.AbilityScoresRaw[1] = value;
                 //update Final Ability Score Bonus mod
                 TextBoxFinalModCon = _calculator.modCalc(_finalAbilityScoreCon);
 
@@ -286,7 +285,7 @@ namespace DieRoller.ViewModels
             {
                 _finalAbilityScoreDex = value;
                 //update Model
-                _Player.AbilityScoresRaw[2] = value;
+                _Player_Local.AbilityScoresRaw[2] = value;
                 //update Final Ability Score Bonus mod
                 TextBoxFinalModDex = _calculator.modCalc(_finalAbilityScoreDex);
 
@@ -305,7 +304,7 @@ namespace DieRoller.ViewModels
             {
                 _finalAbilityScoreStr = value;
                 //update Model
-                _Player.AbilityScoresRaw[4] = value;
+                _Player_Local.AbilityScoresRaw[4] = value;
                 //update Final Ability Score Bonus mod
                 TextBoxFinalModStr = _calculator.modCalc(_finalAbilityScoreStr);
 
@@ -600,11 +599,11 @@ namespace DieRoller.ViewModels
         {
             get
             {
-                return _Player.CharacterName;
+                return _Player_Local.CharacterName;
             }
             set
             {
-                _Player.CharacterName = value;
+                _Player_Local.CharacterName = value;
             }
         }
 
@@ -613,7 +612,7 @@ namespace DieRoller.ViewModels
         {
             get
             {
-                return _Player.AbilityNames;
+                return _Player_Local.AbilityNames;
             }
         }
 
@@ -622,12 +621,12 @@ namespace DieRoller.ViewModels
         {
             get
             {
-                return _Player.AbilityScoresRaw;
+                return _Player_Local.AbilityScoresRaw;
 
             }
             set
             {
-                _Player.AbilityScoresRaw = value;
+                _Player_Local.AbilityScoresRaw = value;
                 //notify event that property has changed.
                 NotifyOfPropertyChange(() => CharacterAbilitiesRaw);
             }
@@ -673,12 +672,12 @@ namespace DieRoller.ViewModels
         public void Clear()
         {
             //Set model and Final Scores to Model settings
-            FinalAbilityScoreStr = _Player.AbilityScoresRaw[4];
-            FinalAbilityScoreDex = _Player.AbilityScoresRaw[2];
-            FinalAbilityScoreCon = _Player.AbilityScoresRaw[1];
-            FinalAbilityScoreInt = _Player.AbilityScoresRaw[3];
-            FinalAbilityScoreWis = _Player.AbilityScoresRaw[5];
-            FinalAbilityScoreCha = _Player.AbilityScoresRaw[0];
+            FinalAbilityScoreStr = _Player_Local.AbilityScoresRaw[4];
+            FinalAbilityScoreDex = _Player_Local.AbilityScoresRaw[2];
+            FinalAbilityScoreCon = _Player_Local.AbilityScoresRaw[1];
+            FinalAbilityScoreInt = _Player_Local.AbilityScoresRaw[3];
+            FinalAbilityScoreWis = _Player_Local.AbilityScoresRaw[5];
+            FinalAbilityScoreCha = _Player_Local.AbilityScoresRaw[0];
 
             //Set IntUpDown Scores to 10
             AbilityScore1 = 10;

@@ -35,6 +35,8 @@
             <RowDefinition Height="auto"/>
             <!--row 3 Content page-->
             <RowDefinition Height="auto"/>
+            <!--Dev Log-->
+            <RowDefinition Height="auto"/>
             <!--row 4 border-->
             <RowDefinition Height="20"/>
         </Grid.RowDefinitions>
@@ -101,6 +103,22 @@
             x:Name="ActiveItem" 
             MinHeight="200" 
             MinWidth="400"/>
+        <ScrollViewer
+            Grid.Column="2"
+            Grid.Row="3"
+            Background="White">
+            <TextBlock
+                IsEnabled="False"/>
+        </ScrollViewer>
+        <!--row 4 Log-->
+        <ScrollViewer
+            Grid.Column="1"
+            Grid.Row="4">
+            <TextBox 
+                x:Name="DevLog"
+                IsEnabled="False"
+                />
+        </ScrollViewer>
     </Grid>
     
     

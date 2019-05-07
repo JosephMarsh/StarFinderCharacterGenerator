@@ -24,5 +24,10 @@ namespace DieRoller.Views
         {
             InitializeComponent();
         }
+
+        private void ChraracterName_GotFocus(object sender, RoutedEventArgs e)
+        {
+            ChraracterName.Text = "";
+        }
     }
 }

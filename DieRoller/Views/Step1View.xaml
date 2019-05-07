@@ -39,6 +39,7 @@
                 x:Name="LableCharacterName"/>
             <TextBox
                 x:Name="ChraracterName"
+                GotFocus="ChraracterName_GotFocus"
                 Width="100"/>
             <Button
                 x:Name="CommitButton"

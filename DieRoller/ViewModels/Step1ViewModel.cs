@@ -5,32 +5,35 @@ using System.Text;
 using System.Threading.Tasks;
 using Caliburn.Micro;
 using SFLib;
-using DieRoller.Models;
+using DieRoller.ViewModels;
 
 namespace DieRoller.ViewModels 
 {
     public class Step1ViewModel : Screen
     {
-        private static PlayerCharacter _Player = CharacterModel.Character;
-        private string _characterName = _Player.CharacterName;
+        private static PlayerCharacter _Global_Player = ShellViewModel.Global_Player;
+
+
+        private string _chraracterName = _Global_Player.CharacterName;
 
         public string ChraracterName
         {
             get
             {
-                return _characterName;
+                return _chraracterName;
             }
             set
             {
-                _characterName = value;
+                _chraracterName = value;
                 NotifyOfPropertyChange(() => ChraracterName);
             }
         }
 
-
         public void CommitButton()
         {
-            _Player.CharacterName = _characterName;
+
+            _Global_Player.CharacterName = _chraracterName;
         }
+
     }
 }

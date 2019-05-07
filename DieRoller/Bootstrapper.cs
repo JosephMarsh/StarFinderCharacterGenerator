@@ -11,6 +11,8 @@ namespace DieRoller
 {
     public class Bootstrapper : BootstrapperBase
     {
+  
+
         public Bootstrapper()
         {
             Initialize();
