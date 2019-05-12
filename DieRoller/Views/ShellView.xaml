@@ -67,16 +67,18 @@
             <!--row 1-->
             <Label
                 x:Name="LabelName"
-                Content="Name"
+                Content="Character Name: "
                 Grid.Column="1"
                 Grid.Row="1"
                 />
             <TextBlock
                 x:Name="ChraracterName"
                 Grid.Column="2"
+                Foreground="DarkSlateGray"
                 Grid.Row="1"
+                Grid.RowSpan="2"
                 Text="{Binding Path=ChraracterName, Mode=OneWay}" 
-                Width="100" 
+                MinWidth="100" 
                 HorizontalAlignment="Left" 
                 VerticalAlignment="Center"
                 >test</TextBlock>
@@ -90,14 +92,20 @@
             Grid.Row="2">
             <Button
                 x:Name="DieRollPage"
-                
+                Padding="5,1"
                 Content="Roll Mode"/>
             <Button
                 x:Name="Step1Page"
+                Padding="5,1"
                 Content="Step1"/>
+            <Button
+                x:Name="Step2Page"
+                Padding="5,1"
+                Content="Step2"/>
         </StackPanel>
         <!--row 3 content-->
         <ContentControl 
+            IsTabStop="False"
             Grid.Column="1" 
             Grid.Row="3" 
             x:Name="ActiveItem" 

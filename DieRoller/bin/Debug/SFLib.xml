@@ -260,16 +260,19 @@
         <member name="P:SFLib.PlayerCharacter.PlayerThemeId">
             <summary>This stores the Character's ThemeId wich is used in the Theme class</summary>
         </member>
+        <member name="P:SFLib.PlayerCharacter.MysticBonusSpells">
+            <summary>Returns pre-calculated array of spells per level based on Wisdom Score</summary>
+        </member>
         <member name="P:SFLib.PlayerCharacter.AbilityScores">
-            <summary>Ability Scores After Adjustments from Theme and Race </summary>
+            <summary>Ability Scores After all Bonuses</summary>
         </member>
         <member name="P:SFLib.PlayerCharacter.StaminaPoints">
             <summary> Statmina points ajusted by Class Con mod and Ability Scores</summary>
         </member>
-        <member name="P:SFLib.PlayerCharacter.AbilityMods">
+        <member name="P:SFLib.PlayerCharacter.BaseAbilityMods">
             <summary>Ability Mods from Base Character Attributes</summary>
         </member>
-        <member name="P:SFLib.PlayerCharacter.AbilityScoresRaw">
+        <member name="P:SFLib.PlayerCharacter.BaseAbilityScores">
             <summary>Base scores without Theme mods or race mods</summary>
         </member>
         <member name="T:SFLib.PlayerClass">

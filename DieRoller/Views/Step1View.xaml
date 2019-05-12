@@ -26,38 +26,55 @@
         <Grid.RowDefinitions>
             <!--Row 0 Border-->
             <RowDefinition Height="0"/>
-            <!--Row 1 Character Name-->
+            <!--Row 1 Title-->
             <RowDefinition Height="auto"/>
-            <!--Row 2 Player name-->
+            <!--Row 2 Character Name-->
             <RowDefinition Height="auto"/>
-            <!--Row 3 Character Concept-->
+            <!--Row 3 Player name-->
             <RowDefinition Height="auto"/>
-            <!--Row 4 Button-->
+            <!--Row 4 Character Concept-->
             <RowDefinition Height="auto"/>
             <!--Row 5 Button-->
             <RowDefinition Height="auto"/>
-            <!-- Border-->
+            <!--Row 6 Button-->
+            <RowDefinition Height="auto"/>
+            <!-- Row 7 Border-->
             <RowDefinition Height="0"/>
         </Grid.RowDefinitions>
-
-        <!--row 1 Character Name-->
+        
+        <!--Row 1 Title-->
+        <TextBlock
+            Grid.Row="1"
+            Grid.Column="1"
+            Grid.ColumnSpan="5"
+            Foreground="DarkBlue" 
+            FontSize="16"
+            TextDecorations="Underline"
+            HorizontalAlignment="Center" 
+            VerticalAlignment="Center" 
+            Margin="0,10">
+            Step 1 Character Concept</TextBlock>
+        
+        <!--row 2 Character Name-->
 
         <TextBlock
             Text="Character Name:"
             x:Name="LableCharacterName"
             Grid.Column="1"
-            Grid.Row="1" 
+            Grid.Row="2" 
             Margin="5,0,15,0"/>
 
         <TextBox
             x:Name="ChraracterName"
             GotFocus="ChraracterName_GotFocus"
             Width="150"
+            TabIndex="0"
+            Text="{Binding Path=ChraracterName, Mode=TwoWay}"
             Grid.Column="2"
-            Grid.Row="1"/>
+            Grid.Row="2" />
         <GroupBox
             Name="GroupBoxNotes"
-            Grid.Row="1" 
+            Grid.Row="2" 
             Grid.Column="3" 
             Grid.RowSpan="4"
             Header="Notes" 
@@ -67,54 +84,59 @@
             Padding="5"
             Margin="5,0">
             <TextBox
+                TabIndex="5"
                 x:Name="PlayerNotes"
                 GotFocus="PlayerNotes_GotFocus"/>
 
         </GroupBox>
 
-        <!--row 2 Player Name-->
+        <!--row 3 Player Name-->
 
         <TextBlock
-            Text="Character Name:"
+            Text="Player Name:"
             x:Name="LablePlayerName"
             Grid.Column="1"
-            Grid.Row="2" 
+            Grid.Row="3" 
             Margin="5,0,15,0"/>
 
         <TextBox
+            TabIndex="3"
             x:Name="PlayerName"
             GotFocus="PlayerName_GotFocus"
             Width="150"
             Grid.Column="2"
-            Grid.Row="2"/>
+            Grid.Row="3"/>
         
-        <!--Row 3-->
+        <!--Row 4-->
         <TextBlock
             Text="Character Concept:"
             x:Name="LableCharacterConcept"
             Grid.Column="1"
-            Grid.Row="3" 
+            Grid.Row="4" 
             Margin="5,0,15,0"/>
 
         <TextBox
             x:Name="CharacterConcept"
             GotFocus="CharacterConcept_GotFocus"
             Width="150"
+            TabIndex="4"
             Grid.Column="2"
-            Grid.Row="3"
+            Grid.Row="4"
             Height="200"/>
 
-        <!--Row 4 Button-->
+        <!--Row 5 Button-->
         <Button                
             x:Name="CommitButton"                
             Grid.Column="2"   
             Width="150"
-            Grid.Row="4"                
+            TabIndex="6"
+            Grid.Row="5" 
+            GotFocus="CommitButton_GotFocus"
             Content="Commit"/>
-        <!--Row 5 Info-->
+        <!--Row 6 Info-->
         <GroupBox
             Name="GroupBoxInformation1"
-            Grid.Row="5" 
+            Grid.Row="6" 
             Grid.Column="1" 
             Grid.ColumnSpan="3"
             Header="Information" 
@@ -130,6 +152,7 @@
                         Name="TextBoxInfo1"
                         MaxWidth="800"
                         MaxHeight="200"
+                        IsEnabled="False"
                         TextWrapping="Wrap"
                         Text="{Binding Path=InfoBox1, Mode=OneWay}" 
                         TextAlignment="Justify"/>

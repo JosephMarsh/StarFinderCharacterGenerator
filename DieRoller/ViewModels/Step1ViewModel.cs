@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Caliburn.Micro;
 using SFLib;
 using DieRoller.ViewModels;
+using DieRoller.EventModels;
 
 namespace DieRoller.ViewModels 
 {
@@ -17,6 +18,12 @@ namespace DieRoller.ViewModels
         private string _chraracterName = _Global_Player.CharacterName;
         private string _characterConcept = _Global_Player.Concept;
         private string _playerNotes = _Global_Player.Step1Notes;
+        private IEventAggregator _events;
+
+        public Step1ViewModel(IEventAggregator events)
+        {
+            _events = events;
+        }
 
         public string InfoBox1
         {
@@ -87,20 +94,23 @@ namespace DieRoller.ViewModels
         /// </summary>
         public void CommitButton()
         {
-
+            //Commit local text fields to the Global Character object 
             _Global_Player.CharacterName = _chraracterName;
             _Global_Player.PlayerName = _playerName;
             _Global_Player.Concept = _characterConcept;
-
-            if (_playerNotes == "Use this area to save notes about your Character" || string.IsNullOrEmpty(_playerNotes))
+            //make sure not to update global Character object with Instruction text or empty string data.
+            if (_playerNotes == "Use this area to save notes about your Character" || string.IsNullOrWhiteSpace(_playerNotes))
             {
-                //do nothing
+                //do not update notes...
             }
             else
             {
+                //update notes in Global Character object
                 _Global_Player.Step1Notes = PlayerNotes;
             }
-        }
 
-    }
-}
+            //broadcasts update event to other classes
+            _events.PublishOnUIThread(new DataCommitedEvent());
+        }//end CommitButton
+    }//end class
+}//end namespace
