@@ -29,7 +29,15 @@
             <RowDefinition Height="auto"/>
             <!--Row 2 Race selection-->
             <RowDefinition Height="auto"/>
+            <!--Row 3 Ability Score Selection-->
             <RowDefinition Height="auto"/>
+            <!--Row 4 Lables-->
+            <RowDefinition Height="auto"/>
+            <!--Row 5 Skill Point Selection-->
+            <RowDefinition Height="auto"/>
+            <!--Row Info Panel-->
+            <RowDefinition Height="auto"/>
+            <!--Border-->
             <RowDefinition Height="0"/>
         </Grid.RowDefinitions>
 
@@ -52,13 +60,16 @@
         <ComboBox
             x:Name="PickRace"
             Grid.Column="1"
+            MaxHeight="25"
             Text="Select Race"
             Grid.Row="2"/>
+        
         <Grid
             x:Name="AbilityScoresGrid"
             IsEnabled="False"
-            Grid.Column="2"
+            Grid.Column="5"
             Grid.ColumnSpan="2"
+            Grid.RowSpan="3"
             Grid.Row="2">
             <Grid.ColumnDefinitions>
                 <!--0 Border-->
@@ -86,7 +97,95 @@
                 <RowDefinition Height="0"/>
             </Grid.RowDefinitions>
             <!--Row 1 Str INT-->
-            
-        </Grid>
+            <TextBlock 
+                Grid.Column="1"
+                Grid.Row="1"
+                Margin="5"
+                TextDecorations="Underline">
+                Str
+            </TextBlock>
+            <TextBox
+                x:Name="Str"
+                Grid.Row="1"
+                MinWidth="30"
+                Grid.Column="2" 
+                Margin="5"
+                />
+            <TextBlock 
+                Grid.Column="3"
+                Grid.Row="1"
+                Margin="20,5,0,5"
+                TextDecorations="Underline">
+                Int
+            </TextBlock>
+            <TextBox
+                x:Name="Int"
+                Grid.Row="1"
+                MinWidth="30"
+                Grid.Column="4" 
+                Margin="5,5,10,5"
+                />
+
+            <!--Row 2 Dex Wis-->
+            <TextBlock 
+                Grid.Column="1"
+                Grid.Row="2"
+                Margin="0,5,5,5"
+                TextDecorations="Underline">
+                Dex
+            </TextBlock>
+            <TextBox
+                x:Name="Dex"
+                Grid.Row="2"
+                MinWidth="30"
+                Grid.Column="2" 
+                Margin="5,0,5,5"
+                />
+            <TextBlock 
+                Grid.Column="3"
+                Grid.Row="2"
+                Margin="20,5,0,5"
+                TextDecorations="Underline">
+                Wis
+            </TextBlock>
+            <TextBox
+                x:Name="Wis"
+                Grid.Row="2"
+                MinWidth="30"
+                Grid.Column="4" 
+                Margin="5,0,10,5"
+                />
+
+            <!--Row 3 Con Cha-->
+            <TextBlock 
+                Grid.Column="1"
+                Grid.Row="3"
+                Margin="0,5,5,5"
+                TextDecorations="Underline">
+                Con
+            </TextBlock>
+            <TextBox
+                x:Name="Con"
+                Grid.Row="3"
+                MinWidth="30"
+                Grid.Column="2" 
+                Margin="5,0,5,5"
+                />
+            <TextBlock 
+                Grid.Column="3"
+                Grid.Row="3"
+                Margin="20,5,0,5"
+                TextDecorations="Underline">
+                Cha
+            </TextBlock>
+            <TextBox
+                x:Name="Cha"
+                Grid.Row="3"
+                MinWidth="30"
+                Grid.Column="4" 
+                Margin="5,0,10,5"
+                />
+        </Grid><!--End Ability Score Grid-->
+        <!--Row 3 -->
     </Grid>
 </UserControl>

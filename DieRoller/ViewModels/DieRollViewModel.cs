@@ -5,10 +5,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using SFLib;
+using DieRoller.EventModels;
 
 namespace DieRoller.ViewModels
 {
-    public class DieRollViewModel : Screen
+    public class DieRollViewModel : Screen, IHandle<DataCommitedEvent>
     {
         //Libray data
         private static Information info = new Information();
@@ -61,6 +62,14 @@ namespace DieRoller.ViewModels
         private bool _radioButtonCore;
         private bool _radioButtonPointBuy = true; //sets default Mode
         private bool _radioButtonStandard;
+
+        private IEventAggregator _events;
+
+        public DieRollViewModel(IEventAggregator events)
+        {
+            _events = events;
+        }
+
 
         /// <summary>Bound to the Standard Mode Radio Button</summary>
         public bool RaioButtonStandard
@@ -687,6 +696,8 @@ namespace DieRoller.ViewModels
             FinalAbilityScoreStr = finalAbilityScores[4];
             FinalAbilityScoreWis = finalAbilityScores[5];
 
+            _events.PublishOnUIThread(new DataCommitedEvent());
+
         }//end FinalCommit
 
         /// <summary>This Method is tied to Clear button w/Caliburn Micro </summary>
@@ -797,6 +808,15 @@ namespace DieRoller.ViewModels
                 index++;
             }
             return score;
+        }
+
+        /// <summary>
+        /// Handels Global Data Commited events from Child View Models.
+        /// </summary>
+        /// <param name="message">Empty Event Object</param>
+        public void Handle(DataCommitedEvent message)
+        {
+
         }
     }
 }

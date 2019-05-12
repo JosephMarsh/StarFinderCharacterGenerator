@@ -30,6 +30,8 @@ namespace DieRoller.ViewModels
 
             //Allows class to listne for gobal events.
             _events.Subscribe(this);
+            //Launch Step 1 User Control
+            ActivateItem(_step1);
         }
         /// <summary>Singleton Object that stores global Charcter Data</summary>
         public static PlayerCharacter Global_Player
@@ -49,7 +51,6 @@ namespace DieRoller.ViewModels
         private string _characterName = _Player_Instance.CharacterName;
 
         //Refesh data 
-
         /// <summary>updates local variable/summary>
         public string ChraracterName
         {

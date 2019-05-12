@@ -10,7 +10,7 @@ using DieRoller.EventModels;
 
 namespace DieRoller.ViewModels 
 {
-    public class Step1ViewModel : Screen
+    public class Step1ViewModel : Screen, IHandle<DataCommitedEvent>
     {
         private static PlayerCharacter _Global_Player = ShellViewModel.Global_Player;
         private Information info = new Information();
@@ -23,6 +23,8 @@ namespace DieRoller.ViewModels
         public Step1ViewModel(IEventAggregator events)
         {
             _events = events;
+            //Allows class to listen for gobal events.
+            _events.Subscribe(this);
         }
 
         public string InfoBox1
@@ -112,5 +114,15 @@ namespace DieRoller.ViewModels
             //broadcasts update event to other classes
             _events.PublishOnUIThread(new DataCommitedEvent());
         }//end CommitButton
+
+        /// <summary>
+        /// Handels Global Data Commited events from Child View Models.
+        /// </summary>
+        /// <param name="message">Empty Event Object</param>
+        public void Handle(DataCommitedEvent message)
+        {
+
+        }
+
     }//end class
 }//end namespace
