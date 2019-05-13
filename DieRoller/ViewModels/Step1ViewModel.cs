@@ -20,6 +20,10 @@ namespace DieRoller.ViewModels
         private string _playerNotes = _Global_Player.Step1Notes;
         private IEventAggregator _events;
 
+        /// <summary>
+        /// Class consturctor
+        /// </summary>
+        /// <param name="events">Accepts Event objects</param>
         public Step1ViewModel(IEventAggregator events)
         {
             _events = events;
@@ -27,6 +31,7 @@ namespace DieRoller.ViewModels
             _events.Subscribe(this);
         }
 
+        /// <summary>Bound to contol of the same name with Caliburn Micro</summary>
         public string InfoBox1
         {
             get
@@ -35,6 +40,7 @@ namespace DieRoller.ViewModels
             }
         }
 
+        /// <summary>Bound to contol of the same name with Caliburn Micro</summary>
         public string PlayerNotes
         {
             get
@@ -47,9 +53,7 @@ namespace DieRoller.ViewModels
             }
         }
 
-
-
-        /// <summary>local scope only Bound to View Contol of the same name</summary>
+        /// <summary>Bound to contol of the same name with Caliburn Micro</summary>
         public string ChraracterName
         {
             get
@@ -63,7 +67,7 @@ namespace DieRoller.ViewModels
             }
         }
 
-        /// <summary>local scope only Bound to View Contol of the same name</summary>
+        /// <summary>Bound to contol of the same name with Caliburn Micro</summary>
         public string PlayerName
         {
             get
@@ -77,7 +81,7 @@ namespace DieRoller.ViewModels
             }
         }
 
-        /// <summary>local scope only Bound to View Contol of the same name</summary>
+        /// <summary>Bound to contol of the same name with Caliburn Micro</summary>
         public string CharacterConcept
         {
             get

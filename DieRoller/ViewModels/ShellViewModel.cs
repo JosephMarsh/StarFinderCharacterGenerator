@@ -19,6 +19,22 @@ namespace DieRoller.ViewModels
         private Step2ViewModel _step2;
         private DieRollViewModel _DieRoller;
         private IEventAggregator _events;
+        //initialize value.
+        private string _characterName = _Player_Instance.CharacterName;
+        private string _characterRace = _Global_Player.RaceName;
+
+        public string CharacterRace
+        {
+            get
+            {
+                return _characterRace;
+            }
+            set
+            {
+                _characterRace = value;
+                NotifyOfPropertyChange(() => CharacterRace);
+            }
+        }
 
 
         public ShellViewModel(Step1ViewModel step1, Step2ViewModel step2, DieRollViewModel dieRoller, IEventAggregator events)
@@ -47,12 +63,11 @@ namespace DieRoller.ViewModels
             }
         }
 
-        //initialize value.
-        private string _characterName = _Player_Instance.CharacterName;
+        
 
         //Refesh data 
         /// <summary>updates local variable/summary>
-        public string ChraracterName
+        public string CharacterName
         {
             get
             {
@@ -61,7 +76,7 @@ namespace DieRoller.ViewModels
             set
             {
                 _characterName = value;
-                NotifyOfPropertyChange(() => ChraracterName);
+                NotifyOfPropertyChange(() => CharacterName);
             }
         }
 
@@ -86,7 +101,8 @@ namespace DieRoller.ViewModels
         //refreshes local fields
         private void updateStatus()
         {
-            ChraracterName = Global_Player.CharacterName;
+            CharacterName = Global_Player.CharacterName;
+            CharacterRace = Global_Player.RaceName;
         }
 
         /// <summary>

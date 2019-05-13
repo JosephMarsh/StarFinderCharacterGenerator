@@ -105,6 +105,9 @@
         <member name="F:SFLib.Information.step1">
             <summary>Instruction Set</summary>
         </member>
+        <member name="F:SFLib.Information.step2">
+            <summary>Instruction Set</summary>
+        </member>
         <member name="F:SFLib.Information.afterCommitPressed">
             <summary>Instruction Set</summary>
         </member>
@@ -254,11 +257,14 @@
         <member name="F:SFLib.PlayerCharacter.featsPerLevel">
             <summary>Read only. Unadjusted feats per level reguardless of classes[0-20] use unadjusted character level</summary>
         </member>
-        <member name="F:SFLib.PlayerCharacter.RaceAbilityMods">
-            <summary>Store Race Ability Score Adjustments [0-5] in Alphbetical order, Parrallel with Ability scores</summary>
+        <member name="P:SFLib.PlayerCharacter.CharacterRaceId">
+            <summary>Holds the index value for the character's race.</summary>
         </member>
         <member name="P:SFLib.PlayerCharacter.PlayerThemeId">
             <summary>This stores the Character's ThemeId wich is used in the Theme class</summary>
+        </member>
+        <member name="P:SFLib.PlayerCharacter.RaceName">
+            <summary>Stores Players Selected Race name.</summary>
         </member>
         <member name="P:SFLib.PlayerCharacter.MysticBonusSpells">
             <summary>Returns pre-calculated array of spells per level based on Wisdom Score</summary>
@@ -303,10 +309,74 @@
         <member name="P:SFLib.PlayerClass.landSpeedMod">
             <summary>Modifies how fast the player can move</summary>
         </member>
-        <member name="T:SFLib.Race">
+        <member name="T:SFLib.Races">
             <summary>
             Libraray for Race data.
             </summary>
+        </member>
+        <member name="P:SFLib.Races.RacialACBonus">
+            <summary>Stores character's Racial AC bonus</summary>
+        </member>
+        <member name="F:SFLib.Races.RacialskillMod">
+            <summary>Returns a read only int array of Hit Point modifers in alphabetical order</summary>
+        </member>
+        <member name="F:SFLib.Races.raceHPMod">
+            <summary>Returns a read only int array of Hit Point modifers in alphabetical order</summary>
+        </member>
+        <member name="F:SFLib.Races.androidMods">
+            <summary>Returns a read only int array of Ability Score modifers in alphabetical order</summary>
+        </member>
+        <member name="F:SFLib.Races.humanMods">
+            <summary>Returns a read only int array of Ability Score modifers in alphabetical order</summary>
+        </member>
+        <member name="F:SFLib.Races.kasathaMods">
+            <summary>Returns a read only int array of Ability Score modifers in alphabetical order</summary>
+        </member>
+        <member name="F:SFLib.Races.lashuntaDMods">
+            <summary>Returns a read only int array of Ability Score modifers in alphabetical order</summary>
+        </member>
+        <member name="F:SFLib.Races.lashuntaKMods">
+            <summary>Returns a read only int array of Ability Score modifers in alphabetical order</summary>
+        </member>
+        <member name="F:SFLib.Races.shirrenMods">
+            <summary>Returns a read only int array of Ability Score modifers in alphabetical order</summary>
+        </member>
+        <member name="F:SFLib.Races.veskMods">
+            <summary>Returns a read only int array of Ability Score modifers in alphabetical order</summary>
+        </member>
+        <member name="F:SFLib.Races.YoskiMods">
+            <summary>Returns a read only int array of Ability Score modifers in alphabetical order</summary>
+        </member>
+        <member name="F:SFLib.Races.otherRaceMods">
+            <summary>Returns a read only int array of Ability Score modifers in alphabetical order</summary>
+        </member>
+        <!-- Badly formed XML comment ignored for member "F:SFLib.Races.raceNames" -->
+        <member name="F:SFLib.Races._racialAbilityScoreAdjustment">
+            <summary>Store Race Ability Score Adjustments [0-5] in Alphbetical order, Parrallel with Ability scores</summary>
+        </member>
+        <member name="P:SFLib.Races.RacialAbilityScoreAdjustment">
+            <summary>Stores Racial Ability Score Adjustments in alphabetical order</summary>
+        </member>
+        <member name="M:SFLib.Races.RacialBonusSkills(System.Int32)">
+            <summary>
+            Returns an array if ints, each corresponding to a skill ID that gains a racial bonus
+            Returns -1 if there is no skill bonus and 99 to pick any.
+            </summary>
+            <param name="raceID">Race ID corrisponding to Races in alphbetical order</param>
+            <returns>int array or null</returns>
+        </member>
+        <member name="M:SFLib.Races.getRaceName(System.Int32)">
+            <summary>Returns a read only String of a race name.</summary>
+        </member>
+        <member name="P:SFLib.Races.RaceMods">
+            <summary>Returns a 2D array contiaing Ability Score modifiers</summary>
+        </member>
+        <member name="M:SFLib.Races.getClassArray(System.Int32)">
+            <summary>
+            Returns an array contiaing Race Ability Score modifiers
+            </summary>
+            <param name="classId">Int of 0-8</param>
+            <returns>Array of int</returns>
         </member>
         <member name="T:SFLib.RandomNumber">
             <summary>
@@ -320,6 +390,26 @@
             <param name="minValue">Lowest Number</param>
             <param name="maxValue">Highest Number +1</param>
             <returns>Random Int</returns>
+        </member>
+        <member name="T:SFLib.Skill">
+            <summary>
+            This class contains the definition for skills
+            </summary>
+        </member>
+        <member name="P:SFLib.Skill.SkillRanksPurchased">
+            <summary>
+            Stores only the skill level pruchased
+            </summary>
+        </member>
+        <member name="P:SFLib.Skill.IsClassSkill">
+            <summary>
+            Is this a class skill?
+            </summary>
+        </member>
+        <member name="P:SFLib.Skill.Name">
+            <summary>
+            Returns a string with the name of the skill
+            </summary>
         </member>
         <member name="F:SFLib.SolarianClass.ClassID">
             <summary>
