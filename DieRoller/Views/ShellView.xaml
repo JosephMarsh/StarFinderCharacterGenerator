@@ -93,10 +93,10 @@
                 <TextBlock
                     x:Name="CharacterRace"
                     Foreground="DarkSlateGray"
-                    Text="{Binding Path=ChraracterName, Mode=OneWay}" 
+                    Text="{Binding Path=CharacterRace, Mode=OneWay}" 
                     MinWidth="100" 
                     HorizontalAlignment="Left" 
-                    >test
+                    >
                 </TextBlock>
             </StackPanel>
             

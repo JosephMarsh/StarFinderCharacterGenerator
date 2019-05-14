@@ -7,8 +7,7 @@ using System.Threading.Tasks;
 namespace DieRoller.EventModels
 {
     /// <summary>
-    /// This is a class that triggers a specific event that the 
-    /// Event aggrigator is listenting for.
+    /// This Event Trigger's when the global character object is updated
     /// </summary>
     public class DataCommitedEvent
     {

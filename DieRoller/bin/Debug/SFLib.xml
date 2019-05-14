@@ -108,6 +108,9 @@
         <member name="F:SFLib.Information.step2">
             <summary>Instruction Set</summary>
         </member>
+        <member name="F:SFLib.Information.step2GodMode">
+            <summary>Instruction Set</summary>
+        </member>
         <member name="F:SFLib.Information.afterCommitPressed">
             <summary>Instruction Set</summary>
         </member>
@@ -202,6 +205,9 @@
             <summary>
             produces a read only array of Class Names
             </summary>
+        </member>
+        <member name="P:SFLib.Information.RaceDiscriptions">
+            <summary>Retruns a read only array of Race Descriptions</summary>
         </member>
         <member name="F:SFLib.MysticClass.ClassID">
             <summary>
@@ -314,11 +320,11 @@
             Libraray for Race data.
             </summary>
         </member>
-        <member name="P:SFLib.Races.RacialACBonus">
-            <summary>Stores character's Racial AC bonus</summary>
-        </member>
         <member name="F:SFLib.Races.RacialskillMod">
             <summary>Returns a read only int array of Hit Point modifers in alphabetical order</summary>
+        </member>
+        <member name="P:SFLib.Races.RacialACBonus">
+            <summary>Stores character's Racial AC bonus</summary>
         </member>
         <member name="F:SFLib.Races.raceHPMod">
             <summary>Returns a read only int array of Hit Point modifers in alphabetical order</summary>
@@ -350,7 +356,9 @@
         <member name="F:SFLib.Races.otherRaceMods">
             <summary>Returns a read only int array of Ability Score modifers in alphabetical order</summary>
         </member>
-        <!-- Badly formed XML comment ignored for member "F:SFLib.Races.raceNames" -->
+        <member name="F:SFLib.Races.raceNames">
+            <summary>Returns a read onlystring array of race names</summary>
+        </member>
         <member name="F:SFLib.Races._racialAbilityScoreAdjustment">
             <summary>Store Race Ability Score Adjustments [0-5] in Alphbetical order, Parrallel with Ability scores</summary>
         </member>
@@ -359,7 +367,7 @@
         </member>
         <member name="M:SFLib.Races.RacialBonusSkills(System.Int32)">
             <summary>
-            Returns an array if ints, each corresponding to a skill ID that gains a racial bonus
+            Returns an array if ints, each corresponding to skill IDs that gain racial bonuses
             Returns -1 if there is no skill bonus and 99 to pick any.
             </summary>
             <param name="raceID">Race ID corrisponding to Races in alphbetical order</param>

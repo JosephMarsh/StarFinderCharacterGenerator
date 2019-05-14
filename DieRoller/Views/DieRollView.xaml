@@ -665,7 +665,7 @@
             x:Name="GroupBoxFinalScores"
             Grid.Row="1" 
             Grid.Column="7" 
-            Header="Final Scores" 
+            Header="Base Ability Scores" 
             BorderThickness="2" 
             BorderBrush="#FF006DAE" 
             Background="#FFDDDFF9" 

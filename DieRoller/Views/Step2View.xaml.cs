@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SFLib;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,9 +21,24 @@ namespace DieRoller.Views
     /// </summary>
     public partial class Step2View : UserControl
     {
+        private string _raceName;
         public Step2View()
         {
             InitializeComponent();
+        }
+
+        private void RaceName_GotFocus(object sender, RoutedEventArgs e)
+        {
+            _raceName = RaceName.Text;
+            RaceName.Text = "";
+        }
+
+        private void RaceName_LostFocus(object sender, RoutedEventArgs e)
+        {
+            if (string.IsNullOrWhiteSpace(RaceName.Text))
+            {
+                RaceName.Text = _raceName;
+            }
         }
     }
 }
