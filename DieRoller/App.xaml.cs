@@ -17,12 +17,12 @@ namespace DieRoller
     {
         
 
-        protected void OnStartup(StartupEventArgs e)
-        {
-            base.OnStartup(e);
+        //protected void OnStartup(StartupEventArgs e)
+        //{
+        //    base.OnStartup(e);
 
 
 
-        }
+        //}
     }
 }

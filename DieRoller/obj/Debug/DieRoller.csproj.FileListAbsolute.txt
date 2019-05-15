@@ -166,8 +166,6 @@ C:\Users\jmarsh\OneDrive - College of Western Idaho\DieRoller\DieRoller\obj\Debu
 C:\Users\jmarsh\OneDrive - College of Western Idaho\DieRoller\DieRoller\obj\Debug\DieRoller.exe
 C:\Users\jmarsh\OneDrive - College of Western Idaho\DieRoller\DieRoller\obj\Debug\DieRoller.pdb
 C:\Users\AnubitFire\OneDrive\StarFinderCharacterGenerator\DieRoller\bin\Debug\DieRoller.exe.config
-C:\Users\AnubitFire\OneDrive\StarFinderCharacterGenerator\DieRoller\obj\Debug\DieRoller.exe
-C:\Users\AnubitFire\OneDrive\StarFinderCharacterGenerator\DieRoller\obj\Debug\DieRoller.pdb
 C:\Users\AnubitFire\OneDrive\StarFinderCharacterGenerator\DieRoller\bin\Debug\DieRoller.exe
 C:\Users\AnubitFire\OneDrive\StarFinderCharacterGenerator\DieRoller\bin\Debug\DieRoller.pdb
 C:\Users\AnubitFire\OneDrive\StarFinderCharacterGenerator\DieRoller\bin\Debug\Caliburn.Micro.dll
@@ -236,19 +234,21 @@ C:\Users\AnubitFire\OneDrive\StarFinderCharacterGenerator\DieRoller\bin\Debug\ru
 C:\Users\AnubitFire\OneDrive\StarFinderCharacterGenerator\DieRoller\bin\Debug\sv\Xceed.Wpf.AvalonDock.resources.dll
 C:\Users\AnubitFire\OneDrive\StarFinderCharacterGenerator\DieRoller\bin\Debug\zh-Hans\Xceed.Wpf.AvalonDock.resources.dll
 C:\Users\AnubitFire\OneDrive\StarFinderCharacterGenerator\DieRoller\obj\Debug\DieRoller.csprojResolveAssemblyReference.cache
+C:\Users\AnubitFire\OneDrive\StarFinderCharacterGenerator\DieRoller\obj\Debug\Views\DieRollView.g.cs
 C:\Users\AnubitFire\OneDrive\StarFinderCharacterGenerator\DieRoller\obj\Debug\Views\ShellView.g.cs
+C:\Users\AnubitFire\OneDrive\StarFinderCharacterGenerator\DieRoller\obj\Debug\Views\Step1View.g.cs
+C:\Users\AnubitFire\OneDrive\StarFinderCharacterGenerator\DieRoller\obj\Debug\Views\Step2View.g.cs
 C:\Users\AnubitFire\OneDrive\StarFinderCharacterGenerator\DieRoller\obj\Debug\App.g.cs
 C:\Users\AnubitFire\OneDrive\StarFinderCharacterGenerator\DieRoller\obj\Debug\GeneratedInternalTypeHelper.g.cs
 C:\Users\AnubitFire\OneDrive\StarFinderCharacterGenerator\DieRoller\obj\Debug\DieRoller_MarkupCompile.cache
 C:\Users\AnubitFire\OneDrive\StarFinderCharacterGenerator\DieRoller\obj\Debug\DieRoller_MarkupCompile.lref
 C:\Users\AnubitFire\OneDrive\StarFinderCharacterGenerator\DieRoller\obj\Debug\App.baml
+C:\Users\AnubitFire\OneDrive\StarFinderCharacterGenerator\DieRoller\obj\Debug\Views\DieRollView.baml
 C:\Users\AnubitFire\OneDrive\StarFinderCharacterGenerator\DieRoller\obj\Debug\Views\ShellView.baml
+C:\Users\AnubitFire\OneDrive\StarFinderCharacterGenerator\DieRoller\obj\Debug\Views\Step1View.baml
+C:\Users\AnubitFire\OneDrive\StarFinderCharacterGenerator\DieRoller\obj\Debug\Views\Step2View.baml
 C:\Users\AnubitFire\OneDrive\StarFinderCharacterGenerator\DieRoller\obj\Debug\DieRoller.g.resources
 C:\Users\AnubitFire\OneDrive\StarFinderCharacterGenerator\DieRoller\obj\Debug\DieRoller.Properties.Resources.resources
 C:\Users\AnubitFire\OneDrive\StarFinderCharacterGenerator\DieRoller\obj\Debug\DieRoller.csproj.GenerateResource.Cache
-C:\Users\AnubitFire\OneDrive\StarFinderCharacterGenerator\DieRoller\obj\Debug\Views\DieRollView.g.cs
-C:\Users\AnubitFire\OneDrive\StarFinderCharacterGenerator\DieRoller\obj\Debug\Views\Step1View.g.cs
-C:\Users\AnubitFire\OneDrive\StarFinderCharacterGenerator\DieRoller\obj\Debug\Views\DieRollView.baml
-C:\Users\AnubitFire\OneDrive\StarFinderCharacterGenerator\DieRoller\obj\Debug\Views\Step1View.baml
-C:\Users\AnubitFire\OneDrive\StarFinderCharacterGenerator\DieRoller\obj\Debug\Views\Step2View.g.cs
-C:\Users\AnubitFire\OneDrive\StarFinderCharacterGenerator\DieRoller\obj\Debug\Views\Step2View.baml
+C:\Users\AnubitFire\OneDrive\StarFinderCharacterGenerator\DieRoller\obj\Debug\DieRoller.exe
+C:\Users\AnubitFire\OneDrive\StarFinderCharacterGenerator\DieRoller\obj\Debug\DieRoller.pdb

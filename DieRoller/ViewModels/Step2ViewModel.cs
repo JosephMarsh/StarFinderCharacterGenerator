@@ -13,14 +13,15 @@ namespace DieRoller.ViewModels
         private static PlayerCharacter _Global_Player = ShellViewModel.Global_Player;
         private static Information _info = new Information();
 
-        //Initialize Values
-        private int _str = _Global_Player.AbilityScores[4];
-        private int _dex = _Global_Player.AbilityScores[2];
-        private int _con = _Global_Player.AbilityScores[1];
-        private int _int = _Global_Player.AbilityScores[3];
-        private int _wis = _Global_Player.AbilityScores[5];
-        private int _cha = _Global_Player.AbilityScores[0];
+        //ability scores after adjustments
+        private int _str = _Global_Player.AbilityScoresWithTheme[4];
+        private int _dex = _Global_Player.AbilityScoresWithTheme[2];
+        private int _con = _Global_Player.AbilityScoresWithTheme[1];
+        private int _int = _Global_Player.AbilityScoresWithTheme[3];
+        private int _wis = _Global_Player.AbilityScoresWithTheme[5];
+        private int _cha = _Global_Player.AbilityScoresWithTheme[0];
 
+        //ability score adjustments
         private int _strAdjust = _Global_Player.RacialAbilityScoreAdjustment[4];
         private int _dexAdjust = _Global_Player.RacialAbilityScoreAdjustment[2];
         private int _conAdjust = _Global_Player.RacialAbilityScoreAdjustment[1];
@@ -33,36 +34,41 @@ namespace DieRoller.ViewModels
 
         //default is  {0, 0, 0, 0, 0, 0}
         private static int[] _currentRaceAbilityScoreAdjusment = _Global_Player.RacialAbilityScoreAdjustment;
-
-        private string[] _raceNames = _Global_Player.raceNames;
+        private int[] _racialClassSkills = _Global_Player.RacialClassSkillIndexes;
+        private string[] _raceNames = _Global_Player.RaceNames;
         private int _selectedRace = -1;
         private string _raceName = _Global_Player.RaceName;
+        private bool _isGodMode = _Global_Player.RaceUsesGodMode;
 
+        //info box stuff
         private string[] _raceInfo = _info.RaceDiscriptions;
-        
-
         private string _infoBox1 = _info.step2;
 
+        //populate comboboxes
         private string[] _bonusComboBox1 = _Global_Player.skillNames;
         private string[] _bonusComboBox2 = _Global_Player.skillNames;
         private string[] _bonusComboBox3 = _Global_Player.skillNames;
         private string[] _abilityComboBox1 = _Global_Player.AbilityNames;
 
-        private int _bonusComboBox1Selection = -1;
-        private int _bonusComboBox2Selection = -1;
-        private int _bonusComboBox3Selection = -1;
-        private int _abilityComboBox1Selection = -1;
+        //store combobox selections
+        private int _bonusComboBox1Selection = _Global_Player.RacialClassSkillIndexes[0];
+        private int _bonusComboBox2Selection = _Global_Player.RacialClassSkillIndexes[1];
+        private int _bonusComboBox3Selection = _Global_Player.RacialClassSkillIndexes[2];
+        private int _abilityComboBox1Selection = _Global_Player.OtherRaceChosenAbilityscore;
 
+        //store cotrol visability
         private bool _controlBonus1IsVisable = false;
         private bool _controlBonus2IsVisable = false;
         private bool _controlBonus3IsVisable = false;
         private bool _controlAbility1IsVisable = false;
         private bool _godModeIsVisable = false;
 
+        //strore cotrolability
         private bool _skill1IsEnabled = true;
         private bool _skill2IsEnabled = true;
         private bool _skill3IsEnabled = true;
         private bool _raceNameIsEnabled = false;
+        private bool _canCommit = false;
 
         private IEventAggregator _events;
 
@@ -87,6 +93,11 @@ namespace DieRoller.ViewModels
             set
             {
                 _strAdjust = value;
+                
+                if(IsGodMode)
+                {
+                    Str = _Global_Player.AbilityScoresWithTheme[4] + StrAdjust;
+                }
                 NotifyOfPropertyChange(() => StrAdjust);
             }
         }
@@ -102,6 +113,10 @@ namespace DieRoller.ViewModels
             {
                 _dexAdjust = value;
                 NotifyOfPropertyChange(() => DexAdjust);
+                if (IsGodMode)
+                {
+                    Dex = _Global_Player.AbilityScoresWithTheme[2] + DexAdjust;
+                }
             }
         }
 
@@ -115,6 +130,10 @@ namespace DieRoller.ViewModels
             set
             {
                 _conAdjust = value;
+                if (IsGodMode)
+                {
+                    Con = _Global_Player.AbilityScoresWithTheme[1] + ConAdjust;
+                }
                 NotifyOfPropertyChange(() => ConAdjust);
             }
         }
@@ -130,6 +149,10 @@ namespace DieRoller.ViewModels
             {
                 _intAdjust = value;
                 NotifyOfPropertyChange(() => IntAdjust);
+                if (IsGodMode)
+                {
+                    Int = _Global_Player.AbilityScoresWithTheme[3] + IntAdjust;
+                }
             }
         }
 
@@ -144,6 +167,10 @@ namespace DieRoller.ViewModels
             {
                 _wisAdjust = value;
                 NotifyOfPropertyChange(() => WisAdjust);
+                if (IsGodMode)
+                {
+                    Wis = _Global_Player.AbilityScoresWithTheme[5] + _wisAdjust;
+                }
             }
         }
 
@@ -157,7 +184,11 @@ namespace DieRoller.ViewModels
             set
             {
                 _chaAdjust = value;
-                NotifyOfPropertyChange(() => ChaAdjust);  
+                NotifyOfPropertyChange(() => ChaAdjust);
+                if (IsGodMode)
+                {
+                    Cha = _Global_Player.AbilityScoresWithTheme[0] + _chaAdjust;
+                }
             }
         }
 
@@ -314,6 +345,31 @@ namespace DieRoller.ViewModels
             }
         }
 
+        public bool IsGodMode
+        {
+            get
+            {
+                return _isGodMode;
+            }
+            set
+            {
+                _isGodMode = value;
+                if (_isGodMode)
+                {
+                    AbilityComboBox1Selection = -1;
+                    ControlAbility1IsVisable = false;
+                }
+
+                if(!_isGodMode && _selectedRace == 8)
+                {
+                    AbilityComboBox1Selection = _Global_Player.OtherRaceChosenAbilityscore;
+                    ControlAbility1IsVisable = true;
+                }
+                CanCommit();
+                NotifyOfPropertyChange(() => IsGodMode);
+            }
+        }
+
         /// <summary>value bound to Skill Combobox  Item Source</summary>
         public string[] BonusComboBox1
         {
@@ -372,6 +428,7 @@ namespace DieRoller.ViewModels
                 }
                 _bonusComboBox3Selection = value;
                 NotifyOfPropertyChange(() => BonusComboBox3Selection);
+                CanCommit();
             }
         }
 
@@ -397,6 +454,7 @@ namespace DieRoller.ViewModels
                 }
                 _bonusComboBox2Selection = value;
                 NotifyOfPropertyChange(() => BonusComboBox2Selection);
+                CanCommit();
             }
         }
 
@@ -422,6 +480,7 @@ namespace DieRoller.ViewModels
                 }
                 _bonusComboBox1Selection = value;
                 NotifyOfPropertyChange(() => BonusComboBox1Selection);
+                CanCommit();
             }
         }
 
@@ -437,6 +496,7 @@ namespace DieRoller.ViewModels
                 _abilityComboBox1Selection = value;
                 updateAbilityScores(_selectedRace);
                 NotifyOfPropertyChange(() => AbilityComboBox1Selection);
+                CanCommit();
             }
         }
 
@@ -482,6 +542,7 @@ namespace DieRoller.ViewModels
             }
         }
 
+        /// <summary>Value enables and disables the Text Box for race name</summary>
         public bool RaceNameIsEnabled
         {
             get
@@ -492,6 +553,20 @@ namespace DieRoller.ViewModels
             {
                 _raceNameIsEnabled = value;
                 NotifyOfPropertyChange(() => RaceNameIsEnabled);
+            }
+        }
+
+        /// <summary>Value enables and disables the The Commit Button</summary>
+        public bool CanCommitButton
+        {
+            get
+            {
+                return _canCommit;
+            }
+            set
+            {
+                _canCommit = value;
+                NotifyOfPropertyChange(() => CanCommitButton);
             }
         }
 
@@ -554,6 +629,16 @@ namespace DieRoller.ViewModels
                 //update fields.
                 manageRaceSelectionFields(_selectedRace);
 
+                //if this is set to custom race check for godmode on Global
+                if (value == 8)
+                {
+                    IsGodMode = _Global_Player.RaceUsesGodMode;
+                }
+                else
+                {
+                    IsGodMode = false;
+                }
+
                 //update Race Name Text box
                 if (value != -1 && value != 8)
                 {
@@ -571,26 +656,20 @@ namespace DieRoller.ViewModels
         public void Reset()
         {
             SelectedRace = _Global_Player.CharacterRaceId;
-            updateAbilityScores(SelectedRace);
+
+            manageRaceSelectionFields(SelectedRace);
+
+            IsGodMode = _Global_Player.RaceUsesGodMode;
             RaceName = _Global_Player.RaceName;
 
-            Str = _Global_Player.AbilityScores[4];
-            Dex = _Global_Player.AbilityScores[2];
-            Con = _Global_Player.AbilityScores[1];
-            Int = _Global_Player.AbilityScores[3];
-            Wis = _Global_Player.AbilityScores[5];
-            Cha = _Global_Player.AbilityScores[0];
+            Str = _Global_Player.AbilityScoresWithTheme[4];
+            Dex = _Global_Player.AbilityScoresWithTheme[2];
+            Con = _Global_Player.AbilityScoresWithTheme[1];
+            Int = _Global_Player.AbilityScoresWithTheme[3];
+            Wis = _Global_Player.AbilityScoresWithTheme[5];
+            Cha = _Global_Player.AbilityScoresWithTheme[0];
 
-            if (SelectedRace != -1)
-            {
-                StrAdjust = _Global_Player.RaceMods[SelectedRace][4];
-                DexAdjust = _Global_Player.RaceMods[SelectedRace][2];
-                ConAdjust = _Global_Player.RaceMods[SelectedRace][1];
-                IntAdjust = _Global_Player.RaceMods[SelectedRace][3];
-                WisAdjust = _Global_Player.RaceMods[SelectedRace][5];
-                ChaAdjust = _Global_Player.RaceMods[SelectedRace][0];
-            }
-            else
+            if (SelectedRace == -1 || (SelectedRace == 8 && IsGodMode))
             {
                 StrAdjust = _Global_Player.RacialAbilityScoreAdjustment[4];
                 DexAdjust = _Global_Player.RacialAbilityScoreAdjustment[2];
@@ -599,14 +678,21 @@ namespace DieRoller.ViewModels
                 WisAdjust = _Global_Player.RacialAbilityScoreAdjustment[5];
                 ChaAdjust = _Global_Player.RacialAbilityScoreAdjustment[0];
             }
-        }
+            else
+            {
+                StrAdjust = _Global_Player.RaceMods[SelectedRace][4];
+                DexAdjust = _Global_Player.RaceMods[SelectedRace][2];
+                ConAdjust = _Global_Player.RaceMods[SelectedRace][1];
+                IntAdjust = _Global_Player.RaceMods[SelectedRace][3];
+                WisAdjust = _Global_Player.RaceMods[SelectedRace][5];
+                ChaAdjust = _Global_Player.RaceMods[SelectedRace][0];
+            }//end if
 
-        //used to refresh stats when there is a global change
-        private void _updateStatus()
-        {
-            Reset();
-        }
-
+            BonusComboBox1Selection = _Global_Player.RacialClassSkillIndexes[0];
+            BonusComboBox2Selection = _Global_Player.RacialClassSkillIndexes[1];
+            BonusComboBox3Selection = _Global_Player.RacialClassSkillIndexes[2];
+            AbilityComboBox1Selection = _Global_Player.OtherRaceChosenAbilityscore;
+        }//end Reset
 
         /// <summary>
         /// This method handels updating required fileds when a race is slected.
@@ -637,10 +723,10 @@ namespace DieRoller.ViewModels
             }
 
             //check of RacialBonusKills Array has a value
-            if (_Global_Player.RacialBonusSkills(raceIndex) != null)
+            if (_Global_Player.GetsRacialClassSkills(raceIndex) != null)
             {
                 //assign the value locally
-                int[] _racialBonusSkills = _Global_Player.RacialBonusSkills(raceIndex);
+                int[] _racialBonusSkills = _Global_Player.GetsRacialClassSkills(raceIndex);
 
                 //loop through the arrays.
                 for (int i = 0; i < _racialBonusSkills.Length; i++)
@@ -689,7 +775,7 @@ namespace DieRoller.ViewModels
                 else //everything else
                 {
                     ControlAbility1IsVisable = false;
-                }
+                }//end inner if
 
                 //make sure Ability comboBox has been reset to -1
                 AbilityComboBox1Selection = -1;
@@ -718,55 +804,78 @@ namespace DieRoller.ViewModels
                 {
                     //display default page info
                     TextBoxInfo1 = _info.step2;
-                }
-                
+                }//end inner if
             }//end if
         }//end manageRaceSelection
 
+        /// <summary>
+        /// This method controls if the Commit button is enabled or not
+        /// check the status of combo boxes to see if they are enable and if there is an item selected or not
+        /// </summary>
+        /// <returns>true if contditions are met</returns>
         public bool CanCommit()
         {
             //create an array of active contols
-            bool[] activeControls = { Skill1IsEnabled, Skill2IsEnabled, Skill3IsEnabled, ControlAbility1IsVisable };
-            int[] controlSelections = { AbilityComboBox1Selection, BonusComboBox1Selection, BonusComboBox2Selection, BonusComboBox3Selection };
-            bool[] passFail = new bool[4];
+            bool[] activeControls = { ControlBonus1IsVisable, ControlBonus2IsVisable, ControlBonus3IsVisable, ControlAbility1IsVisable , true};
+            //create an array of contol values
+            int[] controlSelections = { BonusComboBox1Selection, BonusComboBox2Selection, BonusComboBox3Selection, AbilityComboBox1Selection , SelectedRace};
+            //create an array to store the results of testresults for each contol
+            bool[] passFail = new bool[5];
             for (int i = 0; i < activeControls.Length; i++)
             {
                 //check of the control is active
                 if (activeControls[i])
                 {
-                    //is it set to default
+                    //fail if it's set to default
                     if(controlSelections[i] == -1)
                     {
-                        //if not check passes
-                        passFail[i] = true;
+                        passFail[i] = false;
                     }
                     else
                     {
-                        //check fails
-                        passFail[i] = false;
+                        passFail[i] = true;
                     }
                 }
                 else
                 {
-                    //inactive control passes
+                    //inactive control passes automanticly
                     passFail[i] = true;
                 }
             }
-
-
-            return !(passFail.Contains(false));
+            CanCommitButton =  !(passFail.Contains(false));
+            return CanCommitButton;
         }
 
+        /// <summary>
+        /// This Method is bound to the commit button with Caliburn Micro
+        /// when pressed the button updates the global object with the user's chosen values
+        /// </summary>
         public void Commit()
         {
-
+            //update the global character object
+            _Global_Player.CharacterRaceId = SelectedRace;
+            _Global_Player.RaceName = RaceName;
+            _Global_Player.RaceUsesGodMode = IsGodMode;
+            //store ability score adjustments
+            _Global_Player.RacialAbilityScoreAdjustment[4] = StrAdjust;
+            _Global_Player.RacialAbilityScoreAdjustment[2] = DexAdjust;
+            _Global_Player.RacialAbilityScoreAdjustment[1] = ConAdjust;
+            _Global_Player.RacialAbilityScoreAdjustment[3] = IntAdjust;
+            _Global_Player.RacialAbilityScoreAdjustment[5] = WisAdjust;
+            _Global_Player.RacialAbilityScoreAdjustment[0] = ChaAdjust;
+            //store Skill adjustments
+            _Global_Player.RacialClassSkillIndexes[0] = BonusComboBox1Selection;
+            _Global_Player.RacialClassSkillIndexes[1] = BonusComboBox2Selection;
+            _Global_Player.RacialClassSkillIndexes[2] = BonusComboBox3Selection;
+            _Global_Player.OtherRaceChosenAbilityscore = AbilityComboBox1Selection;
+            //tell anyone listening that the object was updated
+            _events.PublishOnUIThread(new DataCommitedEvent());
         }
 
         private void updateAbilityScores(int raceIndex)
         {
-
             //update ability Score adjustments
-            if (raceIndex != -1)
+            if (raceIndex != -1 && !IsGodMode)
             {
                 StrAdjust = _Global_Player.RaceMods[raceIndex][4];
                 DexAdjust = _Global_Player.RaceMods[raceIndex][2];
@@ -777,12 +886,12 @@ namespace DieRoller.ViewModels
             }
 
             //adjust Displayed ability scores according to chosen race
-            Str = _Global_Player.BaseAbilityScores[4] + StrAdjust;
-            Dex = _Global_Player.BaseAbilityScores[2] + DexAdjust;
-            Con = _Global_Player.BaseAbilityScores[1] + ConAdjust;
-            Int = _Global_Player.BaseAbilityScores[3] + IntAdjust;
-            Wis = _Global_Player.BaseAbilityScores[5] + WisAdjust;
-            Cha = _Global_Player.BaseAbilityScores[0] + ChaAdjust;
+            Str = _Global_Player.AbilityScoresWithTheme[4] + StrAdjust;
+            Dex = _Global_Player.AbilityScoresWithTheme[2] + DexAdjust;
+            Con = _Global_Player.AbilityScoresWithTheme[1] + ConAdjust;
+            Int = _Global_Player.AbilityScoresWithTheme[3] + IntAdjust;
+            Wis = _Global_Player.AbilityScoresWithTheme[5] + WisAdjust;
+            Cha = _Global_Player.AbilityScoresWithTheme[0] + ChaAdjust;
 
             //check if ability score dropdown has a value.
             if(AbilityComboBox1Selection != -1)
@@ -791,27 +900,27 @@ namespace DieRoller.ViewModels
                 {
                     case 0:
                         ChaAdjust = 2;
-                        Cha = _Global_Player.BaseAbilityScores[0] + ChaAdjust;
+                        Cha = _Global_Player.AbilityScoresWithTheme[0] + ChaAdjust;
                         break;
                     case 1:
                         ConAdjust = 2;
-                        Con = _Global_Player.BaseAbilityScores[1] + ConAdjust;
+                        Con = _Global_Player.AbilityScoresWithTheme[1] + ConAdjust;
                         break;
                     case 2:
                         DexAdjust = 2;
-                        Dex = _Global_Player.BaseAbilityScores[2] + DexAdjust;
+                        Dex = _Global_Player.AbilityScoresWithTheme[2] + DexAdjust;
                         break;
                     case 3:
                         IntAdjust = 2;
-                        Int = _Global_Player.BaseAbilityScores[3] + IntAdjust;
+                        Int = _Global_Player.AbilityScoresWithTheme[3] + IntAdjust;
                         break;
                     case 4:
                         StrAdjust = 2;
-                        Str = _Global_Player.BaseAbilityScores[4] + StrAdjust;
+                        Str = _Global_Player.AbilityScoresWithTheme[4] + StrAdjust;
                         break;
                     case 5:
                         WisAdjust = 2;
-                        Wis = _Global_Player.BaseAbilityScores[5] + WisAdjust;
+                        Wis = _Global_Player.AbilityScoresWithTheme[5] + WisAdjust;
                         break;
                     default:
                         break;
@@ -826,7 +935,7 @@ namespace DieRoller.ViewModels
         public void Handle(DataCommitedEvent message)
         {
             //Refresh Stat blocks
-            _updateStatus();
+            Reset();
         }
 
     }

@@ -356,7 +356,7 @@
             Margin="5,0">
             <Grid
                 x:Name="AbilityScoresAdjustmentGrid"
-                IsEnabled="False"
+                IsEnabled="{Binding Path=IsGodMode}"
                 >
                 <Grid.ColumnDefinitions>
                     <!--0 Border-->
@@ -491,6 +491,7 @@
         <Button
             x:Name="Commit"
             Grid.Column="1"
+            IsEnabled="{Binding Path=CanCommitButton}"
             Grid.Row="4"
             Padding="5"
             Margin="5">
@@ -512,9 +513,9 @@
             Grid.Row="4"
             VerticalAlignment="Center">
             <CheckBox
-                x:Name="GodMode"
+                x:Name="IsGodMode"
                 FontSize="10"
-                Content="GodMode" Margin="5,0,0,0"/>
+                Content="God Mode (Beta)" Margin="5,0,0,0"/>
         </Border>
         
 

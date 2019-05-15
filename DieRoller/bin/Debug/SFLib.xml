@@ -263,14 +263,8 @@
         <member name="F:SFLib.PlayerCharacter.featsPerLevel">
             <summary>Read only. Unadjusted feats per level reguardless of classes[0-20] use unadjusted character level</summary>
         </member>
-        <member name="P:SFLib.PlayerCharacter.CharacterRaceId">
-            <summary>Holds the index value for the character's race.</summary>
-        </member>
         <member name="P:SFLib.PlayerCharacter.PlayerThemeId">
             <summary>This stores the Character's ThemeId wich is used in the Theme class</summary>
-        </member>
-        <member name="P:SFLib.PlayerCharacter.RaceName">
-            <summary>Stores Players Selected Race name.</summary>
         </member>
         <member name="P:SFLib.PlayerCharacter.MysticBonusSpells">
             <summary>Returns pre-calculated array of spells per level based on Wisdom Score</summary>
@@ -285,6 +279,9 @@
             <summary>Ability Mods from Base Character Attributes</summary>
         </member>
         <member name="P:SFLib.PlayerCharacter.BaseAbilityScores">
+            <summary>Base scores without Theme mods or race mods</summary>
+        </member>
+        <member name="P:SFLib.PlayerCharacter.AbilityScoresWithTheme">
             <summary>Base scores without Theme mods or race mods</summary>
         </member>
         <member name="T:SFLib.PlayerClass">
@@ -320,52 +317,64 @@
             Libraray for Race data.
             </summary>
         </member>
-        <member name="F:SFLib.Races.RacialskillMod">
-            <summary>Returns a read only int array of Hit Point modifers in alphabetical order</summary>
+        <member name="P:SFLib.Races.RacialClassSkillIndexes">
+            <summary>
+            stores an array of Racial skills that count as class skills
+            each one corrisponds to the index value of a character skill
+            </summary>
+        </member>
+        <member name="P:SFLib.Races.CharacterRaceId">
+            <summary>Holds the index value for the character's race.</summary>
+        </member>
+        <member name="P:SFLib.Races.RaceHPMod">
+            <summary>Holds the character's racial HP modifier</summary>
+        </member>
+        <member name="P:SFLib.Races.RaceName">
+            <summary>Stores Players chosen race name string</summary>
         </member>
         <member name="P:SFLib.Races.RacialACBonus">
             <summary>Stores character's Racial AC bonus</summary>
         </member>
-        <member name="F:SFLib.Races.raceHPMod">
-            <summary>Returns a read only int array of Hit Point modifers in alphabetical order</summary>
+        <member name="P:SFLib.Races.RaceHPMods">
+            <summary>Returns a read only int array of Hit Point modifers relative to Core Races alphabetical order</summary>
         </member>
-        <member name="F:SFLib.Races.androidMods">
+        <member name="P:SFLib.Races.AndroidMods">
             <summary>Returns a read only int array of Ability Score modifers in alphabetical order</summary>
         </member>
-        <member name="F:SFLib.Races.humanMods">
+        <member name="P:SFLib.Races.HumanMods">
             <summary>Returns a read only int array of Ability Score modifers in alphabetical order</summary>
         </member>
-        <member name="F:SFLib.Races.kasathaMods">
+        <member name="P:SFLib.Races.KasathaMods">
             <summary>Returns a read only int array of Ability Score modifers in alphabetical order</summary>
         </member>
-        <member name="F:SFLib.Races.lashuntaDMods">
+        <member name="P:SFLib.Races.LashuntaDMods">
             <summary>Returns a read only int array of Ability Score modifers in alphabetical order</summary>
         </member>
-        <member name="F:SFLib.Races.lashuntaKMods">
+        <member name="P:SFLib.Races.LashuntaKMods">
             <summary>Returns a read only int array of Ability Score modifers in alphabetical order</summary>
         </member>
-        <member name="F:SFLib.Races.shirrenMods">
+        <member name="P:SFLib.Races.ShirrenMods">
             <summary>Returns a read only int array of Ability Score modifers in alphabetical order</summary>
         </member>
-        <member name="F:SFLib.Races.veskMods">
+        <member name="P:SFLib.Races.VeskMods">
             <summary>Returns a read only int array of Ability Score modifers in alphabetical order</summary>
         </member>
-        <member name="F:SFLib.Races.YoskiMods">
+        <member name="P:SFLib.Races.YoskiMods">
             <summary>Returns a read only int array of Ability Score modifers in alphabetical order</summary>
         </member>
-        <member name="F:SFLib.Races.otherRaceMods">
+        <member name="P:SFLib.Races.OtherRaceMods">
             <summary>Returns a read only int array of Ability Score modifers in alphabetical order</summary>
-        </member>
-        <member name="F:SFLib.Races.raceNames">
-            <summary>Returns a read onlystring array of race names</summary>
-        </member>
-        <member name="F:SFLib.Races._racialAbilityScoreAdjustment">
-            <summary>Store Race Ability Score Adjustments [0-5] in Alphbetical order, Parrallel with Ability scores</summary>
         </member>
         <member name="P:SFLib.Races.RacialAbilityScoreAdjustment">
             <summary>Stores Racial Ability Score Adjustments in alphabetical order</summary>
         </member>
-        <member name="M:SFLib.Races.RacialBonusSkills(System.Int32)">
+        <member name="P:SFLib.Races.OtherRaceChosenAbilityscore">
+            <summary>stores the index of the chosen ability score buff.</summary>
+        </member>
+        <member name="P:SFLib.Races.RaceUsesGodMode">
+            <summary>Player chose to manually set ability score adjustments</summary>
+        </member>
+        <member name="M:SFLib.Races.GetsRacialClassSkills(System.Int32)">
             <summary>
             Returns an array if ints, each corresponding to skill IDs that gain racial bonuses
             Returns -1 if there is no skill bonus and 99 to pick any.
@@ -373,11 +382,14 @@
             <param name="raceID">Race ID corrisponding to Races in alphbetical order</param>
             <returns>int array or null</returns>
         </member>
+        <member name="P:SFLib.Races.RaceNames">
+            <summary>Returns a read only array of a race name.</summary>
+        </member>
         <member name="M:SFLib.Races.getRaceName(System.Int32)">
             <summary>Returns a read only String of a race name.</summary>
         </member>
         <member name="P:SFLib.Races.RaceMods">
-            <summary>Returns a 2D array contiaing Ability Score modifiers</summary>
+            <summary>Returns a read only 2D array contiaing Ability Score modifiers</summary>
         </member>
         <member name="M:SFLib.Races.getClassArray(System.Int32)">
             <summary>
