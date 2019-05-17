@@ -271,6 +271,9 @@
         <member name="P:SFLib.Character.MysticBonusSpells">
             <summary>Returns pre-calculated array of spells per level based on Wisdom Score</summary>
         </member>
+        <member name="P:SFLib.Character.TechnoBonusSpells">
+            <summary>read only Technomancer Bonus Spells calculation using</summary>
+        </member>
         <member name="P:SFLib.Character.IsClassSkill">
             <summary>
             Should only set this if class skill is derived from user's class
@@ -290,6 +293,9 @@
             <summary>Base scores without Theme mods or race mods</summary>
         </member>
         <member name="P:SFLib.Character.AbilityScoresWithTheme">
+            <summary>Base scores without racial mods or race mods</summary>
+        </member>
+        <member name="P:SFLib.Character.AbilityScoresWithRacialMods">
             <summary>Base scores without Theme mods or race mods</summary>
         </member>
         <member name="T:SFLib.PlayerClass">
@@ -460,12 +466,12 @@
             class.
             </summary>
         </member>
-        <member name="T:SFLib.Theme">
+        <member name="T:SFLib.Themes">
             <summary>
             This class stores data about Starfinder Themes.
             </summary>
         </member>
-        <member name="M:SFLib.Theme.Sources(System.Int32)">
+        <member name="M:SFLib.Themes.Sources(System.Int32)">
             <summary>
             an array of theme sources ordered by theme ID
             </summary>

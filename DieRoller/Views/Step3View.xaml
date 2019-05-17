@@ -28,7 +28,7 @@
             <RowDefinition Height="0"/>
             <!--Row 1 Title-->
             <RowDefinition Height="auto"/>
-            <!--Row 2 Race selection-->
+            <!--Row 2 Theme selection-->
             <RowDefinition Height="auto"/>
             <!--Row 3 Ability Score Selection-->
             <RowDefinition Height="auto"/>
@@ -248,8 +248,150 @@
         </GroupBox>
         <!--#endregion-->
         
-        
+        <!--#region Row 3 Ability Score Selection-->
+        <GroupBox
+            Grid.Column="5"
+            Grid.Row="3" 
+            Grid.ColumnSpan="2"
+            HorizontalAlignment="Right"
+            Header="Theme Modifiers" 
+            BorderThickness="2" 
+            BorderBrush="#FF006DAE" 
+            Background="#FFDDDFF9"
+            Foreground="#FF341355"
+            Padding="5" 
+            Margin="5,0">
+            <Grid
+                x:Name="AbilityScoresAdjustmentGrid"
+                IsEnabled="{Binding Path=IsGodMode}"
+                >
+                <Grid.ColumnDefinitions>
+                    <!--0 Border-->
+                    <ColumnDefinition Width="5"/>
+                    <!--1 ability score abriviation-->
+                    <ColumnDefinition Width="auto"/>
+                    <!--2 ability score-->
+                    <ColumnDefinition Width="auto"/>
+                    <!--3 ability score abriviation-->
+                    <ColumnDefinition Width="auto"/>
+                    <!--4 ability score-->
+                    <ColumnDefinition Width="auto"/>
+                    <!--5 Border-->
+                    <ColumnDefinition Width="0"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="0"/>
+                    <!--Row 1 Str int-->
+                    <RowDefinition Height="auto"/>
+                    <!--Row 2 Dex Wis-->
+                    <RowDefinition Height="auto"/>
+                    <!--Row 3 Con Cha-->
+                    <RowDefinition Height="auto"/>
+                    <!--Row 4 border-->
+                    <RowDefinition Height="0"/>
+                </Grid.RowDefinitions>
 
+                <!--Row 1 Str INT-->
+                <TextBlock 
+                    Grid.Column="1"
+                    Grid.Row="1"
+                    Margin="5"
+                    TextDecorations="Underline">
+                    Str
+                </TextBlock>
+                <wpfTool:IntegerUpDown
+                    x:Name="StrAdjust"
+                    Grid.Row="1"
+                    MinWidth="30"
+                    Grid.Column="2"
+                    Value="{Binding Path=StrAdjust, Mode=TwoWay}"
+                    Margin="5" 
+                    HorizontalAlignment="Center" 
+                    VerticalAlignment="Center"
+                    />
+                <TextBlock 
+                    Grid.Column="3"
+                    Grid.Row="1"
+                    Margin="20,5,0,5"
+                    TextDecorations="Underline">
+                    Int
+                </TextBlock>
+                <wpfTool:IntegerUpDown
+                    x:Name="IntAdjust"
+                    Value="{Binding Path=IntAdjust, Mode=TwoWay}"
+                    Grid.Row="1"
+                    MinWidth="30"
+                    Grid.Column="4" 
+                    Margin="5,5,10,5"
+                    />
+
+                <!--Row 2 Dex Wis-->
+                <TextBlock 
+                    Grid.Column="1"
+                    Grid.Row="2"
+                    Margin="0,5,5,5"
+                    TextDecorations="Underline">
+                    Dex
+                </TextBlock>
+                <wpfTool:IntegerUpDown
+                    x:Name="DexAdjust"
+                    Value="{Binding Path=DexAdjust, Mode=TwoWay}"
+                    Grid.Row="2"
+                    MinWidth="30"
+                    Grid.Column="2" 
+                    Margin="5,0,5,5"
+                    />
+                <TextBlock 
+                    Grid.Column="3"
+                    Grid.Row="2"
+                    Margin="20,5,0,5"
+                    TextDecorations="Underline">
+                    Wis
+                </TextBlock>
+                <wpfTool:IntegerUpDown
+                    x:Name="WisAdjust"
+                    Value="{Binding Path=WisAdjust, Mode=TwoWay}"
+                    Grid.Row="2"
+                    MinWidth="30"
+                    Grid.Column="4" 
+                    Margin="5,0,10,5"
+                    />
+
+                <!--Row 3 Con Cha-->
+                <TextBlock 
+                    Grid.Column="1"
+                    Grid.Row="3"
+                    Margin="0,5,5,5"
+                    TextDecorations="Underline">
+                    Con
+                </TextBlock>
+                <wpfTool:IntegerUpDown
+                    x:Name="ConAdjust"
+                    Value="{Binding Path=ConAdjust, Mode=TwoWay}"
+                    Grid.Row="3"
+                    MinWidth="30"
+                    Grid.Column="2" 
+                    Margin="5,0,5,5"
+                    />
+                <TextBlock 
+                    Grid.Column="3"
+                    Grid.Row="3"
+                    Margin="20,5,0,5"
+                    TextDecorations="Underline">
+                    Cha
+                </TextBlock>
+                <wpfTool:IntegerUpDown
+                    x:Name="ChaAdjust"
+                    Value="{Binding Path=ChaAdjust, Mode=TwoWay}"
+                    Grid.Row="3"
+                    MinWidth="30"
+                    Grid.Column="4" 
+                    Margin="5,0,10,5"
+                    />
+            </Grid>
+            <!--End Ability Score Grid-->
+        </GroupBox>
+        <!--#endregion-->
         <!--#region Row 5 Informoation panel-->
         <GroupBox
             Name="GroupBoxInformation1"

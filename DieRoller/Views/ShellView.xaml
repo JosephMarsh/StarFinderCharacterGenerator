@@ -40,7 +40,7 @@
             <!--row 4 border-->
             <RowDefinition Height="20"/>
         </Grid.RowDefinitions>
-    
+
         <!--row 1 status-->
         <Grid 
             Grid.Column="1"
@@ -65,41 +65,92 @@
                 <RowDefinition Height="0"/>
             </Grid.RowDefinitions>
             <!--row 1-->
-            <StackPanel
-                x:Name="LablePanel"
+            <Grid
                 Grid.Column="1"
                 Grid.Row="1">
-                <TextBlock
-                    x:Name="LabelName"
-                    Text="Character Name: "
-                    />
-                <TextBlock
-                    x:Name="LabelRace"
-                    Text="Character Race: "
-                    />
-            </StackPanel>
-            <StackPanel
-                x:Name="ValuePanel"
-                Grid.Row="1"
-                Grid.Column="2" Margin="10,0,0,0">
-                <TextBlock
-                    x:Name="CharacterName"
-                    Foreground="DarkSlateGray"
-                    Text="{Binding Path=ChraracterName, Mode=OneWay}" 
-                    MinWidth="100" 
-                    HorizontalAlignment="Left" 
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="auto"/>
+                    <ColumnDefinition Width="auto"/>
+                    <ColumnDefinition Width="auto"/>
+                    <ColumnDefinition Width="auto"/>
+                </Grid.ColumnDefinitions>
+                <StackPanel
+                    x:Name="LablePanel"
+                    Grid.Column="0"
+                    Grid.Row="1" 
+                    Margin="5,0">
+                    <TextBlock
+                        x:Name="LabelName"
+                        Text="Character Name: "/>
+                    <TextBlock
+                        x:Name="LabelRace"
+                        Text="Character Race: "/>
+                </StackPanel>
+                <StackPanel
+                    x:Name="ValuePanel"
+                    Grid.Row="1"
+                    Grid.Column="1" 
+                    Margin="0,0,20,0">
+                    <TextBlock
+                        x:Name="CharacterName"
+                        Foreground="DarkSlateGray"
+                        Text="{Binding Path=ChraracterName, Mode=OneWay}" 
+                        MinWidth="100" 
+                        HorizontalAlignment="Left">
+                        test
+                    </TextBlock>
+                    <TextBlock
+                        x:Name="CharacterRace"
+                        Foreground="DarkSlateGray"
+                        Text="{Binding Path=CharacterRace, Mode=OneWay}" 
+                        MinWidth="100" 
+                        HorizontalAlignment="Left">
+                    </TextBlock>
+                </StackPanel>
+                <StackPanel
+                    x:Name="LablePanel2"
+                    Grid.Column="2"
+                    Grid.Row="1"
+                    Margin="5,0">
+                    <TextBlock
+                        x:Name="LabelTheme"
+                        Text="Theme: "/>
+                    <TextBlock
+                        x:Name="LabelClass"
+                        Text="Class: "/>
+                </StackPanel>
+                <StackPanel
+                    x:Name="ValuePanel2"
+                    Grid.Row="1"
+                    Grid.Column="3" 
+                    Margin="5,0">
+                    <TextBlock
+                        x:Name="Theme"
+                        Foreground="DarkSlateGray"
+                        Text="{Binding Path=ChraracterName, Mode=OneWay}" 
+                        MinWidth="100" 
+                        HorizontalAlignment="Left" 
                     >test
-                </TextBlock>
-                <TextBlock
-                    x:Name="CharacterRace"
-                    Foreground="DarkSlateGray"
-                    Text="{Binding Path=CharacterRace, Mode=OneWay}" 
-                    MinWidth="100" 
-                    HorizontalAlignment="Left" 
-                    >
-                </TextBlock>
-            </StackPanel>
-            
+                    </TextBlock>
+                    <TextBlock
+                        x:Name="CharacterClass"
+                        Foreground="DarkSlateGray"
+                        Text="{Binding Path=CharacterRace, Mode=OneWay}" 
+                        MinWidth="100" 
+                        HorizontalAlignment="Left" >
+                    </TextBlock>
+                </StackPanel>
+
+            </Grid>
+
+
+
+
+
 
 
         </Grid>
@@ -111,11 +162,15 @@
             <Button
                 x:Name="Step1Page"
                 Padding="5,1"
-                Content="Step1"/>
+                Content="Step 1"/>
             <Button
                 x:Name="Step2Page"
                 Padding="5,1"
-                Content="Step2"/>
+                Content="Step 2"/>
+            <Button
+                x:Name="Step3Page"
+                Padding="5,1"
+                Content="Step 3"/>
             <Button
                 x:Name="DieRollPage"
                 Padding="5,1"
@@ -150,8 +205,8 @@
                 />
         </ScrollViewer>
     </Grid>
-    
-    
-    
-    
+
+
+
+
 </Window>
