@@ -4,6 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:DieRoller.Views"
+             xmlns:wpfTool="clr-namespace:Xceed.Wpf.Toolkit;assembly=Xceed.Wpf.Toolkit"
              mc:Ignorable="d" 
              d:DesignHeight="400" 
              d:DesignWidth="800" 
@@ -27,27 +28,23 @@
             <RowDefinition Height="0"/>
             <!--Row 1 Title-->
             <RowDefinition Height="auto"/>
-            <!--Row 2 Race selection-->
+            <!--Row 2 Race selection and ability scores-->
             <RowDefinition Height="auto"/>
             <!--Row 3 Ability Score Selection-->
             <RowDefinition Height="auto"/>
-            <!--Row 4 Lables-->
+            <!--Row 4 Buttons and controls-->
             <RowDefinition Height="auto"/>
-            <!--Row 5 Skill Point Selection-->
-            <RowDefinition Height="auto"/>
-            <!--Row Info Panel-->
+            <!--Row 5 Info Panel-->
             <RowDefinition Height="auto"/>
             <!--Border-->
             <RowDefinition Height="0"/>
         </Grid.RowDefinitions>
 
-
-
-        <!--Row 1 Title-->
+        <!--#region Row 1 Title-->
         <TextBlock
             Grid.Row="1"
             Grid.Column="1"
-            Grid.ColumnSpan="3"
+            Grid.ColumnSpan="6"
             Foreground="DarkBlue" 
             FontSize="16"
             TextDecorations="Underline"
@@ -55,137 +52,510 @@
             VerticalAlignment="Center" 
             Margin="0,10">
             Step 2 Pick Race</TextBlock>
+        <!--#endregion-->
         
-        <!--Row 2 Pick race and Ability scores-->
-        <ComboBox
-            x:Name="PickRace"
+        <!--#region Row 2 Pick race and show Ability scores-->
+        <StackPanel
+            Grid.Row="2" 
+            Margin="5,0,5,0"
             Grid.Column="1"
+            MinWidth="100">
+            <TextBlock
+                x:Name="LabelRaceName"
+                Margin="5,0,5,5"
+                Text="Choose Your Race:"/>
+            <ComboBox
+                x:Name="PickRace"
+                ItemsSource="{Binding Path=RaceNames}"
+                SelectedIndex="{Binding Path=SelectedRace}"
+                MaxHeight="25" 
+            />
+        </StackPanel>
+
+        <TextBlock
+            Grid.Row="2"
+            Grid.Column="2" 
+            Margin="10,25,0,0" 
+            HorizontalAlignment="Right">
+            Race:
+        </TextBlock>
+        <TextBox
+            x:Name="RaceName"
+            Text="None Selected"
+            Grid.Column="3"
+            Grid.Row="2"
+            Grid.ColumnSpan="2"
+            IsEnabled="{Binding Path=RaceNameIsEnabled, Mode=TwoWay}"
             MaxHeight="25"
-            Text="Select Race"
-            Grid.Row="2"/>
+            Width="150"
+            Margin="10,25,0,0" 
+            HorizontalAlignment="Left" 
+            VerticalAlignment="Top" 
+            GotFocus="RaceName_GotFocus" LostFocus="RaceName_LostFocus"
+            />
+
+        <GroupBox
+            Grid.Column="5"
+            Grid.Row="2"
+            Grid.ColumnSpan="2"
+            HorizontalAlignment="Right"
+            Header="Ability Scores" 
+            BorderThickness="2" 
+            BorderBrush="#FF006DAE" 
+            Background="#FFDDDFF9" 
+            Padding="5" 
+            Margin="5,0">
+            <Grid
+                x:Name="AbilityScoresGrid"
+                IsEnabled="False"
+                >
+                <Grid.ColumnDefinitions>
+                    <!--0 Border-->
+                    <ColumnDefinition Width="5"/>
+                    <!--1 ability score abriviation-->
+                    <ColumnDefinition Width="auto"/>
+                    <!--2 ability score-->
+                    <ColumnDefinition Width="auto"/>
+                    <!--3 ability score abriviation-->
+                    <ColumnDefinition Width="auto"/>
+                    <!--4 ability score-->
+                    <ColumnDefinition Width="auto"/>
+                    <!--5 Border-->
+                    <ColumnDefinition Width="0"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="0"/>
+                    <!--Row 1 Str int-->
+                    <RowDefinition Height="auto"/>
+                    <!--Row 2 Dex Wis-->
+                    <RowDefinition Height="auto"/>
+                    <!--Row 3 Con Cha-->
+                    <RowDefinition Height="auto"/>
+                    <!--Row 4 border-->
+                    <RowDefinition Height="0"/>
+                </Grid.RowDefinitions>
+            
+                <!--Row 1 Str INT-->
+                <TextBlock 
+                    Grid.Column="1"
+                    Grid.Row="1"
+                    Margin="5"
+                    TextDecorations="Underline">
+                    Str
+                </TextBlock>
+                <TextBlock
+                    x:Name="Str"
+                    Background="White"
+                    Padding="3"
+                    TextAlignment="Center"
+                    Grid.Row="1"
+                    MinWidth="41"
+                    Grid.Column="2" 
+                    Margin="5" 
+                    HorizontalAlignment="Center" 
+                    VerticalAlignment="Center"
+                    />
+                <TextBlock 
+                    Grid.Column="3"
+                    Grid.Row="1"
+                    Margin="20,5,0,5"
+                    TextDecorations="Underline">
+                    Int
+                </TextBlock>
+                <TextBlock
+                    x:Name="Int"
+                    Background="White"
+                    Padding="3"
+                    TextAlignment="Center"
+                    Grid.Row="1"
+                    MinWidth="41"
+                    Grid.Column="4" 
+                    Margin="5,5,10,5"
+                    />
+
+                <!--Row 2 Dex Wis-->
+                <TextBlock 
+                    Grid.Column="1"
+                    Grid.Row="2"
+                    Margin="0,5,5,5"
+                    TextDecorations="Underline">
+                    Dex
+                </TextBlock>
+                <TextBlock
+                    x:Name="Dex"
+                    Background="White"
+                    Padding="3"
+                    TextAlignment="Center"
+                    Grid.Row="2"
+                    MinWidth="41"
+                    Grid.Column="2" 
+                    Margin="5,0,5,5"
+                    />
+                <TextBlock 
+                    Grid.Column="3"
+                    Grid.Row="2"
+                    Margin="20,5,0,5"
+                    TextDecorations="Underline">
+                    Wis
+                </TextBlock>
+                <TextBlock
+                    x:Name="Wis"
+                    Background="White"
+                    Padding="3"
+                    TextAlignment="Center"
+                    Grid.Row="2"
+                    MinWidth="41"
+                    Grid.Column="4" 
+                    Margin="5,0,10,5"
+                    />
+
+                <!--Row 3 Con Cha-->
+                <TextBlock 
+                    Grid.Column="1"
+                    Grid.Row="3"
+                    TextAlignment="Center"
+                    Margin="0,5,5,5"
+                    TextDecorations="Underline">
+                    Con
+                </TextBlock>
+                <TextBlock
+                    x:Name="Con"
+                    Background="White"
+                    Padding="3"
+                    TextAlignment="Center"
+                    Grid.Row="3"
+                    MinWidth="41"
+                    Grid.Column="2" 
+                    Margin="5,0,5,5"
+                    />
+                <TextBlock 
+                    Grid.Column="3"
+                    Grid.Row="3"
+                    Margin="20,5,0,5"
+                    TextDecorations="Underline">
+                    Cha
+                </TextBlock>
+                <TextBlock
+                    x:Name="Cha"
+                    Background="White"
+                    Padding="3"
+                    TextAlignment="Center"
+                    Grid.Row="3"
+                    MinWidth="41"
+                    Grid.Column="4" 
+                    Margin="5,0,10,5"
+                    />
+            </Grid><!--End Ability Score Grid-->
+        </GroupBox>
+        <!--#endregion-->
         
-        <Grid
-            x:Name="AbilityScoresGrid"
-            IsEnabled="False"
+        <!--#region Row 3 Skill and Ability Selection -->
+        <!--Border contorls Visability of Child elements-->
+        <Border
+            x:Name="ControlBonus1IsVisable"
+            Grid.Column="2"
+            Padding="5"
+            Grid.Row="3">
+            <StackPanel>
+                <TextBlock
+                    x:Name="Label1"
+                    FontSize="12"
+                    Visibility="Visible"
+                    Text="+2 Racial Skill" 
+                    Margin="5,15,5,0" 
+                    Foreground="#FF0E3A0E"/>
+                <ComboBox
+                    x:Name="Skill1"
+                    FontSize="10"
+                    IsEnabled="{Binding Path=Skill1IsEnabled, Mode=TwoWay}"
+                    ItemsSource="{Binding Path=BonusComboBox1, Mode=OneWay}"
+                    SelectedIndex="{Binding Path=BonusComboBox1Selection, Mode=TwoWay}"
+                    MaxDropDownHeight="200"/>
+            </StackPanel>
+        </Border>
+
+        <!--Border contorls Visability of Child elements-->
+        <Border
+            x:Name="ControlBonus2IsVisable"
+            Grid.Column="3"
+            Padding="5"
+            Grid.Row="3">
+            <StackPanel>
+                <TextBlock
+                    x:Name="Label2"
+                    FontSize="12"
+                    Visibility="Visible"
+                    Text="+2 Racial Skill" 
+                    Margin="5,15,5,0"
+                    Foreground="#FF0E3A0E"/>
+                <ComboBox
+                    x:Name="Skill2"
+                    FontSize="10"
+                    IsEnabled="{Binding Path=Skill2IsEnabled, Mode=TwoWay}"
+                    ItemsSource="{Binding Path=BonusComboBox2, Mode=OneWay}"
+                    SelectedIndex="{Binding Path=BonusComboBox2Selection, Mode=TwoWay}"
+                    MaxDropDownHeight="200"/>
+            </StackPanel>
+        </Border>
+        
+        <!--Border contorls Visability of Child elements-->
+        <Border
+            x:Name="ControlBonus3IsVisable"
+            Grid.Column="4"
+            Padding="5"
+            Grid.Row="3">
+            <StackPanel>
+                <TextBlock
+                    x:Name="Label3"
+                    FontSize="12"
+                    Visibility="Visible"
+                    Text="+2 Racial Skill" 
+                    Margin="5,15,5,0"
+                    Foreground="#FF0E3A0E"/>
+                <ComboBox
+                    x:Name="Skill3"
+                    FontSize="10"
+                    IsEnabled="{Binding Path=Skill3IsEnabled, Mode=TwoWay}"
+                    ItemsSource="{Binding Path=BonusComboBox3, Mode=OneWay}"
+                    SelectedIndex="{Binding Path=BonusComboBox3Selection, Mode=TwoWay}"
+                    MaxDropDownHeight="200"/>
+            </StackPanel>
+        </Border>
+
+        <Border
+            x:Name="ControlAbility1IsVisable"
+            Grid.Column="1"
+            Padding="5"
+            Grid.Row="3">
+            <StackPanel>
+                <TextBlock
+                    x:Name="Label0"
+                    FontSize="14"
+                    Visibility="Visible"
+                    Text="+2 Racial Ability" 
+                    Margin="5,12,5,0" 
+                    Foreground="#FF341355"/>
+                <ComboBox
+                    x:Name="AbilitySelect"
+                    FontSize="12"
+                    ItemsSource="{Binding Path=AbilityComboBox1, Mode=OneWay}"
+                    SelectedIndex="{Binding Path=AbilityComboBox1Selection, Mode=TwoWay}"
+                    MaxDropDownHeight="200"/>
+            </StackPanel>
+        </Border>
+
+        <GroupBox
+            Grid.Column="5"
+            Grid.Row="3" 
+            Grid.ColumnSpan="2"
+            HorizontalAlignment="Right"
+            Header="Racial Modifiers" 
+            BorderThickness="2" 
+            BorderBrush="#FF006DAE" 
+            Background="#FFDDDFF9"
+            Foreground="#FF341355"
+            Padding="5" 
+            Margin="5,0">
+            <Grid
+                x:Name="AbilityScoresAdjustmentGrid"
+                IsEnabled="{Binding Path=IsGodMode}"
+                >
+                <Grid.ColumnDefinitions>
+                    <!--0 Border-->
+                    <ColumnDefinition Width="5"/>
+                    <!--1 ability score abriviation-->
+                    <ColumnDefinition Width="auto"/>
+                    <!--2 ability score-->
+                    <ColumnDefinition Width="auto"/>
+                    <!--3 ability score abriviation-->
+                    <ColumnDefinition Width="auto"/>
+                    <!--4 ability score-->
+                    <ColumnDefinition Width="auto"/>
+                    <!--5 Border-->
+                    <ColumnDefinition Width="0"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="0"/>
+                    <!--Row 1 Str int-->
+                    <RowDefinition Height="auto"/>
+                    <!--Row 2 Dex Wis-->
+                    <RowDefinition Height="auto"/>
+                    <!--Row 3 Con Cha-->
+                    <RowDefinition Height="auto"/>
+                    <!--Row 4 border-->
+                    <RowDefinition Height="0"/>
+                </Grid.RowDefinitions>
+
+                <!--Row 1 Str INT-->
+                <TextBlock 
+                    Grid.Column="1"
+                    Grid.Row="1"
+                    Margin="5"
+                    TextDecorations="Underline">
+                    Str
+                </TextBlock>
+                <wpfTool:IntegerUpDown
+                    x:Name="StrAdjust"
+                    Grid.Row="1"
+                    MinWidth="30"
+                    Grid.Column="2"
+                    Value="{Binding Path=StrAdjust, Mode=TwoWay}"
+                    Margin="5" 
+                    HorizontalAlignment="Center" 
+                    VerticalAlignment="Center"
+                    />
+                <TextBlock 
+                    Grid.Column="3"
+                    Grid.Row="1"
+                    Margin="20,5,0,5"
+                    TextDecorations="Underline">
+                    Int
+                </TextBlock>
+                <wpfTool:IntegerUpDown
+                    x:Name="IntAdjust"
+                    Value="{Binding Path=IntAdjust, Mode=TwoWay}"
+                    Grid.Row="1"
+                    MinWidth="30"
+                    Grid.Column="4" 
+                    Margin="5,5,10,5"
+                    />
+
+                <!--Row 2 Dex Wis-->
+                <TextBlock 
+                    Grid.Column="1"
+                    Grid.Row="2"
+                    Margin="0,5,5,5"
+                    TextDecorations="Underline">
+                    Dex
+                </TextBlock>
+                <wpfTool:IntegerUpDown
+                    x:Name="DexAdjust"
+                    Value="{Binding Path=DexAdjust, Mode=TwoWay}"
+                    Grid.Row="2"
+                    MinWidth="30"
+                    Grid.Column="2" 
+                    Margin="5,0,5,5"
+                    />
+                <TextBlock 
+                    Grid.Column="3"
+                    Grid.Row="2"
+                    Margin="20,5,0,5"
+                    TextDecorations="Underline">
+                    Wis
+                </TextBlock>
+                <wpfTool:IntegerUpDown
+                    x:Name="WisAdjust"
+                    Value="{Binding Path=WisAdjust, Mode=TwoWay}"
+                    Grid.Row="2"
+                    MinWidth="30"
+                    Grid.Column="4" 
+                    Margin="5,0,10,5"
+                    />
+
+                <!--Row 3 Con Cha-->
+                <TextBlock 
+                    Grid.Column="1"
+                    Grid.Row="3"
+                    Margin="0,5,5,5"
+                    TextDecorations="Underline">
+                    Con
+                </TextBlock>
+                <wpfTool:IntegerUpDown
+                    x:Name="ConAdjust"
+                    Value="{Binding Path=ConAdjust, Mode=TwoWay}"
+                    Grid.Row="3"
+                    MinWidth="30"
+                    Grid.Column="2" 
+                    Margin="5,0,5,5"
+                    />
+                <TextBlock 
+                    Grid.Column="3"
+                    Grid.Row="3"
+                    Margin="20,5,0,5"
+                    TextDecorations="Underline">
+                    Cha
+                </TextBlock>
+                <wpfTool:IntegerUpDown
+                    x:Name="ChaAdjust"
+                    Value="{Binding Path=ChaAdjust, Mode=TwoWay}"
+                    Grid.Row="3"
+                    MinWidth="30"
+                    Grid.Column="4" 
+                    Margin="5,0,10,5"
+                    />
+            </Grid>
+
+            <!--End Ability Score Grid-->
+        </GroupBox>
+        <!--#endregion-->  
+        
+        <!--#region row 4 Buttons and controls-->
+        <Button
+            x:Name="Commit"
+            Grid.Column="1"
+            IsEnabled="{Binding Path=CanCommitButton}"
+            ToolTip="Saves current setting so that other steps can see the changes"
+            Grid.Row="4"
+            Padding="5"
+            Margin="5">
+            Save
+        </Button>
+
+        <Button
+            x:Name="Reset"
+            Margin="5"
+            ToolTip="Clears or resets to previously commited value."
+            Content="Reset"
+            Padding="5"
+            Grid.Column="2"
+            Grid.Row="4"
+            />
+
+        <Border
+            Name="GodModeIsVisable"
             Grid.Column="5"
             Grid.ColumnSpan="2"
-            Grid.RowSpan="3"
-            Grid.Row="2">
-            <Grid.ColumnDefinitions>
-                <!--0 Border-->
-                <ColumnDefinition Width="5"/>
-                <!--1 ability score abriviation-->
-                <ColumnDefinition Width="auto"/>
-                <!--2 ability score-->
-                <ColumnDefinition Width="auto"/>
-                <!--3 ability score abriviation-->
-                <ColumnDefinition Width="auto"/>
-                <!--4 ability score-->
-                <ColumnDefinition Width="auto"/>
-                <!--5 Border-->
-                <ColumnDefinition Width="0"/>
-            </Grid.ColumnDefinitions>
-            <Grid.RowDefinitions>
-                <RowDefinition Height="0"/>
-                <!--Row 1 Str int-->
-                <RowDefinition Height="auto"/>
-                <!--Row 2 Dex Wis-->
-                <RowDefinition Height="auto"/>
-                <!--Row 3 Con Cha-->
-                <RowDefinition Height="auto"/>
-                <!--Row 4 border-->
-                <RowDefinition Height="0"/>
-            </Grid.RowDefinitions>
-            <!--Row 1 Str INT-->
-            <TextBlock 
-                Grid.Column="1"
-                Grid.Row="1"
-                Margin="5"
-                TextDecorations="Underline">
-                Str
-            </TextBlock>
-            <TextBox
-                x:Name="Str"
-                Grid.Row="1"
-                MinWidth="30"
-                Grid.Column="2" 
-                Margin="5"
-                />
-            <TextBlock 
-                Grid.Column="3"
-                Grid.Row="1"
-                Margin="20,5,0,5"
-                TextDecorations="Underline">
-                Int
-            </TextBlock>
-            <TextBox
-                x:Name="Int"
-                Grid.Row="1"
-                MinWidth="30"
-                Grid.Column="4" 
-                Margin="5,5,10,5"
-                />
+            Grid.Row="4"
+            HorizontalAlignment="Right"
+            VerticalAlignment="Center" 
+            Margin="0,0,5,0"
+            Padding="5">
+            <CheckBox
+                x:Name="IsGodMode"
+                FontSize="10"
+                Content="God Mode (Beta)"/>
+        </Border>
+        <!--#endregion-->
 
-            <!--Row 2 Dex Wis-->
-            <TextBlock 
-                Grid.Column="1"
-                Grid.Row="2"
-                Margin="0,5,5,5"
-                TextDecorations="Underline">
-                Dex
-            </TextBlock>
-            <TextBox
-                x:Name="Dex"
-                Grid.Row="2"
-                MinWidth="30"
-                Grid.Column="2" 
-                Margin="5,0,5,5"
-                />
-            <TextBlock 
-                Grid.Column="3"
-                Grid.Row="2"
-                Margin="20,5,0,5"
-                TextDecorations="Underline">
-                Wis
-            </TextBlock>
-            <TextBox
-                x:Name="Wis"
-                Grid.Row="2"
-                MinWidth="30"
-                Grid.Column="4" 
-                Margin="5,0,10,5"
-                />
-
-            <!--Row 3 Con Cha-->
-            <TextBlock 
-                Grid.Column="1"
-                Grid.Row="3"
-                Margin="0,5,5,5"
-                TextDecorations="Underline">
-                Con
-            </TextBlock>
-            <TextBox
-                x:Name="Con"
-                Grid.Row="3"
-                MinWidth="30"
-                Grid.Column="2" 
-                Margin="5,0,5,5"
-                />
-            <TextBlock 
-                Grid.Column="3"
-                Grid.Row="3"
-                Margin="20,5,0,5"
-                TextDecorations="Underline">
-                Cha
-            </TextBlock>
-            <TextBox
-                x:Name="Cha"
-                Grid.Row="3"
-                MinWidth="30"
-                Grid.Column="4" 
-                Margin="5,0,10,5"
-                />
-        </Grid><!--End Ability Score Grid-->
-        <!--Row 3 -->
+        <!--#region Row 5 Informoation panel-->
+        <GroupBox
+            Name="GroupBoxInformation1"
+            Grid.Row="5" 
+            Grid.Column="1" 
+            Grid.ColumnSpan="6"
+            Header="Information" 
+            BorderThickness="2" 
+            MinWidth="600"
+            MaxWidth="800"
+            BorderBrush="#FF006DAE" 
+            Background="#FFDDDFF9" 
+            Padding="5" 
+            Margin="5,0">
+            <StackPanel
+                Name="StackInfoBox1">
+                <ScrollViewer
+                    MaxWidth="800"
+                    MaxHeight="200">
+                    <TextBlock                       
+                        x:Name="TextBoxInfo1"
+                        Padding="5"
+                        Background="White"
+                        IsEnabled="False"
+                        TextWrapping="Wrap" 
+                        TextAlignment="Justify"/>
+                </ScrollViewer>
+            </StackPanel>
+        </GroupBox><!--end GroupBoxInformation1-->
+        <!--#endregion-->
     </Grid>
 </UserControl>

@@ -17,7 +17,7 @@ namespace DieRoller.ViewModels
         private DiceRollMethods _dice = new DiceRollMethods();
 
         //Model data local scope
-        private static PlayerCharacter _Player_Local = ShellViewModel.Global_Player;
+        private static Character _Player_Local = ShellViewModel.Global_Player;
 
         private int _TextBoxModPointBuy1, _TextBoxModPointBuy2, _TextBoxModPointBuy3, _TextBoxModPointBuy4, _TextBoxModPointBuy5, _TextBoxModPointBuy6;
         private int _pointBuyPoints;

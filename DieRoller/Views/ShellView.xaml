@@ -65,23 +65,41 @@
                 <RowDefinition Height="0"/>
             </Grid.RowDefinitions>
             <!--row 1-->
-            <Label
-                x:Name="LabelName"
-                Content="Character Name: "
+            <StackPanel
+                x:Name="LablePanel"
                 Grid.Column="1"
+                Grid.Row="1">
+                <TextBlock
+                    x:Name="LabelName"
+                    Text="Character Name: "
+                    />
+                <TextBlock
+                    x:Name="LabelRace"
+                    Text="Character Race: "
+                    />
+            </StackPanel>
+            <StackPanel
+                x:Name="ValuePanel"
                 Grid.Row="1"
-                />
-            <TextBlock
-                x:Name="ChraracterName"
-                Grid.Column="2"
-                Foreground="DarkSlateGray"
-                Grid.Row="1"
-                Grid.RowSpan="2"
-                Text="{Binding Path=ChraracterName, Mode=OneWay}" 
-                MinWidth="100" 
-                HorizontalAlignment="Left" 
-                VerticalAlignment="Center"
-                >test</TextBlock>
+                Grid.Column="2" Margin="10,0,0,0">
+                <TextBlock
+                    x:Name="CharacterName"
+                    Foreground="DarkSlateGray"
+                    Text="{Binding Path=ChraracterName, Mode=OneWay}" 
+                    MinWidth="100" 
+                    HorizontalAlignment="Left" 
+                    >test
+                </TextBlock>
+                <TextBlock
+                    x:Name="CharacterRace"
+                    Foreground="DarkSlateGray"
+                    Text="{Binding Path=CharacterRace, Mode=OneWay}" 
+                    MinWidth="100" 
+                    HorizontalAlignment="Left" 
+                    >
+                </TextBlock>
+            </StackPanel>
+            
 
 
         </Grid>
@@ -91,10 +109,6 @@
             Orientation="Horizontal"
             Grid.Row="2">
             <Button
-                x:Name="DieRollPage"
-                Padding="5,1"
-                Content="Roll Mode"/>
-            <Button
                 x:Name="Step1Page"
                 Padding="5,1"
                 Content="Step1"/>
@@ -102,6 +116,12 @@
                 x:Name="Step2Page"
                 Padding="5,1"
                 Content="Step2"/>
+            <Button
+                x:Name="DieRollPage"
+                Padding="5,1"
+                Foreground="Cornsilk"
+                Background="DarkOliveGreen"
+                Content="Roll Mode"/>
         </StackPanel>
         <!--row 3 content-->
         <ContentControl 
@@ -121,6 +141,8 @@
         <!--row 4 Log-->
         <ScrollViewer
             Grid.Column="1"
+            Grid.ColumnSpan="2"
+            Visibility="Hidden"
             Grid.Row="4">
             <TextBox 
                 x:Name="DevLog"

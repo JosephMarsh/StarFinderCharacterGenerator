@@ -22,7 +22,7 @@ namespace DieRoller.Views
     /// </summary>
     public partial class Step1View : UserControl
     {
-        private static PlayerCharacter _Global_Player = ShellViewModel.Global_Player;
+        private static Character _Global_Player = ShellViewModel.Global_Player;
 
         public Step1View()
         {
