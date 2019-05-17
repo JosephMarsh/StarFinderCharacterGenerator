@@ -223,65 +223,73 @@
             class.
             </summary>
         </member>
-        <member name="T:SFLib.PlayerCharacter">
+        <member name="T:SFLib.Character">
             <summary>
             This class stores charactor data for
             This is where finalized data should be stored.
             </summary>
         </member>
-        <member name="P:SFLib.PlayerCharacter.CharacterName">
+        <member name="P:SFLib.Character.CharacterName">
             <summary>Charactor's Name</summary>
         </member>
-        <member name="P:SFLib.PlayerCharacter.PlayerName">
+        <member name="P:SFLib.Character.PlayerName">
             <summary>Player's Name</summary>
         </member>
-        <member name="P:SFLib.PlayerCharacter.Concept">
+        <member name="P:SFLib.Character.Concept">
             <summary>Player's Short Concept Description</summary>
         </member>
-        <member name="P:SFLib.PlayerCharacter.Step1Notes">
+        <member name="P:SFLib.Character.Step1Notes">
             <summary>Player's Notes entered on Step 1</summary>
         </member>
-        <!-- Badly formed XML comment ignored for member "P:SFLib.PlayerCharacter.Step2Notes" -->
-        <member name="P:SFLib.PlayerCharacter.NotesAndIdeas">
-            <summary>Player's longform notes and ideas(will dispaly on seperate page of final sheet)</summary>
+        <member name="P:SFLib.Character.Step2Notes">
+            <summary>Player's Notes entered on Step 2</summary>
         </member>
-        <member name="P:SFLib.PlayerCharacter.Deity">
+        <member name="P:SFLib.Character.Deity">
             <summary>Player's Diety or could also be self if you're just that awesome</summary>
         </member>
-        <member name="F:SFLib.PlayerCharacter.AbilityNames">
+        <member name="F:SFLib.Character.AbilityNames">
             <summary>String Array of Ability names full [0-5] in alphabetical order Parallel with Ability Score Arrays</summary>
         </member>
-        <member name="F:SFLib.PlayerCharacter.AbilityNamesBrief">
+        <member name="F:SFLib.Character.AbilityNamesBrief">
             <summary>String Array of Ability names full [0-5]in alphabetical order Parallel with Ability Score Arrays</summary>
         </member>
-        <member name="F:SFLib.PlayerCharacter.curentXP">
+        <member name="F:SFLib.Character.curentXP">
             <summary>Read only. Base experience amounts per level[0-20] use unadjusted character level</summary>
         </member>
-        <member name="F:SFLib.PlayerCharacter.nextLevelXP">
+        <member name="F:SFLib.Character.nextLevelXP">
             <summary>Read only. Experience amounts needed for next level[0-20] use unadjusted current character level Parallel with curentXP</summary>
         </member>
-        <member name="F:SFLib.PlayerCharacter.featsPerLevel">
+        <member name="F:SFLib.Character.featsPerLevel">
             <summary>Read only. Unadjusted feats per level reguardless of classes[0-20] use unadjusted character level</summary>
         </member>
-        <member name="P:SFLib.PlayerCharacter.PlayerThemeId">
+        <member name="P:SFLib.Character.PlayerThemeId">
             <summary>This stores the Character's ThemeId wich is used in the Theme class</summary>
         </member>
-        <member name="P:SFLib.PlayerCharacter.MysticBonusSpells">
+        <member name="P:SFLib.Character.NotesAndIdeas">
+            <summary>Player's longform notes and ideas(will dispaly on seperate page of final sheet)</summary>
+        </member>
+        <member name="P:SFLib.Character.MysticBonusSpells">
             <summary>Returns pre-calculated array of spells per level based on Wisdom Score</summary>
         </member>
-        <member name="P:SFLib.PlayerCharacter.AbilityScores">
+        <member name="P:SFLib.Character.IsClassSkill">
+            <summary>
+            Should only set this if class skill is derived from user's class
+            retuns an arry of bool
+            </summary>
+        </member>
+        <member name="P:SFLib.Character.AbilityScores">
             <summary>Ability Scores After all Bonuses</summary>
         </member>
-        <member name="P:SFLib.PlayerCharacter.StaminaPoints">
+        <member name="P:SFLib.Character.StaminaPoints">
             <summary> Statmina points ajusted by Class Con mod and Ability Scores</summary>
         </member>
-        <member name="P:SFLib.PlayerCharacter.BaseAbilityMods">
+        <member name="P:SFLib.Character.BaseAbilityMods">
             <summary>Ability Mods from Base Character Attributes</summary>
         </member>
-        <member name="P:SFLib.PlayerCharacter.BaseAbilityScores">
+        <member name="P:SFLib.Character.BaseAbilityScores">
             <summary>Base scores without Theme mods or race mods</summary>
         </member>
-        <member name="P:SFLib.PlayerCharacter.AbilityScoresWithTheme">
+        <member name="P:SFLib.Character.AbilityScoresWithTheme">
             <summary>Base scores without Theme mods or race mods</summary>
         </member>
         <member name="T:SFLib.PlayerClass">

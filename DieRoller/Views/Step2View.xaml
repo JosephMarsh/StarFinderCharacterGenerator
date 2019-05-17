@@ -28,21 +28,19 @@
             <RowDefinition Height="0"/>
             <!--Row 1 Title-->
             <RowDefinition Height="auto"/>
-            <!--Row 2 Race selection-->
+            <!--Row 2 Race selection and ability scores-->
             <RowDefinition Height="auto"/>
             <!--Row 3 Ability Score Selection-->
             <RowDefinition Height="auto"/>
-            <!--Row 4 Lables-->
+            <!--Row 4 Buttons and controls-->
             <RowDefinition Height="auto"/>
-            <!--Row 5 Skill Point Selection-->
-            <RowDefinition Height="auto"/>
-            <!--Row Info Panel-->
+            <!--Row 5 Info Panel-->
             <RowDefinition Height="auto"/>
             <!--Border-->
             <RowDefinition Height="0"/>
         </Grid.RowDefinitions>
 
-        <!--Row 1 Title-->
+        <!--#region Row 1 Title-->
         <TextBlock
             Grid.Row="1"
             Grid.Column="1"
@@ -54,8 +52,9 @@
             VerticalAlignment="Center" 
             Margin="0,10">
             Step 2 Pick Race</TextBlock>
+        <!--#endregion-->
         
-        <!--Row 2 Pick race and Ability scores-->
+        <!--#region Row 2 Pick race and show Ability scores-->
         <StackPanel
             Grid.Row="2" 
             Margin="5,0,5,0"
@@ -76,7 +75,8 @@
         <TextBlock
             Grid.Row="2"
             Grid.Column="2" 
-            Margin="10,25,0,0" HorizontalAlignment="Right">
+            Margin="10,25,0,0" 
+            HorizontalAlignment="Right">
             Race:
         </TextBlock>
         <TextBox
@@ -247,7 +247,9 @@
                     />
             </Grid><!--End Ability Score Grid-->
         </GroupBox>
-        <!--Row 3 -->
+        <!--#endregion-->
+        
+        <!--#region Row 3 Skill and Ability Selection -->
         <!--Border contorls Visability of Child elements-->
         <Border
             x:Name="ControlBonus1IsVisable"
@@ -397,7 +399,7 @@
                     Grid.Row="1"
                     MinWidth="30"
                     Grid.Column="2"
-                    Text="{Binding Path=StrAdjust, Mode=TwoWay}"
+                    Value="{Binding Path=StrAdjust, Mode=TwoWay}"
                     Margin="5" 
                     HorizontalAlignment="Center" 
                     VerticalAlignment="Center"
@@ -411,7 +413,7 @@
                 </TextBlock>
                 <wpfTool:IntegerUpDown
                     x:Name="IntAdjust"
-                    Text="{Binding Path=IntAdjust, Mode=TwoWay}"
+                    Value="{Binding Path=IntAdjust, Mode=TwoWay}"
                     Grid.Row="1"
                     MinWidth="30"
                     Grid.Column="4" 
@@ -428,7 +430,7 @@
                 </TextBlock>
                 <wpfTool:IntegerUpDown
                     x:Name="DexAdjust"
-                    Text="{Binding Path=DexAdjust, Mode=TwoWay}"
+                    Value="{Binding Path=DexAdjust, Mode=TwoWay}"
                     Grid.Row="2"
                     MinWidth="30"
                     Grid.Column="2" 
@@ -443,7 +445,7 @@
                 </TextBlock>
                 <wpfTool:IntegerUpDown
                     x:Name="WisAdjust"
-                    Text="{Binding Path=WisAdjust, Mode=TwoWay}"
+                    Value="{Binding Path=WisAdjust, Mode=TwoWay}"
                     Grid.Row="2"
                     MinWidth="30"
                     Grid.Column="4" 
@@ -460,7 +462,7 @@
                 </TextBlock>
                 <wpfTool:IntegerUpDown
                     x:Name="ConAdjust"
-                    Text="{Binding Path=ConAdjust, Mode=TwoWay}"
+                    Value="{Binding Path=ConAdjust, Mode=TwoWay}"
                     Grid.Row="3"
                     MinWidth="30"
                     Grid.Column="2" 
@@ -475,7 +477,7 @@
                 </TextBlock>
                 <wpfTool:IntegerUpDown
                     x:Name="ChaAdjust"
-                    Text="{Binding Path=ChaAdjust, Mode=TwoWay}"
+                    Value="{Binding Path=ChaAdjust, Mode=TwoWay}"
                     Grid.Row="3"
                     MinWidth="30"
                     Grid.Column="4" 
@@ -483,24 +485,26 @@
                     />
             </Grid>
 
-
-
             <!--End Ability Score Grid-->
         </GroupBox>
-        <!--row 4-->
+        <!--#endregion-->  
+        
+        <!--#region row 4 Buttons and controls-->
         <Button
             x:Name="Commit"
             Grid.Column="1"
             IsEnabled="{Binding Path=CanCommitButton}"
+            ToolTip="Saves current setting so that other steps can see the changes"
             Grid.Row="4"
             Padding="5"
             Margin="5">
-            Commit
+            Save
         </Button>
 
         <Button
             x:Name="Reset"
             Margin="5"
+            ToolTip="Clears or resets to previously commited value."
             Content="Reset"
             Padding="5"
             Grid.Column="2"
@@ -510,20 +514,23 @@
         <Border
             Name="GodModeIsVisable"
             Grid.Column="5"
+            Grid.ColumnSpan="2"
             Grid.Row="4"
-            VerticalAlignment="Center">
+            HorizontalAlignment="Right"
+            VerticalAlignment="Center" 
+            Margin="0,0,5,0"
+            Padding="5">
             <CheckBox
                 x:Name="IsGodMode"
                 FontSize="10"
-                Content="God Mode (Beta)" Margin="5,0,0,0"/>
+                Content="God Mode (Beta)"/>
         </Border>
-        
+        <!--#endregion-->
 
-
-        <!--Row 6-->
+        <!--#region Row 5 Informoation panel-->
         <GroupBox
             Name="GroupBoxInformation1"
-            Grid.Row="6" 
+            Grid.Row="5" 
             Grid.Column="1" 
             Grid.ColumnSpan="6"
             Header="Information" 
@@ -549,5 +556,6 @@
                 </ScrollViewer>
             </StackPanel>
         </GroupBox><!--end GroupBoxInformation1-->
+        <!--#endregion-->
     </Grid>
 </UserControl>

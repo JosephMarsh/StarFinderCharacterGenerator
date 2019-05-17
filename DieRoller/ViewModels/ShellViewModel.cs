@@ -13,8 +13,8 @@ namespace DieRoller.ViewModels
     public class ShellViewModel : Conductor<object>, IHandle<DataCommitedEvent>
     {
         
-        private static PlayerCharacter _Global_Player;
-        private static PlayerCharacter _Player_Instance = new PlayerCharacter();
+        private static Character _Global_Player;
+        private static Character _Player_Instance = new Character();
         private Step1ViewModel _step1;
         private Step2ViewModel _step2;
         private DieRollViewModel _DieRoller;
@@ -50,13 +50,13 @@ namespace DieRoller.ViewModels
             ActivateItem(_step1);
         }
         /// <summary>Singleton Object that stores global Charcter Data</summary>
-        public static PlayerCharacter Global_Player
+        public static Character Global_Player
         {
             get
             {
                 if(_Global_Player == null)
                 {
-                    _Global_Player = new PlayerCharacter();
+                    _Global_Player = new Character();
                 }
                 return _Global_Player;
                 

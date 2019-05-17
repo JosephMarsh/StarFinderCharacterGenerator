@@ -12,7 +12,7 @@ namespace DieRoller.ViewModels
 {
     public class Step1ViewModel : Screen, IHandle<DataCommitedEvent>
     {
-        private static PlayerCharacter _Global_Player = ShellViewModel.Global_Player;
+        private static Character _Global_Player = ShellViewModel.Global_Player;
         private Information info = new Information();
         private string _playerName = _Global_Player.PlayerName;
         private string _chraracterName = _Global_Player.CharacterName;

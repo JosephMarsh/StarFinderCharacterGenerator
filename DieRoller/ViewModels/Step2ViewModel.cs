@@ -10,7 +10,7 @@ namespace DieRoller.ViewModels
 {
     public class Step2ViewModel : Screen, IHandle<DataCommitedEvent>
     {
-        private static PlayerCharacter _Global_Player = ShellViewModel.Global_Player;
+        private static Character _Global_Player = ShellViewModel.Global_Player;
         private static Information _info = new Information();
 
         //ability scores after adjustments
@@ -93,12 +93,12 @@ namespace DieRoller.ViewModels
             set
             {
                 _strAdjust = value;
-                
-                if(IsGodMode)
+                NotifyOfPropertyChange(() => StrAdjust);
+                if (IsGodMode)
                 {
                     Str = _Global_Player.AbilityScoresWithTheme[4] + StrAdjust;
                 }
-                NotifyOfPropertyChange(() => StrAdjust);
+                
             }
         }
 
@@ -113,6 +113,7 @@ namespace DieRoller.ViewModels
             {
                 _dexAdjust = value;
                 NotifyOfPropertyChange(() => DexAdjust);
+                
                 if (IsGodMode)
                 {
                     Dex = _Global_Player.AbilityScoresWithTheme[2] + DexAdjust;
@@ -130,11 +131,12 @@ namespace DieRoller.ViewModels
             set
             {
                 _conAdjust = value;
+                NotifyOfPropertyChange(() => ConAdjust);
                 if (IsGodMode)
                 {
                     Con = _Global_Player.AbilityScoresWithTheme[1] + ConAdjust;
                 }
-                NotifyOfPropertyChange(() => ConAdjust);
+                
             }
         }
 
@@ -626,8 +628,7 @@ namespace DieRoller.ViewModels
             set
             {
                 _selectedRace = value;
-                //update fields.
-                manageRaceSelectionFields(_selectedRace);
+                
 
                 //if this is set to custom race check for godmode on Global
                 if (value == 8)
@@ -644,6 +645,9 @@ namespace DieRoller.ViewModels
                 {
                     RaceName = _raceNames[value];
                 }
+
+                //update fields.
+                manageRaceSelectionFields(_selectedRace);
                 CanCommit();
                 NotifyOfPropertyChange(() => RaceName);
                 NotifyOfPropertyChange(() => SelectedRace);
