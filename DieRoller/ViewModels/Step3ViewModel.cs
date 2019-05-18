@@ -17,7 +17,12 @@ namespace DieRoller.ViewModels
         private static Themes _themes = new Themes();
 
         private int _selectedTheme = _Global_Player.PlayerThemeId;
+        private int _selectedAbiliytScore;
+
+        
+
         private string[] _themeNames = _themes.ThemeNames;
+        private string[] _abilityScoreNames = _Global_Player.AbilityNames;
 
         private int _str = _Global_Player.AbilityScoresWithRacialMods[4];
         private int _dex = _Global_Player.AbilityScoresWithRacialMods[2];
@@ -26,12 +31,12 @@ namespace DieRoller.ViewModels
         private int _wis = _Global_Player.AbilityScoresWithRacialMods[5];
         private int _cha = _Global_Player.AbilityScoresWithRacialMods[0];
 
-        private int _strAdjust = _Global_Player.themeAblityScoreAdjustment[4];
-        private int _dexAdjust = _Global_Player.themeAblityScoreAdjustment[2];
-        private int _conAdjust = _Global_Player.themeAblityScoreAdjustment[1];
-        private int _intAdjust = _Global_Player.themeAblityScoreAdjustment[3];
-        private int _wisAdjust = _Global_Player.themeAblityScoreAdjustment[5];
-        private int _chaAdjust = _Global_Player.themeAblityScoreAdjustment[0];
+        private int _strAdjust = _Global_Player.ThemeAblityScoreAdjustment[4];
+        private int _dexAdjust = _Global_Player.ThemeAblityScoreAdjustment[2];
+        private int _conAdjust = _Global_Player.ThemeAblityScoreAdjustment[1];
+        private int _intAdjust = _Global_Player.ThemeAblityScoreAdjustment[3];
+        private int _wisAdjust = _Global_Player.ThemeAblityScoreAdjustment[5];
+        private int _chaAdjust = _Global_Player.ThemeAblityScoreAdjustment[0];
 
         private IEventAggregator _events;
 
@@ -223,6 +228,15 @@ namespace DieRoller.ViewModels
             }
         }
 
+        /// <summary>Reade only, populates Ability ComboBox 1 with ability score names</summary>
+        public string[] AbilityComboBox1
+        {
+            get
+            {
+                return _abilityScoreNames;
+            }
+        }
+
         /// <summary>stores the slected item index for the selected theme</summary>
         public int SelectedTheme
         {
@@ -234,6 +248,19 @@ namespace DieRoller.ViewModels
             {
                 _selectedTheme = value;
                 NotifyOfPropertyChange(() => SelectedTheme);
+            }
+        }
+
+        public int AbilityComboBox1Selection
+        {
+            get
+            {
+                return _selectedAbiliytScore;
+            }
+            set
+            {
+                _selectedAbiliytScore = value;
+                NotifyOfPropertyChange(() => AbilityComboBox1Selection);
             }
         }
 
@@ -252,6 +279,27 @@ namespace DieRoller.ViewModels
             Wis = _Global_Player.AbilityScoresWithRacialMods[5];
             Cha = _Global_Player.AbilityScoresWithRacialMods[0];
 
+            //reset selected theme
+            SelectedTheme = _Global_Player.PlayerThemeId;
+
+            //reset selection fields
+
+        }
+
+        //manages the stat of local fields.
+        private void manageRaceSelectionFields(int themeIndex)
+        {
+            //check if a theme has been set
+            if(themeIndex != -1)
+            {
+                //change ablility score adjustments 
+                StrAdjust = _Global_Player.ThemeAblityScoreAdjustment[4];
+                DexAdjust = _Global_Player.ThemeAblityScoreAdjustment[2];
+                ConAdjust = _Global_Player.ThemeAblityScoreAdjustment[1];
+                IntAdjust = _Global_Player.ThemeAblityScoreAdjustment[3];
+                WisAdjust = _Global_Player.ThemeAblityScoreAdjustment[5];
+                ChaAdjust = _Global_Player.ThemeAblityScoreAdjustment[0];
+            }
         }
 
 
