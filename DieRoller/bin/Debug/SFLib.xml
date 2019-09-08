@@ -259,20 +259,54 @@
         <member name="F:SFLib.Character.nextLevelXP">
             <summary>Read only. Experience amounts needed for next level[0-20] use unadjusted current character level Parallel with curentXP</summary>
         </member>
-        <member name="F:SFLib.Character.featsPerLevel">
+        <member name="P:SFLib.Character.featsPerLevel">
             <summary>Read only. Unadjusted feats per level reguardless of classes[0-20] use unadjusted character level</summary>
+        </member>
+        <member name="P:SFLib.Character.ThemeAblityScoreAdjustment">
+            <summary>Stores an array of agilityscores adjusted by character's selected Theme</summary>
+        </member>
+        <member name="F:SFLib.Character.IsThemeClassSkill">
+            <summary>Stores an array of bool parrallel with skill names. 
+            stored sepeatly from class skills for latter comparison.</summary>
         </member>
         <member name="P:SFLib.Character.PlayerThemeId">
             <summary>This stores the Character's ThemeId wich is used in the Theme class</summary>
         </member>
+        <member name="F:SFLib.Character.themeBenifits">
+            <summary>strores an array of beifits based on the level of the character.</summary>
+        </member>
+        <member name="P:SFLib.Character.ThemeAbilityScoreIndex">
+            <summary>strores an index corrisponing to the ability score buffed by the chosen theme</summary>
+        </member>
+        <member name="P:SFLib.Character.IsMultiClass">
+            <summary>Does this chracter have more than one class?</summary>
+        </member>
+        <member name="P:SFLib.Character.ClassNames">
+            <summary>Stores a readonly array of Character class names</summary>
+        </member>
+        <member name="P:SFLib.Character.ClassID1">
+            <summary>Stores the index of the character's chosen Class, prarallel with class names</summary>
+        </member>
+        <member name="P:SFLib.Character.ClassID2">
+            <summary>Stores the index of the character's second Class, prarallel with class names</summary>
+        </member>
+        <member name="P:SFLib.Character.AbilityUsedForSkill">
+            <summary>An array of ability score indexes used to indicate which ability score bonus is used for which sill</summary>
+        </member>
         <member name="P:SFLib.Character.NotesAndIdeas">
-            <summary>Player's longform notes and ideas(will dispaly on seperate page of final sheet)</summary>
+            <summary>Player's longform notes and ideas</summary>
         </member>
         <member name="P:SFLib.Character.MysticBonusSpells">
             <summary>Returns pre-calculated array of spells per level based on Wisdom Score</summary>
         </member>
         <member name="P:SFLib.Character.TechnoBonusSpells">
-            <summary>read only Technomancer Bonus Spells calculation using</summary>
+            <summary>read only Technomancer Bonus Spells calculation using Intelegence score</summary>
+        </member>
+        <member name="P:SFLib.Character.HeavyArmor">
+            <summary>Stores abool that dertermins if the character can wear heavy armor</summary>
+        </member>
+        <member name="P:SFLib.Character.profiencies">
+            <summary>stores an array of bool parrallel wity Proficeincy names</summary>
         </member>
         <member name="P:SFLib.Character.IsClassSkill">
             <summary>
@@ -285,6 +319,14 @@
         </member>
         <member name="P:SFLib.Character.StaminaPoints">
             <summary> Statmina points ajusted by Class Con mod and Ability Scores</summary>
+        </member>
+        <member name="P:SFLib.Character.Is_TrainedOnlySkill">
+            <summary>Returns an array bool where each vallue corrisponds 
+            to a skill and weather it can be used untrained</summary>
+        </member>
+        <member name="P:SFLib.Character.AbilityModForSkill">
+            <summary>returns an array of integers corresponding to 
+            the index of the ability score a skill uses.</summary>
         </member>
         <member name="P:SFLib.Character.BaseAbilityMods">
             <summary>Ability Mods from Base Character Attributes</summary>

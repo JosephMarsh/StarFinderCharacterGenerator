@@ -16,10 +16,10 @@ namespace DieRoller.ViewModels
         private static Information _info = new Information();
         private static Themes _themes = new Themes();
 
-        private int _selectedTheme = _Global_Player.PlayerThemeId;
-        private int _selectedAbiliytScore;
+        private int _themeID = _Global_Player.PlayerThemeId;
 
-        
+        private int _selectedTheme = _Global_Player.PlayerThemeId;
+        private int _themeAbilityScoreIndex = _Global_Player.ThemeAbilityScoreIndex;
 
         private string[] _themeNames = _themes.ThemeNames;
         private string[] _abilityScoreNames = _Global_Player.AbilityNames;
@@ -37,6 +37,11 @@ namespace DieRoller.ViewModels
         private int _intAdjust = _Global_Player.ThemeAblityScoreAdjustment[3];
         private int _wisAdjust = _Global_Player.ThemeAblityScoreAdjustment[5];
         private int _chaAdjust = _Global_Player.ThemeAblityScoreAdjustment[0];
+
+        private bool _ability1IsVisable = false;
+
+        
+
 
         private IEventAggregator _events;
 
@@ -242,33 +247,91 @@ namespace DieRoller.ViewModels
         {
             get
             {
+                //check to see if a theme has been commited already
+                if (_themeID > -1)
+                {
+                    _selectedTheme = _themeID;
+                }
                 return _selectedTheme;
             }
             set
             {
                 _selectedTheme = value;
+                //set theme ID
+                ThemeID = _selectedTheme;
+                //check to see if Ability score selection is required
+                if (_selectedTheme == 9)
+                {
+                    //Show ability score dropdown
+                    Ability1IsVisable = true;
+                }
+                else
+                {
+                    //hide ablility score dropdown
+                    Ability1IsVisable = false;
+
+                }
                 NotifyOfPropertyChange(() => SelectedTheme);
+
             }
         }
 
-        public int AbilityComboBox1Selection
+        /// <summary>Int corrisponding the the selected Theme Chosen</summary>
+        public int ThemeID
         {
             get
             {
-                return _selectedAbiliytScore;
+                return _themeID;
             }
             set
             {
-                _selectedAbiliytScore = value;
-                NotifyOfPropertyChange(() => AbilityComboBox1Selection);
+                _themeID = value;
+                NotifyOfPropertyChange(() => ThemeID);
             }
         }
 
-        public void commit()
+        /// <summary>property controls the visabiliyt of the ability score dropdown menu</summary>
+        public bool Ability1IsVisable
         {
-
+            get
+            {
+                return _ability1IsVisable;
+            }
+            set
+            {
+                _ability1IsVisable = value;
+                NotifyOfPropertyChange(() => Ability1IsVisable);
+            }
         }
 
+        /// <summary>Stores the ability score modifyed by the theme</summary>
+        public int ThemeAbilityScoreIndex
+        {
+            get
+            {
+                return _themeAbilityScoreIndex;
+            }
+            set
+            {
+                _themeAbilityScoreIndex = value;
+            }
+        }
+
+        /// <summary>
+        /// This Method is bound to the save button with Caliburn Micro
+        /// when pressed the button updates the global object with the user's chosen values
+        /// </summary>
+        public void commit()
+        {
+            //set theme ID
+            _Global_Player.PlayerThemeId = ThemeID;
+            //tell anyone listening that the object was updated
+            _events.PublishOnUIThread(new DataCommitedEvent());
+        }
+
+        /// <summary>
+        /// bound to Clear button with Caliburn Micro
+        /// </summary>
         public void Reset()
         {
             //reset ability scores
@@ -286,7 +349,7 @@ namespace DieRoller.ViewModels
 
         }
 
-        //manages the stat of local fields.
+        //manages the state of local fields.
         private void manageRaceSelectionFields(int themeIndex)
         {
             //check if a theme has been set
@@ -302,6 +365,50 @@ namespace DieRoller.ViewModels
             }
         }
 
+        //Method updates ablity score index when a new theme is selected
+        private void updateAbilityScores(int themeIndex)
+        {
+            //check to see if selection is themeless
+            if (themeIndex == 9)
+            {
+                //initialize all properties to 0
+                StrAdjust = 0;
+                DexAdjust = 0;
+                ConAdjust = 0;
+                IntAdjust = 0;
+                WisAdjust = 0;
+                ChaAdjust = 0;
+
+                //update Abiliy score adjustment
+                switch (ThemeAbilityScoreIndex)
+                {
+                    case 0:
+                        ChaAdjust = 1;
+                        break;
+                    case 1:
+                        ConAdjust = 1;
+                        break;
+                    case 2:
+                        DexAdjust = 1;
+                        break;
+                    case 3:
+                        IntAdjust = 1;
+                        break;
+                    case 4:
+                        StrAdjust = 1;
+                        break;
+                    case 5:
+                        WisAdjust = 1;
+                        break;
+                    default:
+                        break;
+                }
+            }
+            else
+            {
+
+            }
+        }
 
         /// <summary>
         /// Handels Global Data Commited events.

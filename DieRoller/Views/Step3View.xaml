@@ -250,7 +250,7 @@
         <!--#region Row 3 Ability Score Selection-->
 
         <Border
-            x:Name="ControlAbility1IsVisable"
+            x:Name="Ability1IsVisable"
             Grid.Column="1"
             Padding="5"
             Grid.Row="3">
@@ -266,7 +266,7 @@
                     x:Name="AbilitySelect"
                     FontSize="12"
                     ItemsSource="{Binding Path=AbilityComboBox1, Mode=OneWay}"
-                    SelectedIndex="{Binding Path=AbilityComboBox1Selection, Mode=TwoWay}"
+                    SelectedIndex="{Binding Path=ThemeAbilityScoreIndex, Mode=TwoWay}"
                     MaxDropDownHeight="200"/>
             </StackPanel>
         </Border>
@@ -434,6 +434,7 @@
             Padding="5"
             Grid.Column="2"
             Grid.Row="4"/>
+
         <!--#endregion-->
         
         <!--#region Row 5 Informoation panel-->
