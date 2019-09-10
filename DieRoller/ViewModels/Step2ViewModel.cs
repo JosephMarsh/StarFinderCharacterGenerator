@@ -655,7 +655,7 @@ namespace DieRoller.ViewModels
         }
 
         /// <summary>
-        /// bound to Clear button with Caliburn Micor
+        /// bound to Clear button with Caliburn Micro
         /// </summary>
         public void Reset()
         {
@@ -673,6 +673,7 @@ namespace DieRoller.ViewModels
             Wis = _Global_Player.AbilityScoresWithTheme[5];
             Cha = _Global_Player.AbilityScoresWithTheme[0];
 
+            //check to see if the race was not set or was set to custom
             if (SelectedRace == -1 || (SelectedRace == 8 && IsGodMode))
             {
                 StrAdjust = _Global_Player.RacialAbilityScoreAdjustment[4];
@@ -682,8 +683,10 @@ namespace DieRoller.ViewModels
                 WisAdjust = _Global_Player.RacialAbilityScoreAdjustment[5];
                 ChaAdjust = _Global_Player.RacialAbilityScoreAdjustment[0];
             }
+            //else it was set to something specific
             else
             {
+                //grabs the value from 2D array of ability scores based on selected race
                 StrAdjust = _Global_Player.RaceMods[SelectedRace][4];
                 DexAdjust = _Global_Player.RaceMods[SelectedRace][2];
                 ConAdjust = _Global_Player.RaceMods[SelectedRace][1];

@@ -17,31 +17,21 @@ namespace DieRoller.ViewModels
         private static Character _Player_Instance = new Character();
         private Step1ViewModel _step1;
         private Step2ViewModel _step2;
+        private Step3ViewModel _step3;
         private DieRollViewModel _DieRoller;
         private IEventAggregator _events;
         //initialize value.
         private string _characterName = _Player_Instance.CharacterName;
         private string _characterRace = _Global_Player.RaceName;
-
-        public string CharacterRace
-        {
-            get
-            {
-                return _characterRace;
-            }
-            set
-            {
-                _characterRace = value;
-                NotifyOfPropertyChange(() => CharacterRace);
-            }
-        }
+        private string _characterthemeName = _Player_Instance.ThemeName;
 
 
-        public ShellViewModel(Step1ViewModel step1, Step2ViewModel step2, DieRollViewModel dieRoller, IEventAggregator events)
+        public ShellViewModel(Step1ViewModel step1, Step2ViewModel step2, Step3ViewModel step3, DieRollViewModel dieRoller, IEventAggregator events)
         {
             _events = events;
             _step1 = step1;
             _step2 = step2;
+            _step3 = step3;
             _DieRoller = dieRoller;
 
             //Allows class to listne for gobal events.
@@ -80,22 +70,54 @@ namespace DieRoller.ViewModels
             }
         }
 
+        public string CharacterTheme
+        {
+            get
+            {
+                return _characterthemeName;
+            }
+            set
+            {
+                _characterthemeName = value;
+                NotifyOfPropertyChange(() => CharacterTheme);
+            }
+        }
+
+        public string CharacterRace
+        {
+            get
+            {
+                return _characterRace;
+            }
+            set
+            {
+                _characterRace = value;
+                NotifyOfPropertyChange(() => CharacterRace);
+            }
+        }
+
         /// <summary>lanuches Die Roller user control</summary>
         public void DieRollPage()
         {
             ActivateItem(_DieRoller);
         }
 
-        /// <summary>lanuches step 1 user control</summary>
+        /// <summary>lanuches Step 1 user control</summary>
         public void Step1Page()
         {
             ActivateItem(_step1);
         }
 
-        /// <summary>lanuches step 2 user control</summary>
+        /// <summary>lanuches Step 2 user control</summary>
         public void Step2Page()
         {
             ActivateItem(_step2);
+        }
+
+        /// <summary>lanuches Step 3 user control</summary>
+        public void Step3Page()
+        {
+            ActivateItem(_step3);
         }
 
         //refreshes local fields
@@ -103,6 +125,7 @@ namespace DieRoller.ViewModels
         {
             CharacterName = Global_Player.CharacterName;
             CharacterRace = Global_Player.RaceName;
+            CharacterTheme = Global_Player.ThemeName;
         }
 
         /// <summary>
