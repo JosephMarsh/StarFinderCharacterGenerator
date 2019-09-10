@@ -23,6 +23,7 @@ namespace DieRoller.ViewModels
 
         private string[] _themeNames = _themes.ThemeNames;
         private string[] _abilityScoreNames = _Global_Player.AbilityNames;
+        private string _textboxInfo = _info.step3;
 
         private int _str = _Global_Player.AbilityScoresWithRacialMods[4];
         private int _dex = _Global_Player.AbilityScoresWithRacialMods[2];
@@ -39,9 +40,8 @@ namespace DieRoller.ViewModels
         private int _chaAdjust = _Global_Player.ThemeAblityScoreAdjustment[0];
 
         private bool _ability1IsVisable = false;
-
-        
-
+        private bool _isGodMode = false;
+        private bool _canCommit = false;
 
         private IEventAggregator _events;
 
@@ -193,6 +193,7 @@ namespace DieRoller.ViewModels
             set
             {
                 _con = value;
+                NotifyOfPropertyChange(() => Con);
             }
         }
 
@@ -242,6 +243,20 @@ namespace DieRoller.ViewModels
             }
         }
 
+        /// <summary>Populates the info box with text bound with Caliburn Micro</summary>
+        public string TextBoxInfo1
+        {
+            get
+            {
+                return _textboxInfo;
+            }
+            set
+            {
+                _textboxInfo = value;
+                NotifyOfPropertyChange(() => TextBoxInfo1);
+            }
+        }
+
         /// <summary>stores the slected item index for the selected theme</summary>
         public int SelectedTheme
         {
@@ -257,6 +272,9 @@ namespace DieRoller.ViewModels
             set
             {
                 _selectedTheme = value;
+
+                
+
                 //set theme ID
                 ThemeID = _selectedTheme;
                 //check to see if Ability score selection is required
@@ -271,8 +289,10 @@ namespace DieRoller.ViewModels
                     Ability1IsVisable = false;
 
                 }
+                updateAbilityScores(_selectedTheme);
+                manageInfoPane(value);
                 NotifyOfPropertyChange(() => SelectedTheme);
-
+                CanCommit();
             }
         }
 
@@ -304,6 +324,20 @@ namespace DieRoller.ViewModels
             }
         }
 
+        /// <summary>Value enables and disables the The Commit Button</summary>
+        public bool CanCommitButton
+        {
+            get
+            {
+                return _canCommit;
+            }
+            set
+            {
+                _canCommit = value;
+                NotifyOfPropertyChange(() => CanCommitButton);
+            }
+        }
+
         /// <summary>Stores the ability score modifyed by the theme</summary>
         public int ThemeAbilityScoreIndex
         {
@@ -313,8 +347,42 @@ namespace DieRoller.ViewModels
             }
             set
             {
+                
                 _themeAbilityScoreIndex = value;
+                updateAbilityScores(_selectedTheme);
+                NotifyOfPropertyChange(() => ThemeAbilityScoreIndex);
+                CanCommit();
             }
+        }
+
+        /// <summary>enables ability score adjustment controls. not currently implemented</summary>
+        public bool IsGodMode
+        {
+            get
+            {
+                return _isGodMode = false;
+            }
+            set
+            {
+                _isGodMode = value;
+            }
+        }
+
+        public bool CanCommit()
+        {
+            if (SelectedTheme == -1)
+            {
+                CanCommitButton = false;
+            }
+            else if (_selectedTheme == 9 && ThemeAbilityScoreIndex == -1)
+            {
+                CanCommitButton = false;
+            }
+            else
+            {
+                CanCommitButton = true;
+            }
+            return CanCommitButton;
         }
 
         /// <summary>
@@ -323,6 +391,16 @@ namespace DieRoller.ViewModels
         /// </summary>
         public void commit()
         {
+            //save theme ability score modifiers
+            _Global_Player.ThemeAblityScoreAdjustment[4] = StrAdjust;
+            _Global_Player.ThemeAblityScoreAdjustment[2] = DexAdjust;
+            _Global_Player.ThemeAblityScoreAdjustment[1] = ConAdjust;
+            _Global_Player.ThemeAblityScoreAdjustment[3] = IntAdjust;
+            _Global_Player.ThemeAblityScoreAdjustment[5] = WisAdjust;
+            _Global_Player.ThemeAblityScoreAdjustment[0] = ChaAdjust;
+
+            //set global theme name
+            _Global_Player.ThemeName = ThemeNames[ThemeID];
             //set theme ID
             _Global_Player.PlayerThemeId = ThemeID;
             //tell anyone listening that the object was updated
@@ -368,46 +446,131 @@ namespace DieRoller.ViewModels
         //Method updates ablity score index when a new theme is selected
         private void updateAbilityScores(int themeIndex)
         {
-            //check to see if selection is themeless
+            //check to see if selection is themeless 
             if (themeIndex == 9)
             {
-                //initialize all properties to 0
-                StrAdjust = 0;
-                DexAdjust = 0;
-                ConAdjust = 0;
-                IntAdjust = 0;
-                WisAdjust = 0;
-                ChaAdjust = 0;
-
-                //update Abiliy score adjustment
-                switch (ThemeAbilityScoreIndex)
+                //initialize fields
+                initializeAbilityScoreAdjusments();
+                intializeAbilityScores();
+                //if an ability score has been slected
+                if (ThemeAbilityScoreIndex != -1)
                 {
-                    case 0:
-                        ChaAdjust = 1;
-                        break;
-                    case 1:
-                        ConAdjust = 1;
-                        break;
-                    case 2:
-                        DexAdjust = 1;
-                        break;
-                    case 3:
-                        IntAdjust = 1;
-                        break;
-                    case 4:
-                        StrAdjust = 1;
-                        break;
-                    case 5:
-                        WisAdjust = 1;
-                        break;
-                    default:
-                        break;
-                }
+                    //adjust selected ability scores based on ablity chosen in dropdown
+                    switch (ThemeAbilityScoreIndex)
+                    {
+                        case 0:
+                            ChaAdjust = 1;
+                            Cha = _Global_Player.AbilityScoresWithRacialMods[0] + 1;
+                            break;
+                        case 1:
+                            ConAdjust = 1;
+                            Con = _Global_Player.AbilityScoresWithRacialMods[1] + 1;
+                            break;
+                        case 2:
+                            DexAdjust = 1;
+                            Dex = _Global_Player.AbilityScoresWithRacialMods[2] + 1;
+                            break;
+                        case 3:
+                            IntAdjust = 1;
+                            Int = _Global_Player.AbilityScoresWithRacialMods[3] + 1;
+                            break;
+                        case 4:
+                            StrAdjust = 1;
+                            Str = _Global_Player.AbilityScoresWithRacialMods[4] + 1;
+                            break;
+                        case 5:
+                            WisAdjust = 1;
+                            Wis = _Global_Player.AbilityScoresWithRacialMods[5] + 1;
+                            break;
+                        default:
+                            break;
+                    }
+                    //initialize ablity scores
+                    //Str = _Global_Player.AbilityScoresWithRacialMods[4] + _themes.ThemelessAbilityAdjustment[4];
+                    //Dex = _Global_Player.AbilityScoresWithRacialMods[2] + _themes.ThemelessAbilityAdjustment[2];
+                    //Con = _Global_Player.AbilityScoresWithRacialMods[1] + _themes.ThemelessAbilityAdjustment[1];
+                    //Int = _Global_Player.AbilityScoresWithRacialMods[3] + _themes.ThemelessAbilityAdjustment[3];
+                    //Wis = _Global_Player.AbilityScoresWithRacialMods[5] + _themes.ThemelessAbilityAdjustment[5];
+                    //Cha = _Global_Player.AbilityScoresWithRacialMods[0] + _themes.ThemelessAbilityAdjustment[0];
+                }//end inner if
             }
-            else
+            else 
             {
+                Str = _Global_Player.AbilityScoresWithRacialMods[4] + _themes.ThemeAbilityScoresAdj(themeIndex)[4];
+                Dex = _Global_Player.AbilityScoresWithRacialMods[2] + _themes.ThemeAbilityScoresAdj(themeIndex)[2];
+                Con = _Global_Player.AbilityScoresWithRacialMods[1] + _themes.ThemeAbilityScoresAdj(themeIndex)[1];
+                Int = _Global_Player.AbilityScoresWithRacialMods[3] + _themes.ThemeAbilityScoresAdj(themeIndex)[3];
+                Wis = _Global_Player.AbilityScoresWithRacialMods[5] + _themes.ThemeAbilityScoresAdj(themeIndex)[5];
+                Cha = _Global_Player.AbilityScoresWithRacialMods[0] + _themes.ThemeAbilityScoresAdj(themeIndex)[0];
 
-            }
+                StrAdjust = _themes.ThemeAbilityScoresAdj(themeIndex)[4];
+                DexAdjust = _themes.ThemeAbilityScoresAdj(themeIndex)[2];
+                ConAdjust = _themes.ThemeAbilityScoresAdj(themeIndex)[1];
+                IntAdjust = _themes.ThemeAbilityScoresAdj(themeIndex)[3];
+                WisAdjust = _themes.ThemeAbilityScoresAdj(themeIndex)[5];
+                ChaAdjust = _themes.ThemeAbilityScoresAdj(themeIndex)[0];
+            }//end if
+        }//end update ability scores.
+
+        private void manageInfoPane(int themeIndex)
+        {
+            switch (themeIndex)
+            {
+                case 0:
+                    TextBoxInfo1 = _info.acePilot;
+                    break;
+                case 1:
+                    TextBoxInfo1 = _info.bountyHunter;
+                    break;
+                case 2:
+                    TextBoxInfo1 = _info.icon;
+                    break;
+                case 3:
+                    TextBoxInfo1 = _info.mercenary;
+                    break;
+                case 4:
+                    TextBoxInfo1 = _info.outlaw;
+                    break;
+                case 5:
+                    TextBoxInfo1 = _info.priest;
+                    break;
+                case 6:
+                    TextBoxInfo1 = _info.scholar;
+                    break;
+                case 7:
+                    TextBoxInfo1 = _info.spacefarer;
+                    break;
+                case 8:
+                    TextBoxInfo1 = _info.xenoSeeker;
+                    break;
+                case 9:
+                    TextBoxInfo1 = _info.themeless;
+                    break;
+                default:
+                    TextBoxInfo1 = _info.step3;
+                    break;
+            }//end switch
+        }//end manageInfoPane
+
+        //sets all ability score adjustments to 0
+        private void initializeAbilityScoreAdjusments()
+        {
+            StrAdjust = 0;
+            DexAdjust = 0;
+            ConAdjust = 0;
+            IntAdjust = 0;
+            WisAdjust = 0;
+            ChaAdjust = 0;
+        }
+        //sets all ability scores to base pluss racial mmodifiers.
+        private void intializeAbilityScores()
+        {
+            Str = _Global_Player.AbilityScoresWithRacialMods[4];
+            Dex = _Global_Player.AbilityScoresWithRacialMods[2];
+            Con = _Global_Player.AbilityScoresWithRacialMods[1];
+            Int = _Global_Player.AbilityScoresWithRacialMods[3];
+            Wis = _Global_Player.AbilityScoresWithRacialMods[5];
+            Cha = _Global_Player.AbilityScoresWithRacialMods[0];
         }
 
         /// <summary>

@@ -129,12 +129,12 @@
                     Grid.Column="3" 
                     Margin="5,0">
                     <TextBlock
-                        x:Name="Theme"
+                        x:Name="CharacterTheme"
                         Foreground="DarkSlateGray"
-                        Text="{Binding Path=ChraracterName, Mode=OneWay}" 
+                        Text="{Binding Path=CharacterTheme, Mode=OneWay}"
                         MinWidth="100" 
                         HorizontalAlignment="Left" 
-                    >test
+                    >
                     </TextBlock>
                     <TextBlock
                         x:Name="CharacterClass"

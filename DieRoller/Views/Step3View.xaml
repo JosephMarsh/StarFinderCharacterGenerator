@@ -71,28 +71,6 @@
                 MaxHeight="25" />
         </StackPanel>
 
-        <TextBlock
-            Grid.Row="2"
-            Grid.Column="2" 
-            Margin="10,25,0,0" 
-            HorizontalAlignment="Right">
-            Theme:
-        </TextBlock>
-        <TextBox
-            x:Name="ThemeName"
-            Text="None Selected"
-            Grid.Column="3"
-            Grid.Row="2"
-            Grid.ColumnSpan="2"
-            IsEnabled="{Binding Path=ThemeNameIsEnabled, Mode=TwoWay}"
-            MaxHeight="25"
-            Width="150"
-            Margin="10,25,0,0" 
-            HorizontalAlignment="Left" 
-            VerticalAlignment="Top" 
-            GotFocus="ThemeName_GotFocus" 
-            LostFocus="ThemeName_LostFocus"
-            />
 
         <GroupBox
             Grid.Column="5"

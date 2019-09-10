@@ -103,10 +103,13 @@
             <summary>Stat Generation Method, Description</summary>
         </member>
         <member name="F:SFLib.Information.step1">
-            <summary>Instruction Set</summary>
+            <summary>Instruction Set for Concept</summary>
         </member>
         <member name="F:SFLib.Information.step2">
-            <summary>Instruction Set</summary>
+            <summary>Instruction Set for Race Selection</summary>
+        </member>
+        <member name="F:SFLib.Information.step3">
+            <summary>Instruction Set for Theme Selection</summary>
         </member>
         <member name="F:SFLib.Information.step2GodMode">
             <summary>Instruction Set</summary>
@@ -513,11 +516,78 @@
             This class stores data about Starfinder Themes.
             </summary>
         </member>
+        <member name="F:SFLib.Themes.ThemeNames">
+            <summary>An array of string names for all Core themes</summary>
+        </member>
+        <member name="P:SFLib.Themes.AceBenefits">
+            <summary>Read only Array of benefit description strings for the Ace Pilot Theme</summary>
+        </member>
+        <member name="P:SFLib.Themes.BountyHunterBenefits">
+            <summary>Read only Array of benefit description strings for the Bounty Hunter Theme</summary>
+        </member>
+        <member name="P:SFLib.Themes.IconBenefits">
+            <summary>Read only Array of benefit description strings for the Icon Theme</summary>
+        </member>
+        <member name="P:SFLib.Themes.MercenaryBenefits">
+            <summary>Read only Array of benefit description strings for the Mercenary Theme</summary>
+        </member>
+        <member name="P:SFLib.Themes.OutlawBenefits">
+            <summary>Read only Array of benefit description strings for the Outlaw Theme</summary>
+        </member>
+        <member name="P:SFLib.Themes.PriestBenefits">
+            <summary>Read only Array of benefit description strings for the Priest Theme</summary>
+        </member>
+        <member name="P:SFLib.Themes.ScholarBenefits">
+            <summary>Read only Array of benefit description strings for the Scholar Theme</summary>
+        </member>
+        <member name="P:SFLib.Themes.SpacefererBenefits">
+            <summary>Read only Array of benefit description strings for the Spacefarer Theme</summary>
+        </member>
+        <member name="P:SFLib.Themes.XenoseekerBenefits">
+            <summary>Read only Array of benefit description strings for the Xenoseeker Theme</summary>
+        </member>
+        <member name="P:SFLib.Themes.AceAbilityAdjustment">
+            <summary>Read only Array of ability score adjustments for the Ace Pilot Theme</summary>
+        </member>
+        <member name="P:SFLib.Themes.BountyHunterAbilityAdjustment">
+            <summary>Read only Array of ability score adjustments for the Bounty Hunter Theme</summary>
+        </member>
+        <member name="P:SFLib.Themes.IconAbilityAdjustment">
+            <summary>Read only Array of ability score adjustments for the Icon Theme</summary>
+        </member>
+        <member name="P:SFLib.Themes.MercAbilityAdjustment">
+            <summary>Read only Array of ability score adjustments for the Mercenary Theme</summary>
+        </member>
+        <member name="P:SFLib.Themes.OutlawAbilityAdjustment">
+            <summary>Read only Array of ability score adjustments for the Outlaw Theme</summary>
+        </member>
+        <member name="P:SFLib.Themes.PriestAbilityAdjustment">
+            <summary>Read only Array of ability score adjustments for the Priest Theme</summary>
+        </member>
+        <member name="P:SFLib.Themes.ScholarAbilityAdjustment">
+            <summary>Read only Array of ability score adjustments for the Scholar Theme</summary>
+        </member>
+        <member name="P:SFLib.Themes.SpacerAbilityAdjustment">
+            <summary>Read only Array of ability score adjustments for the Spaceferer Theme</summary>
+        </member>
+        <member name="P:SFLib.Themes.XenoAbilityAdjustment">
+            <summary>Read only Array of ability score adjustments for the Xenoseeker Theme</summary>
+        </member>
+        <member name="P:SFLib.Themes.ThemelessAbilityAdjustment">
+            <summary>Read only Array of ability score adjustments for the Themeless Theme</summary>
+        </member>
+        <member name="M:SFLib.Themes.ThemeAbilityScoresAdj(System.Int32)">
+            <summary>
+            Produces an array of int used to determine which abaility score needs to be adjusted
+            </summary>
+            <param name="themeId">Theme ID int</param>
+            <returns>An array of ints parallel to the ability scores array</returns>
+        </member>
         <member name="M:SFLib.Themes.Sources(System.Int32)">
             <summary>
             an array of theme sources ordered by theme ID
             </summary>
-            <param name="themeId">Theme ID</param>
+            <param name="themeId">Theme ID int</param>
             <returns>A string contianing The source of the theme</returns>
         </member>
     </members>

@@ -23,19 +23,7 @@ namespace DieRoller.ViewModels
         //initialize value.
         private string _characterName = _Player_Instance.CharacterName;
         private string _characterRace = _Global_Player.RaceName;
-
-        public string CharacterRace
-        {
-            get
-            {
-                return _characterRace;
-            }
-            set
-            {
-                _characterRace = value;
-                NotifyOfPropertyChange(() => CharacterRace);
-            }
-        }
+        private string _characterthemeName = _Player_Instance.ThemeName;
 
 
         public ShellViewModel(Step1ViewModel step1, Step2ViewModel step2, Step3ViewModel step3, DieRollViewModel dieRoller, IEventAggregator events)
@@ -82,6 +70,32 @@ namespace DieRoller.ViewModels
             }
         }
 
+        public string CharacterTheme
+        {
+            get
+            {
+                return _characterthemeName;
+            }
+            set
+            {
+                _characterthemeName = value;
+                NotifyOfPropertyChange(() => CharacterTheme);
+            }
+        }
+
+        public string CharacterRace
+        {
+            get
+            {
+                return _characterRace;
+            }
+            set
+            {
+                _characterRace = value;
+                NotifyOfPropertyChange(() => CharacterRace);
+            }
+        }
+
         /// <summary>lanuches Die Roller user control</summary>
         public void DieRollPage()
         {
@@ -111,6 +125,7 @@ namespace DieRoller.ViewModels
         {
             CharacterName = Global_Player.CharacterName;
             CharacterRace = Global_Player.RaceName;
+            CharacterTheme = Global_Player.ThemeName;
         }
 
         /// <summary>
