@@ -1,0 +1,275 @@
+﻿<UserControl x:Class="DieRoller.Views.Step4View"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:DieRoller.Views"
+             xmlns:wpfTool="clr-namespace:Xceed.Wpf.Toolkit;assembly=Xceed.Wpf.Toolkit"
+             mc:Ignorable="d" 
+             d:DesignHeight="400" 
+             d:DesignWidth="800" 
+             FontFamily="Segoe UI Black" 
+             FontSize="14"
+             Background="Honeydew">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <!--Column 0 Border-->
+            <ColumnDefinition Width="0"/>
+            <ColumnDefinition Width="auto"/>
+            <ColumnDefinition Width="auto"/>
+            <ColumnDefinition Width="auto"/>
+            <ColumnDefinition Width="auto"/>
+            <ColumnDefinition Width="auto"/>
+            <!--Column 0 Border-->
+            <ColumnDefinition Width="0"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <!--Row 0 border-->
+            <RowDefinition Height="0"/>
+            <!--Row 1 Title-->
+            <RowDefinition Height="auto"/>
+            <!--Row 2 Race selection and ability scores-->
+            <RowDefinition Height="auto"/>
+            <!--Row 3 Ability Score Selection-->
+            <RowDefinition Height="auto"/>
+            <!--Row 4 Buttons and controls-->
+            <RowDefinition Height="auto"/>
+            <!--Row 5 Info Panel-->
+            <RowDefinition Height="auto"/>
+            <!--Border-->
+            <RowDefinition Height="0"/>
+        </Grid.RowDefinitions>
+
+        <!--#region Row 1 Title-->
+        <TextBlock
+            Grid.Row="1"
+            Grid.Column="1"
+            Grid.ColumnSpan="6"
+            Foreground="DarkBlue" 
+            FontSize="16"
+            TextDecorations="Underline"
+            HorizontalAlignment="Center" 
+            VerticalAlignment="Center" 
+            Margin="0,10">
+            Step 4 Pick Class</TextBlock>
+        <!--#endregion-->
+
+        <!--#region Row 2 Pick Class and primary ability scores-->
+        <StackPanel
+            Grid.Row="2" 
+            Margin="5,0,5,0"
+            Grid.Column="1"
+            MinWidth="100">
+            <TextBlock
+                x:Name="LabelClassName"
+                Margin="5,0,5,5"
+                Text="Choose Your Class:"/>
+            <ComboBox
+                x:Name="PickClass"
+                ItemsSource="{Binding Path=ClassNames}"
+                SelectedIndex="{Binding Path=SelectedClass}"
+                MaxHeight="25" />
+            <CheckBox
+            x:Name="IsMulticlass"
+            Content="Multiclass"
+            Grid.Column="3"
+            Grid.Row="2"
+            Grid.ColumnSpan="2"
+            IsEnabled="True"
+            MaxHeight="25"
+            Width="150"
+            Margin="10,25,0,0" 
+            HorizontalAlignment="Left" 
+            VerticalAlignment="Top" 
+            >
+            </CheckBox>
+        </StackPanel>
+        <StackPanel
+            Grid.Row="2"
+            Grid.Column="2">
+            <TextBlock
+                TextAlignment="Center"
+                Text="Level"/>
+            <wpfTool:IntegerUpDown
+                    x:Name="FirstClassLevel"
+                    Value="{Binding Path=FirstClassLevel, Mode=TwoWay}"
+                    Grid.Row="2"
+                    MinWidth="30"
+                    Grid.Column="2" 
+                    Margin="5,5,5,5"
+                    />
+        </StackPanel>
+
+        <GroupBox
+            Grid.Column="5"
+            Grid.Row="2"
+            Grid.ColumnSpan="2"
+            HorizontalAlignment="Right"
+            Header="Primary Ability Scores" 
+            BorderThickness="2" 
+            BorderBrush="#FF006DAE" 
+            Background="#FFDDDFF9" 
+            Padding="5" 
+            Margin="5,0">
+            <Grid
+                x:Name="AbilityScoresGrid"
+                IsEnabled="False"
+                >
+                <Grid.ColumnDefinitions>
+                    <!--0 Border-->
+                    <ColumnDefinition Width="5"/>
+                    <!--4 Info-->
+                    <ColumnDefinition Width="auto"/>
+                    <!--5 Border-->
+                    <ColumnDefinition Width="0"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="0"/>
+                    <!--Row 1 Str int-->
+                    <RowDefinition Height="auto"/>
+                    <!--Row 2 Dex Wis-->
+                    <RowDefinition Height="auto"/>
+                    <!--Row 3 Con Cha-->
+                    <RowDefinition Height="auto"/>
+                    <!--Row 4 border-->
+                    <RowDefinition Height="auto"/>
+                </Grid.RowDefinitions>
+
+                <!--Row  Primary lable-->
+                <TextBlock 
+                    Grid.Column="1"
+                    Grid.Row="1"
+                    Margin="5"
+                    TextDecorations="Underline" 
+                    HorizontalAlignment="Center">
+                    Primary Ability Scores:
+                </TextBlock>
+
+                <!--Primary ability score 1-->
+                <TextBlock 
+                    Grid.Column="1"
+                    Grid.Row="2"
+                    Margin="10,5,5,5"
+                    FontSize="14"
+                    Foreground="DarkSlateGray"
+                    Text="test">
+                </TextBlock>
+
+                <!--Row 3 Con Cha-->
+                <TextBlock 
+                    Grid.Column="1"
+                    Grid.Row="3"
+                    TextAlignment="Center"
+                    HorizontalAlignment="Center"
+                    Margin="0,5,5,5"
+                    TextDecorations="Underline">
+                    Secondary Ability Scores:
+                </TextBlock>
+                <TextBlock 
+                    Grid.Column="1"
+                    Grid.Row="4"
+                    Margin="10,5,5,5"
+                    FontSize="14"
+                    Foreground="DarkSlateGray"
+                    Text="test">
+                </TextBlock>
+            </Grid>
+            <!--End Ability Score Grid-->
+        </GroupBox>
+        <!--#endregion-->
+        
+        <!--#region Row 3-->
+        <Border
+            x:Name="ControlMulticlassIsVisable"
+            Grid.Column="1"
+            Grid.Row="3">
+            <StackPanel>
+                <TextBlock
+                x:Name="LabelClassName2"
+                Margin="5,0,5,5"
+                Text="Choose Your Class:"/>
+                <ComboBox
+                x:Name="PickClass2"
+                ItemsSource="{Binding Path=ClassNames}"
+                SelectedIndex="{Binding Path=SelectedClass2}"
+                MaxHeight="25" 
+            />
+            </StackPanel>
+        </Border>
+        <Border
+            x:Name="ControlMulticlassLevelIsVisable"
+            Grid.Row="3"
+            Grid.Column="2"
+            Padding="0">
+            <StackPanel>
+                <TextBlock
+                    TextAlignment="Center"
+                Text="Level"/>
+                <wpfTool:IntegerUpDown
+                    x:Name="SecondClassLevel"
+                    Value="{Binding Path=SecondClassLevel, Mode=TwoWay}"
+                    Grid.Row="2"
+                    MinWidth="60"
+                    Grid.Column="2" 
+                    Margin="5,5,5,5"
+                    />
+            </StackPanel>
+        </Border>
+        <!--#endregion-->
+
+        <!--#region row 4 Buttons and controls-->
+        <Button
+            x:Name="Commit"
+            Grid.Column="1"
+            IsEnabled="{Binding Path=CanCommitButton}"
+            ToolTip="Saves current setting so that other steps can see the changes"
+            Grid.Row="4"
+            Padding="5"
+            Margin="5">
+            Save
+        </Button>
+
+        <Button
+            x:Name="Reset"
+            Margin="5"
+            ToolTip="Clears or resets to previously commited value."
+            Content="Reset"
+            Padding="5"
+            Grid.Column="2"
+            Grid.Row="4"
+            />
+        <!--#endregion-->
+
+        <!--#region Row 5 Informoation panel-->
+        <GroupBox
+            Name="GroupBoxInformation1"
+            Grid.Row="5" 
+            Grid.Column="1" 
+            Grid.ColumnSpan="6"
+            Header="Information" 
+            BorderThickness="2" 
+            MinWidth="600"
+            MaxWidth="800"
+            BorderBrush="#FF006DAE" 
+            Background="#FFDDDFF9" 
+            Padding="5" 
+            Margin="5,0">
+            <StackPanel
+                Name="StackInfoBox1">
+                <ScrollViewer
+                    MaxWidth="800"
+                    MaxHeight="200">
+                    <TextBlock                       
+                        x:Name="TextBoxInfo1"
+                        Padding="5"
+                        Background="White"
+                        IsEnabled="False"
+                        TextWrapping="Wrap" 
+                        TextAlignment="Justify"/>
+                </ScrollViewer>
+            </StackPanel>
+        </GroupBox>
+        <!--end GroupBoxInformation1-->
+        <!--#endregion-->
+    </Grid>
+</UserControl>

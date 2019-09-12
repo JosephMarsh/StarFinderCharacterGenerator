@@ -177,6 +177,7 @@
     <Compile Include="ViewModels\Step1ViewModel.cs" />
     <Compile Include="ViewModels\Step2ViewModel.cs" />
     <Compile Include="ViewModels\Step3ViewModel.cs" />
+    <Compile Include="ViewModels\Step4ViewModel.cs" />
     <Compile Include="Views\DieRollView.xaml.cs">
       <DependentUpon>DieRollView.xaml</DependentUpon>
     </Compile>
@@ -197,6 +198,9 @@
     <Compile Include="Views\Step3View.xaml.cs">
       <DependentUpon>Step3View.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\Step4View.xaml.cs">
+      <DependentUpon>Step4View.xaml</DependentUpon>
+    </Compile>
     <Page Include="Views\DieRollView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -214,6 +218,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\Step3View.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Step4View.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

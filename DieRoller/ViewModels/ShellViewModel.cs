@@ -18,6 +18,7 @@ namespace DieRoller.ViewModels
         private Step1ViewModel _step1;
         private Step2ViewModel _step2;
         private Step3ViewModel _step3;
+        private Step4ViewModel _step4;
         private DieRollViewModel _DieRoller;
         private IEventAggregator _events;
         //initialize value.
@@ -26,12 +27,13 @@ namespace DieRoller.ViewModels
         private string _characterthemeName = _Player_Instance.ThemeName;
 
 
-        public ShellViewModel(Step1ViewModel step1, Step2ViewModel step2, Step3ViewModel step3, DieRollViewModel dieRoller, IEventAggregator events)
+        public ShellViewModel(Step1ViewModel step1, Step2ViewModel step2, Step3ViewModel step3, Step4ViewModel step4, DieRollViewModel dieRoller, IEventAggregator events)
         {
             _events = events;
             _step1 = step1;
             _step2 = step2;
             _step3 = step3;
+            _step4 = step4;
             _DieRoller = dieRoller;
 
             //Allows class to listne for gobal events.
@@ -118,6 +120,12 @@ namespace DieRoller.ViewModels
         public void Step3Page()
         {
             ActivateItem(_step3);
+        }
+
+        /// <summary>lanuches Step 3 user control</summary>
+        public void Step4Page()
+        {
+            ActivateItem(_step4);
         }
 
         //refreshes local fields

@@ -254,3 +254,5 @@ C:\Users\AnubitFire\OneDrive\StarFinderCharacterGenerator\DieRoller\obj\Debug\Di
 C:\Users\AnubitFire\OneDrive\StarFinderCharacterGenerator\DieRoller\obj\Debug\DieRoller.pdb
 C:\Users\AnubitFire\OneDrive\StarFinderCharacterGenerator\DieRoller\obj\Debug\Views\Step3View.g.cs
 C:\Users\AnubitFire\OneDrive\StarFinderCharacterGenerator\DieRoller\obj\Debug\Views\Step3View.baml
+C:\Users\AnubitFire\OneDrive\StarFinderCharacterGenerator\DieRoller\obj\Debug\Views\Step4View.g.cs
+C:\Users\AnubitFire\OneDrive\StarFinderCharacterGenerator\DieRoller\obj\Debug\Views\Step4View.baml

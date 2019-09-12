@@ -172,6 +172,10 @@
                 Padding="5,1"
                 Content="Step 3"/>
             <Button
+                x:Name="Step4Page"
+                Padding="5,1"
+                Content="Step 4"/>
+            <Button
                 x:Name="DieRollPage"
                 Padding="5,1"
                 Foreground="Cornsilk"

@@ -51,12 +51,32 @@
             <param name="re_Roll_1s">if true will not return less than 2</param>
             <returns>int between 1 and 6 or 2 and 6</returns>
         </member>
-        <member name="F:SFLib.EnvoyClass.ClassID">
+        <member name="T:SFLib.EnvoyClass">
             <summary>
-            This class stores data for the Envoy class and modifies the
-            super class PlayerClass with relevent data specific to this player
-            class.
+            This class contains definitions for the PlayerClass Class that is unique to the Envoy Player Class
             </summary>
+        </member>
+        <member name="P:SFLib.EnvoyClass.GetsImprovisation">
+            <summary>Read only, Useful for calcualting the leves at wich and amount of Improvisation the class recives </summary>
+        </member>
+        <member name="P:SFLib.EnvoyClass.GetsExpertiseTallent">
+            <summary>Read only, Useful for calcualting the leves at wich and amount of Expertise the class recives </summary>
+        </member>
+        <member name="P:SFLib.EnvoyClass.GetsSkillExpterise">
+            <summary>Read only, Useful for calcualting the leves at wich and amount of Expertise the class recives </summary>
+        </member>
+        <member name="P:SFLib.EnvoyClass.BAB">
+            <summary>read only, returns the BAB for the class bassed on class level</summary>
+        </member>
+        <member name="P:SFLib.EnvoyClass.areProfiencies">
+            <summary>sets Class profiencies to true then returns the list</summary>
+        </member>
+        <member name="M:SFLib.EnvoyClass.Expertise(System.Int32)">
+            <summary>
+            Generates a string showing the character's current Experise die and bonuses based on level
+            </summary>
+            <param name="level">Class level</param>
+            <returns>A string for humans</returns>
         </member>
         <member name="T:SFLib.Information">
             <summary>
@@ -288,10 +308,16 @@
             <summary>Stores a readonly array of Character class names</summary>
         </member>
         <member name="P:SFLib.Character.ClassID1">
-            <summary>Stores the index of the character's chosen Class, prarallel with class names</summary>
+            <summary>Stores the index of the character's chosen Class, prarallel with class names, Default -1</summary>
         </member>
         <member name="P:SFLib.Character.ClassID2">
-            <summary>Stores the index of the character's second Class, prarallel with class names</summary>
+            <summary>Stores the index of the character's second Class, prarallel with class names, Default -1</summary>
+        </member>
+        <member name="P:SFLib.Character.Class1Level">
+            <summary>Stores Primary class level Default 1</summary>
+        </member>
+        <member name="P:SFLib.Character.Class2Level">
+            <summary>Stores Secondary class level Default 0</summary>
         </member>
         <member name="P:SFLib.Character.AbilityUsedForSkill">
             <summary>An array of ability score indexes used to indicate which ability score bonus is used for which sill</summary>
@@ -370,6 +396,18 @@
         </member>
         <member name="P:SFLib.PlayerClass.landSpeedMod">
             <summary>Modifies how fast the player can move</summary>
+        </member>
+        <member name="F:SFLib.PlayerClass.weaponProficiency">
+            <summary>Stores true if caracter is proficient in weapon runs parrallel with Character.Proficiencies</summary>
+        </member>
+        <member name="P:SFLib.PlayerClass.ClassID">
+            <summary>Stors the class ID</summary>
+        </member>
+        <member name="F:SFLib.PlayerClass.classNames">
+            <summary>Array of all class names</summary>
+        </member>
+        <member name="F:SFLib.PlayerClass.skillNames">
+            <summary>Array of all skill names</summary>
         </member>
         <member name="T:SFLib.Races">
             <summary>

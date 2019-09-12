@@ -10,7 +10,9 @@ namespace DieRoller.ViewModels
 {
     public class Step2ViewModel : Screen, IHandle<DataCommitedEvent>
     {
+        //singleton model opbject
         private static Character _Global_Player = ShellViewModel.Global_Player;
+        //info class
         private static Information _info = new Information();
 
         //ability scores after adjustments
