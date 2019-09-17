@@ -409,6 +409,12 @@
         <member name="F:SFLib.PlayerClass.skillNames">
             <summary>Array of all skill names</summary>
         </member>
+        <member name="P:SFLib.PlayerClass.KeyAbilityScores">
+            <summary>Read only array of Key Ability Scores, prallel with Class names</summary>
+        </member>
+        <member name="P:SFLib.PlayerClass.SecoundaryAbilityScores">
+            <summary>Read only array of Secondary Ability Scores, prallel with Class names</summary>
+        </member>
         <member name="T:SFLib.Races">
             <summary>
             Libraray for Race data.

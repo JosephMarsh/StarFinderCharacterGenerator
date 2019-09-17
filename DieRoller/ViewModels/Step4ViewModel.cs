@@ -28,18 +28,33 @@ namespace DieRoller.ViewModels
         private static SoldierClass _Soldier = new SoldierClass();
         private static TechnomancerClass _Technomancer = new TechnomancerClass();
 
-        /// <summary>
-        /// an array of character classes.
-        /// </summary>
-        public PlayerClass[] classes = { _Envoy,_Mech,_Mystic,_Operative, _Solarian, _Soldier, _Technomancer };
 
+        private string[] _primaryAbilityScores = _PlayerClass.KeyAbilityScores;
         private string[] _classNames = _PlayerClass.classNames;
+        private string _primaryAbilityScoreDisplay = "";
         private int _selectedClass = _Global_Player.ClassID1;
+        private int _selectedClass2 = _Global_Player.ClassID2;
         private int _firstClassLevel = _Global_Player.Class1Level;
         private int _secondClassLevel = _Global_Player.Class2Level;
 
+        private bool _isMulticlass = _Global_Player.IsMultiClass;
+
+        /// <summary> Read only Bound to PrimaryAbilityScoreDisplay with caliburn micro </summary>
+        public string PrimaryAbilityScoreDisplay
+        {
+            get
+            {
+                return _primaryAbilityScoreDisplay;
+            }
+            set
+            {
+                _primaryAbilityScoreDisplay = value;
+                NotifyOfPropertyChange(() => PrimaryAbilityScoreDisplay);
+            }
+        }
+
         /// <summary>Stores the number of leveles in the secondary class</summary>
-        public int SecondClassLevel
+        public int Class2Level
         {
             get
             {
@@ -48,13 +63,13 @@ namespace DieRoller.ViewModels
             set
             {
                 _secondClassLevel = value;
-                multiclassBallancer();
-                NotifyOfPropertyChange(() => SecondClassLevel);
+                multiclassLevelValidation();
+                NotifyOfPropertyChange(() => Class2Level);
             }
         }
 
         /// <summary>Stores the number of leveles in the primary class</summary>
-        public int FirstClassLevel
+        public int Class1Level
         {
             get
             {
@@ -63,12 +78,10 @@ namespace DieRoller.ViewModels
             set
             {
                 _firstClassLevel = value;
-                multiclassBallancer();
-                NotifyOfPropertyChange(() => FirstClassLevel);
+                multiclassLevelValidation();
+                NotifyOfPropertyChange(() => Class1Level);
             }
         }
-
-        private bool _isMulticlass = false;
 
         /// <summary> bound to index of primary class drop down</summary>
         public int SelectedClass
@@ -80,10 +93,35 @@ namespace DieRoller.ViewModels
             set
             {
                 _selectedClass = value;
+                if (SelectedClass2 == value && value != -1)
+                {
+                    SelectedClass2 = -1;
+                }
+
+                generatePrimaryAbilityScores();
                 NotifyOfPropertyChange(() => SelectedClass);
             }
         }
-        
+
+        /// <summary> bound to index of primary class drop down</summary>
+        public int SelectedClass2
+        {
+            get
+            {
+                return _selectedClass2;
+            }
+            set
+            {
+                _selectedClass2 = value;
+                if (SelectedClass == value)
+                {
+                    SelectedClass = -1;
+                }
+                generatePrimaryAbilityScores();
+                NotifyOfPropertyChange(() => SelectedClass2);
+            }
+        }
+
         /// <summary>Bound to the value of the mutliclass checkbox</summary>
         public bool IsMulticlass
         {
@@ -93,8 +131,14 @@ namespace DieRoller.ViewModels
             }
             set
             {
+                //blank secondary class out
+                if (value == false )
+                {
+                    SelectedClass2 = -1;
+                }
                 _isMulticlass = value;
-                multiclassBallancer();
+                multiclassLevelValidation();
+                generatePrimaryAbilityScores();
                 NotifyOfPropertyChange(() => IsMulticlass);
             }
         }
@@ -108,7 +152,6 @@ namespace DieRoller.ViewModels
             }
         }
 
-
         public Step4ViewModel(IEventAggregator events)
         {
             _events = events;
@@ -116,64 +159,96 @@ namespace DieRoller.ViewModels
             _events.Subscribe(this);
         }
 
-        private void multiclassBallancer()
+        // This method is designed to maintain a 20 level cap on multiclassing
+        private void multiclassLevelValidation()
         {
             //conditions for only Multiclass
             if (IsMulticlass)
             {
                 //second Class can't be less than one
-                if (SecondClassLevel < 1)
+                if (Class2Level < 1)
                 {
-                    SecondClassLevel = 1;
+                    Class2Level = 1;
                 }
 
-                //firt class can't be more than 19
-                if (FirstClassLevel > 19)
+                //first class can't be more than 19
+                if (Class1Level > 19)
                 {
-                    FirstClassLevel = 19;
+                    Class1Level = 19;
                 }
 
-                //don't let the user add more than 20 levles total
-                if (FirstClassLevel + SecondClassLevel > 20)
+                //don't let the user add more than 20 levels total
+                if (Class1Level + Class2Level > 20)
                 {
                      
-                    SecondClassLevel = 20 - FirstClassLevel;
+                    Class2Level = 20 - Class1Level;
                 }
             }
-            //condtions for only not mutliclass
+            //condtions for single class
             else
             {
-                if (SecondClassLevel != 0)
+                //set class to to 0
+                if (Class2Level != 0)
                 {
-                    SecondClassLevel = 0;
+                    Class2Level = 0;
                 }
-
-                if(FirstClassLevel > 20)
+                //Cap class 1 at 20
+                if(Class1Level > 20)
                 {
-                    FirstClassLevel = 20;
+                    Class1Level = 20;
                 }
-            }
+            }//end if
 
             //First class can never be less than one under any condtions
-            if (FirstClassLevel < 1)
+            if (Class1Level < 1)
             {
-                FirstClassLevel = 1;
+                Class1Level = 1;
             }
-
-            
-        }
+        }//end multiclassBallancer
 
         /// <summary>
         /// bound to Clear button with Caliburn Micro
         /// </summary>
         public void Reset()
         {
+            Class1Level = _Global_Player.Class1Level;
+            Class2Level = _Global_Player.Class2Level;
 
+            IsMulticlass = _Global_Player.IsMultiClass;
+
+            SelectedClass = _Global_Player.ClassID1;
+            SelectedClass2 = _Global_Player.ClassID2;
         }
 
-        /// <summary>
-        /// Handels Global Data Commited events.
-        /// </summary>
+        public void Commit()
+        {
+            _Global_Player.ClassID1 = SelectedClass;
+            _Global_Player.Class1Level = Class1Level;
+
+            _Global_Player.IsMultiClass = IsMulticlass;
+
+            _Global_Player.ClassID2 = SelectedClass2;
+            _Global_Player.Class2Level = Class2Level;
+        }
+
+        private void generatePrimaryAbilityScores()
+        {
+            if (SelectedClass == -1)
+            {
+                PrimaryAbilityScoreDisplay = "";
+            }
+            else
+            {
+                PrimaryAbilityScoreDisplay = _primaryAbilityScores[SelectedClass];
+            }
+
+            if (IsMulticlass && SelectedClass2 != -1)
+            {
+                PrimaryAbilityScoreDisplay += " and " + _primaryAbilityScores[SelectedClass2];
+            }
+        }
+
+        /// <summary>Handels Global Data Commited events.</summary>
         /// <param name="message">Empty Event Object</param>
         public void Handle(DataCommitedEvent message)
         {
